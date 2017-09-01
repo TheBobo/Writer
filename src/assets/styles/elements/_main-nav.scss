@@ -1,0 +1,26 @@
+.main-nav {
+  height: 100%;
+  float: right;
+  ul {
+    display: inline-flex;
+    height: 100%;
+    li {
+      padding-left: 30px;
+      padding-right: 30px;
+      height: 100%;
+      line-height: 78px;
+      font-size: 15px;
+      text-transform: uppercase;
+      margin-top: 1px;
+      cursor: pointer;
+      transition: all .3s;
+      &.active,
+      &:hover {
+        color: $yellow;
+      }
+      &.active {
+        border-bottom: solid 2px $yellow;
+      }
+    }
+  }
+}

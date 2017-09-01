@@ -1,0 +1,51 @@
+.btn {
+  text-transform: uppercase;
+  font-size: .8rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.6;
+  cursor: pointer;
+  border-radius: 3px;
+  -webkit-appearance: none;
+  padding: 10px 25px;
+  transition: all .3s ease;
+  &.btn-sm {
+      padding: 0.455rem 1.6rem;
+      font-size: .5rem;
+  }
+  &.btn-lg {
+      padding: 0.68rem 2.1rem;
+      font-size: 1rem;
+      letter-spacing: inherit;
+  }
+}
+.btn:focus {
+  outline: 0 !important;
+  box-shadow: none;
+}
+.btn-yellow {
+  border: solid 2px $yellow;
+  background-color: $yellow;
+  color: #fff;
+  &:hover {
+    border: solid 2px lighten($yellow, 5% );
+    background-color: lighten($yellow, 5% );
+  }
+  &:active {
+    border: solid 2px darken($yellow, 5% );
+    background-color: darken($yellow, 5% );
+  }
+}
+.btn-cancel {
+  background-color: transparent;
+  border: solid 2px $gray;
+  color: $dark-purple;
+  &:hover {
+    background-color: $gray;
+    color: #fff;
+  }
+  &:active {
+    background-color: darken($gray, 10%);
+    border-color: darken($gray, 10%);
+  }
+
+}

@@ -1,0 +1,288 @@
+//Lite Select Styles;
+// select {
+//   display: none;
+// }
+
+.ls-select {
+  &[data-width]{
+    display: inline-block;
+  }
+  select {
+    display: none;
+  }
+  cursor:pointer;
+  position:relative;
+  list-style: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+
+  .ls-wrapper {
+    padding: $input-padding-y $input-padding-x;
+    border-bottom: solid thin darken($light-gray, 7%);
+    font-size: 1rem;
+    line-height: 1.25;
+    min-height: calc(#{$input-padding-y*2} + 21px);
+
+    &:before {
+      content:"";
+      width:0;
+      height:0;
+      border-style: solid;
+      border-width: 5px 4px 0px 4px;
+      border-color: $dark-purple transparent transparent transparent;
+      position:absolute;
+      top: calc(50% - 2px);
+      right: $input-padding-x;
+      transition: all .4s;
+    }
+
+    &.active:before {
+      transform: rotate(180deg);
+    }
+
+    &:after {
+      color: $yellow;
+      border-bottom: solid 1px $yellow;
+      display:block;
+      content: '';
+      transform: scaleX(0.0001);
+      transition: transform 250ms ease-in-out;
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+    }
+
+    &.active:after {
+      transform: scaleX(1);
+    }
+    &.ls-placeholder {
+      color: $gray;
+    }
+  }
+
+  .ls-wrapper:hover, .ls-wrapper.active {
+    background-color:#eee;
+  }
+
+  .ls-options {
+    opacity:0;
+    visibility: hidden;
+    position:absolute;
+    top: calc(100% + 1px);
+    max-height: 0px;
+    left: 0;
+    z-index:999;
+    margin:0 0;
+    padding:0 0;
+    list-style:none;
+    background-color:white;
+    box-shadow:0 1px 3px rgba($gray, 0.5);
+    max-height: 0px;
+    transition: max-height .5s, visibility 0s linear .25s, z-index 0s linear 0.25s;
+    overflow: hidden;
+    width: 100%;
+
+    .ls-search {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      input {
+        border: none;
+        width: 100%;
+        height: 100%;
+        color: $dark-purple;
+        border-bottom: solid thin darken($light-gray, 7% );
+        padding: $input-padding-y $input-padding-x*2;
+      }
+
+      &:hover {
+        background-color: inherit;
+      }
+
+      &:after {
+        content: '\e01e';
+        font-family: 'point-icons';
+        position: absolute;
+        top: 8px;
+        right: 15px;
+        font-size: 15px;
+        display: block;
+        color: $dark-purple;
+      }
+
+      &:focus:after {
+        color:$yellow;
+      }
+    }
+
+    ul {
+      max-height: 260px;
+      overflow-y: scroll;
+      margin-top:  calc(20px + #{$input-padding-y*2});
+    }
+
+    li {
+      padding: $input-padding-y $input-padding-x*2;
+
+      &.ls-category {
+        font-weight: 600;
+        &:hover {
+          color: inherit;
+          background: inherit;
+        }
+      }
+
+      &:hover {
+        color:white;
+        background-color: $yellow;
+      }
+
+      &.nested-1 {
+        padding-left: $input-padding-x*3;
+      }
+    }
+
+    &.active {
+      visibility: visible; /* shows sub-menu */
+      opacity: 1;
+      z-index: 1000;
+      transform: translateY(0%);
+      // transition-delay: 0s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+      max-height: 300px;
+
+      ul {
+
+        li {
+
+          &.ls-hidden {
+            opacity: 0;
+            transition: all 0.3s ease;
+            transform: translate3d(0, 30px, 0);
+            visibility: hidden;
+          }
+
+          transition: all 0.3s ease;
+          opacity: 1;
+          transform: translate3d(0, 0px, 0);
+          visibility: visible;
+          transition-delay: 0s;
+
+          &:hover {
+            transition-delay: 0s;
+          }
+        }
+      }
+    }
+  }
+  &[data-multiselect="true"] {
+    .ls-options {
+      ul {
+        margin-top: 0;
+      }
+    }
+    .ls-wrapper {
+      &:hover, &.active {
+        background-color: white;
+      }
+      .ls-placeholder {
+        visibility: hidden;
+        &.visible {
+          visibility: visible;
+        }
+      }
+      padding: 0;
+    }
+    .ls-multiselect {
+      display: inline-block;
+      width: 100%;
+      cursor: text;
+      .ls-search {
+        display: inline-block;
+        width: 1rem;
+        input {
+          width: 100%;
+          border: none;
+          background: transparent;
+          padding: 5px;
+          margin: 5px;
+        }
+      }
+      .selected-item {
+        float: left;
+        background-color: $light-gray;
+        padding: 5px 20px 5px 5px;
+        margin: 5px;
+        position: relative;
+        span {
+          position: absolute;
+          right: 5px;
+          top: 9px;
+          font-size: 12px;
+          opacity: .5;
+          width: 12px;
+          height: 12px;
+          display: block;
+        }
+      }
+    }
+  }
+}
+.ls-basic {
+    .ls-search {
+      display: none !important;
+    }
+    .ls-wrapper {
+      border-bottom: solid thin #e6e6ec;
+       padding: $input-padding-y-sm $input-padding-x-sm;
+      &:after {
+        bottom: -1px;
+      }
+    }
+    .ls-options {
+      ul {
+        max-height: 300px;
+        overflow-y: scroll;
+        margin-top: 0px;
+      }
+    }
+  }
+
+.ls-showOnTop {
+  .ls-options {
+    bottom: calc(100% + 1px);
+    top: inherit;
+    box-shadow:0 -1px 3px rgba($gray, 0.5);
+  }
+
+  .ls-wrapper {
+    &:after {
+      border-top: solid 1px #449cff;
+      border-bottom: solid 0px #449cff;
+      bottom: 100%;
+      position: absolute;
+      width: 100%;
+    }
+  }
+}
+.sm {
+  .ls-wrapper {
+      padding: $input-padding-y-sm $input-padding-x-sm;
+      font-size: inherit;
+      line-height: inherit;
+      min-height: calc(#{$input-padding-y-sm*2} + 22px);
+    }
+
+}
+
+.gray-bg {
+  .ls-wrapper {
+    border: none;
+    background-color: $light-gray;
+  }
+}

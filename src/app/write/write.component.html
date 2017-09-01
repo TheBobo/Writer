@@ -1,0 +1,19 @@
+<main class="main-content">
+    <div class="subheader">
+      <div class="hide-menu">
+        <svg class="icon-menu">
+          <use xlink:href="/fonts/swiftpad-icons.svg#icon-menu"></use>
+        </svg>
+      </div>
+      <div class="story-name">The Time Truck</div>
+      <nav class="main-nav"></nav>
+    </div>
+    <div class="editor"></div>
+
+    <trumbowyg [initialContent]="initialContentOne"
+    [options]="options1"
+    (savedContent)="contentOne=$event">
+
+    </trumbowyg>
+
+  </main>

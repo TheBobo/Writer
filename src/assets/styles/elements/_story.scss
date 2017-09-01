@@ -1,0 +1,53 @@
+.story {
+  width: 30%;
+  margin: 1.5%;
+  background-color: #fff;
+  border: solid thin darken($light-gray, 7%);
+  padding: 30px;
+  display: inline-block;
+  .story-title {
+    font-family: Baskerville;
+  }
+  .synopsis {
+    font-family: Baskerville;
+    font-size: 14px;
+    line-height: 26px;
+    opacity: .8;
+  }
+  .characters-holder {
+    .character-image {
+      width: 25px !important;
+      height: 25px !important;
+      margin: 3px;
+      &::first-child {
+        margin-left: 0px;
+      }
+    }
+    .character-count {
+      width: 25px;
+      height: 25px;
+      line-height: 23px;
+      text-align: center;
+      border: solid thin darken($light-gray, 15%);
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: 11px;
+      font-size: 12px;
+      margin: 3px;
+    }
+  }
+}
+.story-info {
+  display: flex;
+  justify-content: space-between;
+  .info-cell {
+    .label {
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+    .content {
+      font-size: 13px;
+      font-weight: bold;
+    }
+  }
+}

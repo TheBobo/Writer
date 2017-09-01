@@ -1,0 +1,48 @@
+.right-side-panel {
+  border-left: solid thin darken($light-gray, 7%);
+  .subheader {
+    .dropdown {
+      position: absolute;
+      left: 0;
+      top: 18px;
+    }
+    .close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+      .icon-close {
+        width: 25px;
+        height: 25px;
+        margin: 5px;
+        transition: all .3s;
+      }
+      &:hover {
+        .icon-close {
+          fill: $yellow;
+        }
+      }
+      &:hover {
+        .icon-close {
+          fill: darken($yellow, 10%);
+        }
+      }
+    }
+  }
+  .panel-wrapper {
+    padding: 20px;
+    .title-item {
+      margin-top: -55px;
+      margin-left: 20px;
+      font-size: 22px;
+    }
+    .panel-footer {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .scene-edit {
+    display: none;
+  }
+}

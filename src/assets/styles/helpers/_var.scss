@@ -1,0 +1,67 @@
+//
+// Variables
+//
+//Main Colors 
+$dark-purple:#6b6782 !default;
+$purple: #a895ce !default;
+$gray: #9dabc1 !default;
+$light-gray: #efeeea !default;
+$light-gray-lighter: #f9f8f6 !default;
+$yellow: #e4bd50 !default;
+$green: #38C68D !default;
+$blue: #3889C6 !default;
+
+// The font size set on the root html element.
+$base-font-size: 16px !default;
+
+// The base line height determines the basic unit of vertical rhythm.
+$base-line-height: 24px !default;
+
+// The length unit in which to output vertical rhythm values.
+// Supported values: px, em, rem.
+$base-unit: 'em' !default;
+
+// The default font family.
+$base-font-family: 'Lato', sans-serif 
+!default;
+
+// The font sizes for h1-h6.
+$h1-font-size: 2    * $base-font-size !default;
+$h2-font-size: 1.5  * $base-font-size !default;
+$h3-font-size: 1.17 * $base-font-size !default;
+$h4-font-size: 1    * $base-font-size !default;
+$h5-font-size: 0.83 * $base-font-size !default;
+$h6-font-size: 0.67 * $base-font-size !default;
+
+// The amount lists and blockquotes are indented.
+$indent-amount: 40px !default;
+
+$normalize-vertical-rhythm: false !default;
+
+//Trumbowyg Editor 
+$light-color: #ecf0f1 !default;
+$dark-color: #222 !default;
+
+$modal-submit-color: #2ecc71 !default;
+$modal-reset-color: #EEE !default;
+
+$transition-duration: 150ms !default;
+$slow-transition-duration: 300ms !default;
+
+// Forms
+$input-padding-x:                .75rem !default;
+$input-padding-y:                .5rem !default;
+
+$input-padding-x-sm:             .5rem !default;
+$input-padding-y-sm:             .25rem !default;
+
+$input-padding-x-lg:             1.5rem !default;
+$input-padding-y-lg:             .75rem !default;
+
+
+//balloons'toltip'
+
+$balloon-bg:                   fade-out($dark-color, .1);
+$balloon-bg-travel:            fade-out($dark-purple, .1);
+$balloon-base-size:            10px;
+$balloon-arrow-height:         6px;

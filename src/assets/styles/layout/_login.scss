@@ -1,0 +1,56 @@
+.login-page-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: $dark-purple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .login-wrapper {
+    width: 300px;
+    background-color: white;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.2);
+    .logo-container {
+      position: absolute;
+      left: 50%;
+      top: -120px;
+      width: 150px;
+      transform: translateX(-50%);
+    }
+    .change-form {
+      position: absolute;
+      bottom: -60px;
+      left: 0;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+      a {
+        color: $yellow;
+      }
+    }
+    .material {
+      .form-group {
+        label {
+          left: 15px;
+        }
+        .form-control {
+          padding-left: 15px;
+        }
+      }
+      
+      button {
+        padding: 15px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        width: 100%;
+
+      }
+    }
+  }
+  .register-form {
+    display: none;
+  }
+}

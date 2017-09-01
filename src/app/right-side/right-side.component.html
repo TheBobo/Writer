@@ -1,0 +1,62 @@
+
+<aside class="right-side-panel" [ngClass]="{'show': rightOpen}">
+  <div class="subheader">
+    <span class="close">
+      <svg class="icon-close">
+        <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-close"></use>
+      </svg>
+    </span>
+  </div>
+
+<div class="panel-wrapper" >
+  <h4 class="title-item">Edit Scene  </h4>
+  <form class="material">
+      <div class="form-group">
+        <label>Scene Name</label> 
+        <input type="text" class="form-control"  
+         value="{{scene.title}}">
+      </div>
+
+    <div class="form-group">
+      <label>act {{scene.actId}}</label>
+    </div>
+    <div class="form-group">
+      <label>chapter {{scene.chapterId}}</label>
+      <!--<select name="chapter" data-placeholder="Chapter">
+        <option value="">Chapter 1</option>
+        <option value="">Chapter 2</option>
+        <option value="">Chapter 3</option>
+        <option value="">Chapter 4</option>
+      </select>-->
+    </div>
+    <div class="form-group">
+      <label>scene {{scene.id + 1}}</label>
+      <!--<select name="" data-placeholder="Scene">
+        <option value="">Scene 1</option>
+        <option value="">Scene 2</option>
+        <option value="">Scene 3</option>
+        <option value="">Scene 4</option>
+      </select>-->
+    </div>
+    <div class="form-group">
+      <label>One Line Synopsis</label>
+      <textarea class="autoExpand form-control" rows="1" 
+      value ="{{scene.description}}"
+      data-min-rows='1' class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Word taget</label>
+      <input class="autoExpand form-control"
+      type="number"
+      value="{{scene.wordGoal}}" class="form-control">
+    </div>
+      <div class="panel-footer">
+        <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
+        <button class="btn btn-yellow" (click)="save()">Save</button>
+      </div>
+  </form>
+</div>
+
+</aside>
+

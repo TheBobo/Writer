@@ -1,0 +1,352 @@
+.story-map-wrapper {
+  width: 100%;
+  height: calc(100% - 60px);
+  overflow: auto;
+  padding: 30px;
+}
+.story-map {
+  width: auto;
+  height: auto;
+  display: flex;
+
+  .acts-column {
+    float: left;
+    padding: 0 20px;
+    display: table;
+    .title {
+      text-align: center;
+      position: relative;
+      &:after {
+        content: '';
+        width: calc(100% + 30px);
+        border: solid thin darken($light-gray, 7%);
+        border-bottom: none;
+        height: 30px;
+        position: absolute;
+        top: 100%;
+        width: calc(100% + 30px);
+        left: -15px;
+      }
+    }
+    .chapter-column {
+      width: 200px;
+      float: left;
+      margin: 0 15px;
+      &:first-of-type {
+        margin-left: 0 !important;
+      }
+      &:last-of-type {
+        margin-right: 0;
+      }
+      .chapter-item {
+        background-color: $light-gray;
+        border: solid thin darken($light-gray, 7%);
+        padding: 15px;
+        margin-bottom: 7px;
+        cursor: pointer;
+        overflow: hidden;
+        .chapter-item-wrapper {
+          position: relative;
+          transform: translateY(0);
+          width: 100%;
+          height: 100%;
+          display: inline-block;
+          transition: all .3s ease;
+          .chapter-count {
+            font-family: Baskerville;
+            font-size: 10px;
+            font-weight: bold;
+            color: lighten($dark-purple, 25%);
+            text-transform: uppercase;
+            margin-top: 0px;
+          }
+          .title-chapter {
+            display: block; /* Fallback for non-webkit */
+            display: -webkit-box;
+            font-family: Baskerville;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 0;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp:2;
+            height: 28px;
+          }
+          .synopsis {
+            font-family: Baskerville;
+            font-size: 10px;
+            line-height: 14px;
+            opacity: .6;
+            font-style: italic;
+            margin-bottom: 7px;
+          }
+          .characters-holder {
+            .character-image {
+              width: 18px !important;
+              height: 18px !important;
+              margin: 3px;
+              &::first-child {
+                margin-left: 0px;
+              }
+            }
+            .character-count {
+              width: 18px;
+              height: 18px;
+              line-height: 15px;
+              text-align: center;
+              border: solid thin darken($light-gray, 15%);
+              border-radius: 50%;
+              display: inline-block;
+              vertical-align: 9px;
+              font-size: 10px;
+              margin: 3px;
+            }
+          }
+          .info-cell {
+            p {
+              margin-bottom: 0;
+              margin-top: 6px;
+            }
+          }
+        }
+        &:hover {
+          .chapter-item-wrapper {
+            transform: translateY(-50px)
+          }
+        }
+      }
+      .scene-item {
+        background-color: #fff;
+        border: solid thin darken($light-gray, 7%);
+        padding: 15px;
+        margin: 7px 0;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        .scene-wrapper {
+          position: relative;
+          transform: translateY(0);
+          width: 100%;
+          height: 100%;
+          display: inline-block;
+          transition: all .3s ease;
+          .tag-label {
+            position: absolute;
+            top: -4px;
+            right: 0px;
+          }
+          .scene-count {
+            font-family: Baskerville;
+            font-size: 10px;
+            font-weight: bold;
+            color: lighten($dark-purple, 25%);
+            text-transform: uppercase;
+            margin-top: 0px;
+          }
+          .title-scene {
+            font-family: Baskerville;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 0;
+          }
+          .synopsis {
+            font-family: Baskerville;
+            font-size: 10px;
+            line-height: 14px;
+            opacity: .6;
+            font-style: italic;
+            margin-bottom: 7px;
+          }
+          .characters-holder {
+            .character-image {
+              width: 18px !important;
+              height: 18px !important;
+              margin: 3px;
+              &::first-child {
+                margin-left: 0px;
+              }
+            }
+            .character-count {
+              width: 18px;
+              height: 18px;
+              line-height: 15px;
+              text-align: center;
+              border: solid thin darken($light-gray, 15%);
+              border-radius: 50%;
+              display: inline-block;
+              vertical-align: 9px;
+              font-size: 10px;
+              margin: 3px;
+            }
+          }
+          .info-cell {
+            p {
+              margin-bottom: 0;
+              margin-top: 6px;
+            }
+          }
+        }
+        &:hover {
+          .scene-wrapper {
+            transform: translateY(-50px);
+          }
+        }
+      }
+      .tool-bar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+        span {
+          width: 30px;
+          height: 30px;
+          position: relative;
+          display: inline-block;
+          cursor: pointer;
+          svg {
+            width: 18px;
+            height: 18px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+          }
+          &:hover {
+            svg {
+              fill: $yellow;
+            }
+          }
+          &:last-child {
+            margin-right: -5px;
+          }
+        }
+      }
+    }
+  }
+  .add-new {
+    min-height: 0;
+    width: 11px;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-top: 33px;
+    position: relative;
+    cursor: pointer;
+    svg {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: -14px;
+      visibility: hidden;
+      top: -29px;
+      fill: $purple;
+    }
+    &:before {
+      content: '';
+      width: 1px;
+      display: block;
+      background-color: $purple;
+      position: absolute;
+      top: 0px;
+      left: 5px;
+      height: 0;
+    }
+    &.add-act {
+      &:after {
+        content: 'Add Act';
+        color: $purple;
+        font-size: 9px;
+        position: absolute;
+        top: -14px;
+        left: 20px;
+        visibility: hidden;
+        white-space: nowrap;
+      }
+    }
+    &.add-chapter {
+      margin-top: 0px;
+      display: inline-block;
+      z-index: 1000;
+      margin-right: -5px;
+      margin-left: -5px;
+      float: left;
+      height: 100vh;
+      &:after {
+        content: 'Add Chapter';
+        color: $purple;
+        font-size: 9px;
+        position: absolute;
+        top: -14px;
+        left: 20px;
+        visibility: hidden;
+        white-space: nowrap;
+      }
+    }
+    &:hover {
+      &:before {
+        height:100%;
+      }
+      &:after {
+        visibility: visible;
+      }
+      svg {
+        visibility: visible;
+      }
+    }
+  }
+  .add-new-scene {
+    width: 100%;
+    height: 11px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    svg {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right: 100%;
+      visibility: hidden;
+      top: -5px;
+      margin: 0;
+      fill: $purple;
+    }
+    &:before {
+      content: '';
+      height: 1px;
+      display: block;
+      width: 100%;
+      background-color: $purple;
+      position: absolute;
+      top: 5px;
+      width: 0;
+      transition: width .2s;
+    }
+
+    &:after {
+      content: 'Add Scene';
+      color: $purple;
+      font-size: 9px;
+      position: absolute;
+      top: 0;
+      left: 5px;
+      visibility: hidden;
+      }
+    &:hover {
+      &:before {
+        width:calc(100% - 50px);
+        margin-left: 50px;
+      }
+      &:after {
+        visibility: visible;
+
+      }
+      svg {
+        visibility: visible;
+      }
+    }
+  }
+}

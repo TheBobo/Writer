@@ -1,0 +1,42 @@
+.hide-left-side-bar {
+ 
+}
+.subheader {
+  height: 60px;
+  border-bottom: solid thin darken($light-gray, 7%);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  .story-name {
+    padding: 15px;
+    font-size: 25px;
+    font-weight: bold;
+    display: inline-block;
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 40px;
+  }
+}
+.hide-menu {
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  &:hover {
+    svg {
+      fill: $yellow;
+    }
+  }
+}
+.button-holder {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}

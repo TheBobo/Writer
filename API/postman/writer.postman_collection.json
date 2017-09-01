@@ -1,0 +1,456 @@
+{
+	"variables": [],
+	"info": {
+		"name": "writer",
+		"_postman_id": "442f5001-2c7a-5d2d-a6ed-79bf70b3c114",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://writer.tfx.tf:1111/users/registration",
+			"request": {
+				"url": "http://writer.tfx.tf:1111/users/registration",
+				"method": "POST",
+				"header": [
+					{
+						"key": "firstName",
+						"value": "chaba",
+						"description": ""
+					},
+					{
+						"key": "lastName",
+						"value": "boss",
+						"description": ""
+					},
+					{
+						"key": "password",
+						"value": "123",
+						"description": ""
+					},
+					{
+						"key": "confirmPassword",
+						"value": "123",
+						"description": ""
+					},
+					{
+						"key": "email",
+						"value": "chaba_boss@mail.ru",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstName",
+							"value": "firstName",
+							"description": ""
+						},
+						{
+							"key": "lastName",
+							"value": "lastName",
+							"description": ""
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"description": ""
+						},
+						{
+							"key": "confirmPassword",
+							"value": "123",
+							"description": ""
+						},
+						{
+							"key": "email",
+							"value": "name@mail.ru",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://writer.tfx.tf:1111/users/signIn",
+			"request": {
+				"url": "http://writer.tfx.tf:1111/users/signIn",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://writer.tfx.tf:1111/users/changePassword",
+			"request": {
+				"url": "http://writer.tfx.tf:1111/users/changePassword",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "oldPassword",
+							"value": "123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "newPassword",
+							"value": "1234",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzMzk2OTM2LCJleHAiOjE1MDMzOTg3MzZ9.e9VJl4uOu3GHgKIxbLv-ozADt999T_rSEQdHpTgsKf0",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://writer.tfx.tf:1111/stories/getAll",
+			"request": {
+				"url": {
+					"raw": "http://writer.tfx.tf:1111/stories/getAll",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"stories",
+						"getAll"
+					],
+					"query": [
+						{
+							"key": "x-auth-token",
+							"value": "0389dff6-b005-4356-8017-f908aeec4972",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDA2OTQ0LCJleHAiOjE1MDM0MTA1NDR9.mzvVo9DwG6_gYi-noAlrdSvsA6qqdJgLX2JW4JrgHRo",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://writer.tfx.tf:1111/stories/add",
+			"request": {
+				"url": "http://writer.tfx.tf:1111/stories/add",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDA2OTQ0LCJleHAiOjE1MDM0MTA1NDR9.mzvVo9DwG6_gYi-noAlrdSvsA6qqdJgLX2JW4JrgHRo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "name@mail.ru",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "oneParagraphSynopsis",
+							"value": "some text ",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "some text",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "some text  ",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "wordCount",
+							"value": "0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "targetWords",
+							"value": "30000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "fourParagraphSynopsis",
+							"value": "some text",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "fourPageSynopsis",
+							"value": "some text",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://writer.tfx.tf:1111/stories/update",
+			"request": {
+				"url": "http://writer.tfx.tf:1111/stories/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDA2OTQ0LCJleHAiOjE1MDM0MTA1NDR9.mzvVo9DwG6_gYi-noAlrdSvsA6qqdJgLX2JW4JrgHRo",
+							"description": ""
+						},
+						{
+							"key": "email",
+							"value": "name@mail.ru",
+							"description": ""
+						},
+						{
+							"key": "storyId",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "new some text",
+							"description": ""
+						},
+						{
+							"key": "description",
+							"value": "new some text  ",
+							"description": ""
+						},
+						{
+							"key": "wordCount",
+							"value": "0",
+							"description": ""
+						},
+						{
+							"key": "targetWords",
+							"value": "30000",
+							"description": ""
+						},
+						{
+							"key": "oneParagraphSynopsis",
+							"value": "new some text ",
+							"description": ""
+						},
+						{
+							"key": "fourParagraphSynopsis",
+							"value": "new some text",
+							"description": ""
+						},
+						{
+							"key": "fourPageSynopsis",
+							"value": "new some text",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://writer.tfx.tf:1111/stories/remove",
+			"request": {
+				"url": "http://writer.tfx.tf:1111/stories/remove",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDA2OTQ0LCJleHAiOjE1MDM0MTA1NDR9.mzvVo9DwG6_gYi-noAlrdSvsA6qqdJgLX2JW4JrgHRo",
+							"description": ""
+						},
+						{
+							"key": "email",
+							"value": "name@mail.ru",
+							"description": ""
+						},
+						{
+							"key": "storyId",
+							"value": "2",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://writer.tfx.tf:1111/characters/getAll",
+			"request": {
+				"url": "http://writer.tfx.tf:1111/characters/getAll",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDExNjQ0LCJleHAiOjE1MDM0MTUyNDR9.zZ3GclO2kvXg6JGaAMKMIEyWykAS4kaxKs7jqcde2Jk"
+						},
+						{
+							"key": "storyId",
+							"value": "3",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://writer.tfx.tf:1111/characters/add",
+			"request": {
+				"url": "http://writer.tfx.tf:1111/characters/add",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDExNjQ0LCJleHAiOjE1MDM0MTUyNDR9.zZ3GclO2kvXg6JGaAMKMIEyWykAS4kaxKs7jqcde2Jk"
+						},
+						{
+							"key": "storyId",
+							"value": "3",
+							"description": ""
+						},
+						{
+							"key": "firstName",
+							"value": "firstName",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "lastName",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "25",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://writer.tfx.tf:1111/characters/remove",
+			"request": {
+				"url": "http://writer.tfx.tf:1111/characters/remove",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDExNjQ0LCJleHAiOjE1MDM0MTUyNDR9.zZ3GclO2kvXg6JGaAMKMIEyWykAS4kaxKs7jqcde2Jk"
+						},
+						{
+							"key": "characterId",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

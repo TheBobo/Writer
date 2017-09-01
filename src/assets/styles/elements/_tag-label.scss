@@ -1,0 +1,10 @@
+.tag-label {
+  padding: 2px 7px;
+  border: solid thin;
+  border-radius: 20px;
+  font-size: 10px;
+  &.violet {
+    color: #ff5086;
+    border-color: #ff5086;
+  }
+}

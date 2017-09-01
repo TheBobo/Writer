@@ -1,0 +1,69 @@
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+body {
+  position: relative;
+}
+aside {
+  position: absolute;
+  top: 50px;
+  background-color: $light-gray;
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+  transition: all .4s;
+  &.left-side-panel {
+    width: 280px;
+    left: 0;
+    transform: translateX(-100%);
+
+  }
+  &.right-side-panel {
+    width: 350px;
+    right: 0;
+    transform: translateX(100%);
+    z-index: 1000;
+  }
+}
+main {
+  width: 100%;
+  height: calc(100vh - 50px);
+  background-color: $light-gray-lighter;
+  left: 0;
+  position: absolute;
+  top: 50px;
+  transition: all .4s;
+  .main-wrapper {
+    width: 100%;
+    height: calc(100% - 60px);;
+    padding: 30px;
+    overflow: auto;
+  }
+}
+.show-left-panel {
+  .left-side-panel {
+    transform: translateX(0);
+  }
+  main {
+    width: calc(100% - 280px);
+    left: 280px;
+    
+  }
+}
+.show.right-side-panel {
+    transform: translateX(0);
+  }
+
+.show-left-panel.show-right-panel{
+  main {
+    width: calc(100% - 280px);
+   left: 280px;
+  }
+}
+@import "layout/header";
+@import "layout/main";
+@import "layout/left-side-panel";
+@import "layout/right-side-panel";
+@import "layout/subheader";
+@import "layout/login";
