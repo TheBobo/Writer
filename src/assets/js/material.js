@@ -1,7 +1,6 @@
  //Material Form
  setTimeout(function() {
   var input  = $(".form-control");
-  console.log('input', input)
   input.on('focus blur', function (e) {
     $(this).parents('.form-group').toggleClass('active', (e.type === 'focus' || this.value.length > 0));
   });

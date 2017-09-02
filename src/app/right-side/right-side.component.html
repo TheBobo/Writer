@@ -48,7 +48,7 @@
     </div>
       <div class="panel-footer">
         <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
-        <button class="btn btn-yellow" (click)="save()">Save</button>
+        <button class="btn btn-yellow" [disabled]="scene.type ==='view'" (click)="save()">Save</button>
       </div>
   </form>
 </div>

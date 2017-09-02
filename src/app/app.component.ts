@@ -32,8 +32,10 @@ export class AppComponent  implements OnInit  {
     setTimeout(() => {
       if ( this.newScene.type === 'edit') {
         this.rightSlideView.setRightSideTitle('Edit Scene')
-      } else {
+      } else if ( this.newScene.type === 'create' ) {
         this.rightSlideView.setRightSideTitle('New Scene')
+      } else if ( this.newScene.type === 'view' ) {
+        this.rightSlideView.setRightSideTitle('Scene')
       }
     })
   }
@@ -44,7 +46,6 @@ export class AppComponent  implements OnInit  {
 
   ngOnInit() {
     this.ACTS = this.shareService.getAllActs();
-
   }
 
 }

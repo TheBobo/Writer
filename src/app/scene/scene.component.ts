@@ -25,12 +25,16 @@ export class SceneComponent implements OnInit {
     if ( type === 'edit') {
       this.newScene = this.scene
       this.newScene.type = 'edit';
-    } else {
+    } else if ( type === 'create') {
       this.newScene = this.shareService.getNewScene(sceneId, actId, chapterId, type);
+    } else if ( type === 'view') {
+      this.newScene = this.scene
+      this.newScene.type = 'view';
     }
     this.isSceneOpen = !this.isSceneOpen;
     this.outScene.emit(this.newScene);
   }
+
   ngOnInit() {
   }
 
