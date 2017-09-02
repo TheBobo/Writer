@@ -1,7 +1,9 @@
 import { Scene } from './../models/Scene';
-import { Component, Input, OnInit, Output,OnChanges, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, OnChanges, EventEmitter, SimpleChanges } from '@angular/core';
 import { ActsService } from './../acts.service';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+
+declare var $:any;
 
 @Component({
   selector: 'app-right-side',
@@ -34,15 +36,18 @@ export class RightSideComponent implements OnInit {
     this.shareService.RightSlide = this;
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    if ( changes.scene && changes.scene.previousValue && changes.scene.currentValue != changes.scene.previousValue ) {
+      console.log('CHANGE', changes, this.scene)
+
+    }
+    this.shareService.labelPosition();
   }
+
+  private updateForm() {}
 
   cancel(){
     this.close.emit(false);
-  }
-
-  ngOnDestroy() {
-    console.log('destroy')
   }
 
   public setRightSideTitle(title) {

@@ -23,15 +23,14 @@ export class SceneComponent implements OnInit {
 
   addScene(sceneId:number, chapterId:number, actId:number, type: string){
     this.newScene = this.shareService.getNewScene(sceneId, actId, chapterId, type);
+    // if ( type === 'edit') {
+    //   this.newScene = this.scene
+    //   this.newScene.type = 'edit';
+
+    // }
 
     this.isSceneOpen = !this.isSceneOpen;
     this.outScene.emit(this.newScene);
-
-    //this.shareService.prepareScene(sceneId,chapterId, actId)
-
-    //$('body').toggleClass('show-right-panel')
-
-    //this.shareService.addScene(sceneId,chapterId, actId);
   }
   ngOnInit() {
   }

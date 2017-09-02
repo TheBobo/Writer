@@ -1,6 +1,6 @@
 
 import { Scene } from './models/Scene';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActsService } from './acts.service';
 import { Act } from './models/Act';
 //import * as $ from 'jquery';
@@ -17,17 +17,25 @@ export class AppComponent  implements OnInit  {
   newScene: Scene;
   rightTab: boolean;
   ACTS: Act[];
+  @ViewChild('rightSlideView') rightSlideView;
 
 
   constructor(private shareService: ActsService) { }
 
   emitScene(event){
     this.newScene = event;
-    console.log("scene is in app component", this.newScene)
   }
 
   emitRight(event){
     this.rightTab = event;
+
+    setTimeout(() => {
+      if ( this.newScene.type === 'edit') {
+        this.rightSlideView.setRightSideTitle('Edit Scene')
+      } else {
+        this.rightSlideView.setRightSideTitle('New Scene')
+      }
+    })
   }
 
   addNewScene(event){
