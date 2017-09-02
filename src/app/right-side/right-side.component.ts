@@ -37,10 +37,19 @@ export class RightSideComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.shareService.labelPosition();
+    if ( changes.scene ) {
+      this.shareService.labelPosition();
+
+      if ( this.scene.type === 'create') {
+        this.clearForm();
+      }
+
+    }
   }
 
-  private updateForm() {}
+  private clearForm() {
+    this.rightPanelForm.reset();
+  }
 
   cancel(){
     this.close.emit(false);
@@ -54,11 +63,9 @@ export class RightSideComponent implements OnInit {
     let formData = this.rightPanelForm.getRawValue();
     this.scene.title = formData.title;
     this.scene.description = formData.description;
-    this.scene.wordsGoal = parseInt(formData.wordGoal);
+    this.scene.wordsGoal = formData.wordGoal ? parseInt(formData.wordGoal) : 0;
 
     this.addNewScene.emit(this.scene);
     this.close.emit(false);
-
   }
-
 }
