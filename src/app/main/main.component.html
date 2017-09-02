@@ -13,16 +13,18 @@
     <div class="story-map">
             <div class="acts-column"  *ngFor = "let act of ACTS">
                 <h4 class="title">Act <span> {{act.id}}</span></h4>
-                <app-chapter *ngFor="let chapter of act.chapters" [chapter]="chapter" [actId]="act.id"
-                            (outScene)="emitScene($event)"
-                             class="chapter-column"></app-chapter>
+                <app-chapter class="chapter-column" *ngFor="let chapter of act.chapters" 
+                  [chapter]="chapter"
+                  [actId]="act.id"
+                  (outScene)="emitScene($event)">
+                </app-chapter>
             </div>
 
     </div>
   </div>
 </main>
 
-
+<!-- 
 <aside class="right-side-panel" >
   {{newScene}}
   <div class="subheader">
@@ -75,5 +77,5 @@
   </form>
 </div>
 
-</aside>
+</aside> -->
 

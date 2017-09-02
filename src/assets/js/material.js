@@ -1,6 +1,7 @@
  //Material Form
  setTimeout(function() {
   var input  = $(".form-control");
+  console.log('input', input)
   input.on('focus blur', function (e) {
     $(this).parents('.form-group').toggleClass('active', (e.type === 'focus' || this.value.length > 0));
   });
@@ -17,5 +18,5 @@
   $('.change-form a').click(function(){
    $('form').animate({height: "toggle", opacity: "toggle"}, "400");
   });
-  }, 400);
+}, 400);
 

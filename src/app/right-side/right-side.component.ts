@@ -1,6 +1,7 @@
 import { Scene } from './../models/Scene';
 import { Component, Input, OnInit, Output,OnChanges, EventEmitter } from '@angular/core';
 import { ActsService } from './../acts.service';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-right-side',
@@ -10,29 +11,50 @@ import { ActsService } from './../acts.service';
   providers: [ActsService]
 })
 export class RightSideComponent implements OnInit {
+  @Input() scene;
+  @Input() rightOpen;
 
-  constructor(private shareService: ActsService) { }
-
-  public scene: Scene;
   close = new EventEmitter<boolean>()
   addNewScene = new EventEmitter<Scene>()
-  newModelScene = new Scene(0,0,0);
-  
+  newModelScene = new Scene(0,0,0, '');
+  private rightPanelForm: FormGroup;
+  private panelTitle: string = 'New Scene'
 
+  constructor(private shareService: ActsService, private fb: FormBuilder) {
+    this.rightPanelForm = fb.group({
+      title: [this.scene ? this.scene.title : ''],
+      description: [this.scene ? this.scene.description : ''],
+      wordGoal: [this.scene ? this.scene.wordGoal : ''],
+      chapterId: [this.scene ? this.scene.chapterId : ''],
+      id: [this.scene ? this.scene.id : '']
+    });
+  }
 
   ngOnInit() {
+    this.shareService.RightSlide = this;
+  }
+
+  ngOnChanges() {
   }
 
   cancel(){
     this.close.emit(false);
   }
 
-   
+  ngOnDestroy() {
+    console.log('destroy')
+  }
+
+  public setRightSideTitle(title) {
+    this.panelTitle = title;
+  }   
 
   save(){
-    console.log(this.newModelScene);
-    debugger
-    
+    let formData = this.rightPanelForm.getRawValue();
+    this.scene.title = formData.title;
+    this.scene.description = formData.description;
+    this.scene.wordsGoal = parseInt(formData.wordGoal);
+
     this.addNewScene.emit(this.scene);
     this.close.emit(false);
 

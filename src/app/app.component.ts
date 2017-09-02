@@ -23,8 +23,7 @@ export class AppComponent  implements OnInit  {
 
   emitScene(event){
     this.newScene = event;
-    console.log("scene is in app component")
-    console.log(this.newScene)
+    console.log("scene is in app component", this.newScene)
   }
 
   emitRight(event){
@@ -32,7 +31,6 @@ export class AppComponent  implements OnInit  {
   }
 
   addNewScene(event){
-    debugger
     this.shareService.addScene(event);
   }
 

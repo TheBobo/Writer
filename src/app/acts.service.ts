@@ -3,7 +3,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 
 import { Act } from './models/Act';
 import { Chapter } from './models/Chapter';
-import { Scene } from './models/Scene'
+import { Scene } from './models/Scene';
+import { RightSideComponent } from './right-side/right-side.component';
 
 @Injectable()
 export class ActsService {
@@ -11,16 +12,18 @@ export class ActsService {
   constructor() { }
 
   ACTS: Act[]=[new Act(1),new Act(2), new Act(3)];
-  NewScene: Scene = new Scene(0,0,0);
+  NewScene: Scene = new Scene(0,0,0, '');
+  RightSlide: RightSideComponent;
 
     ngOnInit() {
 
     }
 
-    getNewScene(sceneId:number, actId:number, chapterId:number){
+    getNewScene(sceneId:number, actId:number, chapterId:number, type: string){
       this.NewScene.id = sceneId;
       this.NewScene.actId=actId;
       this.NewScene.chapterId = chapterId;
+      this.NewScene.type = type;
       return this.NewScene;
     }
     getScene(){
@@ -39,24 +42,23 @@ export class ActsService {
         this.ACTS[i].chapters.push(new Chapter(this.ACTS[i].chapters.length+1));
 
         for(var j=0; j<this.ACTS[i].chapters.length; j++){
-          this.ACTS[i].chapters[j].scenes.push(new Scene( this.ACTS[i].chapters[j].scenes.length+1, j, i));
+          this.ACTS[i].chapters[j].scenes.push(new Scene( this.ACTS[i].chapters[j].scenes.length+1, j, i, ''));
         }
 
       }
 
-      debugger
       return this.ACTS;
     }
 
 
     addScene(scene: Scene){
-
-
+      if ( scene.type === 'edit') {
+        
+      }
       var act = this.ACTS.find(x=>x.id == scene.actId);
 
       var chapter = act.chapters.find(x=>x.id == scene.chapterId);
 
-      debugger
       chapter.scenes.splice(scene.id, 0, scene);
 
       this.updateSceneId(chapter);

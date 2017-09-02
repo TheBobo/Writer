@@ -3,8 +3,7 @@
   <div class="scene-wrapper">
     <span class="tag-label violet">Resolution</span>
     <h5 class="scene-count">Scene <span>{{scene.id}}</span></h5>
-    <h4 class="title-scene">Scene Title Long
-      Name Two lines</h4>
+    <h4 class="title-scene" *ngIf="!scene.title">Scene Title Long Name Two lines</h4>
     <h4 class="title-scene">{{scene.title}}</h4>
     <p class="synopsis">  {{scene.description}}.</p>
     <div class="characters-holder">
@@ -24,7 +23,7 @@
           <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
         </svg>
       </span>
-      <span data-balloon="Edit Details" data-balloon-pos="up">
+      <span data-balloon="Edit Details" data-balloon-pos="up" (click)='addScene(scene.id, chapterId, actId, "edit")'>
         <svg class="icon-edit">
           <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
         </svg>
@@ -38,7 +37,7 @@
   </div>
 </div>
 
-<span class="add-new-scene" (click)='addScene(scene.id, chapterId, actId)'>
+<span class="add-new-scene" (click)='addScene(scene.id, chapterId, actId, "create")'>
   <svg class="icon-plus">
     <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
   </svg>

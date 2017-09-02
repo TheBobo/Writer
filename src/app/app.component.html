@@ -7,7 +7,7 @@
             (outScene)="emitScene($event)" (showright)=emitRight($event)></app-main>
   <!-- <app-dashboard></app-dashboard> -->
   <!-- <app-write></app-write> -->
-  <app-right-side [scene]="newScene" [rightOpen]="rightTab" 
+  <app-right-side *ngIf="newScene" [scene]="newScene" [rightOpen]="rightTab" 
    (close)="this.rightTab = $event"
    (addScene)="addscene($event)"
    (addNewScene)=addNewScene($event)></app-right-side>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import {Scene} from '../models/Scene';
 import { ActsService } from './../acts.service';
 
@@ -13,7 +13,8 @@ import { ActsService } from './../acts.service';
 
 
 export class ChapterComponent implements OnInit {
-
+  @Input() chapter;
+  @Input() scenes;
   outScene = new EventEmitter<Scene>()
   constructor(private actsService: ActsService) { }
 
@@ -30,6 +31,10 @@ export class ChapterComponent implements OnInit {
   // }
 
   OnAddScene(){
+  }
+
+  ngOnChanges() {
+    
   }
 
   ngOnInit() {

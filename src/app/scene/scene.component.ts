@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Scene } from './../models/Scene';
 import { ActsService } from './../acts.service';
 
@@ -13,7 +13,7 @@ import { ActsService } from './../acts.service';
   providers: [ActsService]
 })
 export class SceneComponent implements OnInit {
-
+  @Input() scene;
 
   isSceneOpen = false;
   newScene : Scene;
@@ -21,8 +21,8 @@ export class SceneComponent implements OnInit {
   constructor(public shareService: ActsService) { }
   outScene = new EventEmitter<Scene>();
 
-  addScene(sceneId:number, chapterId:number, actId:number){
-    this.newScene = this.shareService.getNewScene(sceneId, actId, chapterId);
+  addScene(sceneId:number, chapterId:number, actId:number, type: string){
+    this.newScene = this.shareService.getNewScene(sceneId, actId, chapterId, type);
 
     this.isSceneOpen = !this.isSceneOpen;
     this.outScene.emit(this.newScene);
