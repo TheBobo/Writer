@@ -57,6 +57,9 @@ export class ActsService {
       var act = this.ACTS.find(x=>x.id == scene.actId);
       var chapter = act.chapters.find(x=>x.id == scene.chapterId);
 
+      if ( !chapter )
+        return;
+      
       if ( scene.type === 'edit') {
         let newScene = chapter.scenes.filter(item => item.id === scene.id)[0]
         chapter.scenes.forEach((item, i) => {

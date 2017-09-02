@@ -22,13 +22,12 @@ export class SceneComponent implements OnInit {
   outScene = new EventEmitter<Scene>();
 
   addScene(sceneId:number, chapterId:number, actId:number, type: string){
-    this.newScene = this.shareService.getNewScene(sceneId, actId, chapterId, type);
-    // if ( type === 'edit') {
-    //   this.newScene = this.scene
-    //   this.newScene.type = 'edit';
-
-    // }
-
+    if ( type === 'edit') {
+      this.newScene = this.scene
+      this.newScene.type = 'edit';
+    } else {
+      this.newScene = this.shareService.getNewScene(sceneId, actId, chapterId, type);
+    }
     this.isSceneOpen = !this.isSceneOpen;
     this.outScene.emit(this.newScene);
   }

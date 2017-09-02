@@ -37,10 +37,6 @@ export class RightSideComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if ( changes.scene && changes.scene.previousValue && changes.scene.currentValue != changes.scene.previousValue ) {
-      console.log('CHANGE', changes, this.scene)
-
-    }
     this.shareService.labelPosition();
   }
 
