@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StoryComponent } from './story/story.component';
 import { WriteComponent } from './write/write.component';
 import { CreateSceneSidePanelComponent } from './create-scene-side-panel/create-scene-side-panel.component';
+import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CreateSceneSidePanelComponent } from './create-scene-side-panel/create-
     DashboardComponent,
     StoryComponent,
     WriteComponent,
-    CreateSceneSidePanelComponent
+    CreateSceneSidePanelComponent,
+    ModalConfirmComponent
   ],
   imports: [
     BrowserModule,

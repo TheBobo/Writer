@@ -16,6 +16,7 @@ export class SceneComponent implements OnInit {
   @Input() scene;
 
   isSceneOpen = false;
+  isDeleteOpen = false;
   newScene : Scene;
   
   constructor(public shareService: ActsService) { }
@@ -33,6 +34,11 @@ export class SceneComponent implements OnInit {
     }
     this.isSceneOpen = !this.isSceneOpen;
     this.outScene.emit(this.newScene);
+  }
+
+  deleteScene(){
+    debugger
+    this.isDeleteOpen = true;
   }
 
   ngOnInit() {

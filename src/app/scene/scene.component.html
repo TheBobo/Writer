@@ -28,7 +28,7 @@
           <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
         </svg>
       </span>
-      <span data-balloon="Delete" data-balloon-pos="up-right">
+      <span data-balloon="Delete" data-balloon-pos="up-right" (click)='deleteScene()'>
         <svg class="icon-trash">
           <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
         </svg>
@@ -42,3 +42,5 @@
     <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
   </svg>
 </span>
+
+<app-modal-confirm [isOpen]='isDeleteOpen'></app-modal-confirm>
