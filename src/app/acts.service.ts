@@ -44,9 +44,9 @@ export class ActsService {
 
         this.ACTS[i].chapters.push(new Chapter(this.ACTS[i].chapters.length+1));
 
-        for(var j=0; j<this.ACTS[i].chapters.length; j++){
-          this.ACTS[i].chapters[j].scenes.push(new Scene( this.ACTS[i].chapters[j].scenes.length+1, j, i, ''));
-        }
+        // for(var j=0; j<this.ACTS[i].chapters.length; j++){
+        //   this.ACTS[i].chapters[j].scenes.push(new Scene( this.ACTS[i].chapters[j].scenes.length+1, j, i, ''));
+        // }
 
       }
 
@@ -77,7 +77,7 @@ export class ActsService {
       this.updateSceneId(chapter, scene.id, scene.last);
     }
 
-    updateSceneId(chapter: Chapter, sceneId: number, last: boolean){
+    updateSceneId(chapter: Chapter, sceneId: number, last?: boolean){
       chapter.scenes.forEach((item, i) => {
         if ( chapter.scenes[i].id === sceneId && !last && chapter.scenes[i].id != i) {
           chapter.scenes[i].id = sceneId
@@ -87,8 +87,18 @@ export class ActsService {
           chapter.scenes[i].id = i+1
         }
       })
+    }
 
-      console.log('chapter', chapter, sceneId, last)
+    deleteScene(scene: Scene){
+      var act = this.ACTS.find(x=>x.id == scene.actId);
+      var chapter = act.chapters.find(x=>x.id == scene.chapterId);
+
+      if ( !chapter )
+        return;
+
+      chapter.scenes.splice((scene.id-1), 1);
+
+      this.updateSceneId(chapter, scene.id);
     }
 
     labelPosition() {

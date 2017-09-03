@@ -12,6 +12,7 @@ export class Scene{
   actId: number;
   type: string;
   last: boolean = false;
+  isDelete:boolean;
 
   constructor (id:number, chapterId:number, actId:number, type: string, last?: boolean){
     this.id = id;

@@ -10,7 +10,7 @@ import { ActsService } from './../acts.service';
   templateUrl: './scene.component.html',
   styleUrls: ['./scene.component.scss'],
   inputs:['scene', 'scenes', 'chapterId', 'actId'],
-  outputs: ['outScene'],
+  outputs: ['outScene', 'deleteScene'],
   providers: [ActsService]
 })
 export class SceneComponent implements OnInit {
@@ -19,6 +19,7 @@ export class SceneComponent implements OnInit {
   @Input() lastItem;
 
   isSceneOpen = false;
+  isDeleteOpen = false;
   newScene : Scene;
   
   constructor(public shareService: ActsService) { }
@@ -45,8 +46,13 @@ export class SceneComponent implements OnInit {
      this.outScene.emit(this.newScene);
   }
 
-  deleteScene( sceneId:number, chapterId:number, actId:number ) {
+  deleteScene(sceneId:number, chapterId:number, actId:number, type: string){
+    this.newScene = this.scene
+    this.newScene.isDelete = true;
+    this.newScene.type = 'delete';
 
+    this.isDeleteOpen = !this.isDeleteOpen;
+    this.outScene.emit(this.newScene);
   }
 
   ngOnInit() {

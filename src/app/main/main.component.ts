@@ -22,6 +22,7 @@ export class MainComponent implements OnInit {
   
   outScene = new EventEmitter<Scene>()
   showright = new EventEmitter<true>()
+  showmodal = new EventEmitter<true>()
   newScene: Scene
   showLeftPanel: boolean;
 
@@ -38,8 +39,15 @@ export class MainComponent implements OnInit {
 
   emitScene(event){
     this.newScene = event;
+
     this.outScene.emit(event);
-    this.showright.emit(true);
+
+    if(event.type != 'delete')
+      this.showright.emit(true);
+    else {     
+       this.showmodal.emit(true);
+       debugger;
+      }
 
   }
 

@@ -1,7 +1,7 @@
 //
 // Variables
 //
-//Main Colors 
+//Main Colors
 $dark-purple:#6b6782 !default;
 $purple: #a895ce !default;
 $gray: #9dabc1 !default;
@@ -10,6 +10,8 @@ $light-gray-lighter: #f9f8f6 !default;
 $yellow: #e4bd50 !default;
 $green: #38C68D !default;
 $blue: #3889C6 !default;
+$red : #E24444 !default;
+
 
 // The font size set on the root html element.
 $base-font-size: 16px !default;
@@ -22,7 +24,7 @@ $base-line-height: 24px !default;
 $base-unit: 'em' !default;
 
 // The default font family.
-$base-font-family: 'Lato', sans-serif 
+$base-font-family: 'Lato', sans-serif
 !default;
 
 // The font sizes for h1-h6.
@@ -38,7 +40,7 @@ $indent-amount: 40px !default;
 
 $normalize-vertical-rhythm: false !default;
 
-//Trumbowyg Editor 
+//Trumbowyg Editor
 $light-color: #ecf0f1 !default;
 $dark-color: #222 !default;
 

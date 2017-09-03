@@ -1,4 +1,3 @@
-
 import { Scene } from './models/Scene';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActsService } from './acts.service';
@@ -15,9 +14,13 @@ export class AppComponent  implements OnInit  {
   user = { username: 'bob'};
   isRightPanelOpen = false;
   newScene: Scene;
+  deleteScene: Scene;
   rightTab: boolean;
+  showModal: boolean;
+
   ACTS: Act[];
   @ViewChild('rightSlideView') rightSlideView;
+  @ViewChild('confirmModalView') confirmModalView;
 
 
   constructor(private shareService: ActsService) { }
@@ -26,9 +29,14 @@ export class AppComponent  implements OnInit  {
     this.newScene = event;
   }
 
+  emitModal(event){
+    debugger
+    this.showModal = event;
+  }
+
   emitRight(event){
     this.rightTab = event;
-
+    debugger
     setTimeout(() => {
       if ( this.newScene.type === 'edit') {
         this.rightSlideView.setRightSideTitle('Edit Scene')
@@ -42,6 +50,12 @@ export class AppComponent  implements OnInit  {
 
   addNewScene(event){
     this.shareService.addScene(event);
+  }
+
+  deleteSelectedScene(event){
+     this.shareService.deleteScene(event);
+    debugger
+    alert(event)
   }
 
   ngOnInit() {
