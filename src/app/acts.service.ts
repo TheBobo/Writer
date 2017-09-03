@@ -43,9 +43,9 @@ export class ActsService {
 
         this.ACTS[i].chapters.push(new Chapter(this.ACTS[i].chapters.length+1));
 
-        for(var j=0; j<this.ACTS[i].chapters.length; j++){
-          this.ACTS[i].chapters[j].scenes.push(new Scene( this.ACTS[i].chapters[j].scenes.length+1, j, i, ''));
-        }
+        // for(var j=0; j<this.ACTS[i].chapters.length; j++){
+        //   this.ACTS[i].chapters[j].scenes.push(new Scene( this.ACTS[i].chapters[j].scenes.length+1, j, i, ''));
+        // }
 
       }
 
