@@ -23,7 +23,6 @@ export class RightSideComponent implements OnInit {
   private panelTitle: string = 'New Scene'
 
   constructor(private shareService: ActsService, private fb: FormBuilder) {
-    debugger
     this.rightPanelForm = fb.group({
       title: [this.scene ? this.scene.title : ''],
       description: [this.scene ? this.scene.description : ''],

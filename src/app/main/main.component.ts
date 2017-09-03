@@ -46,7 +46,6 @@ export class MainComponent implements OnInit {
       this.showright.emit(true);
     else {     
        this.showmodal.emit(true);
-       debugger;
       }
 
   }

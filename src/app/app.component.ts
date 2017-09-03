@@ -30,13 +30,11 @@ export class AppComponent  implements OnInit  {
   }
 
   emitModal(event){
-    debugger
     this.showModal = event;
   }
 
   emitRight(event){
     this.rightTab = event;
-    debugger
     setTimeout(() => {
       if ( this.newScene.type === 'edit') {
         this.rightSlideView.setRightSideTitle('Edit Scene')
@@ -53,8 +51,7 @@ export class AppComponent  implements OnInit  {
   }
 
   deleteSelectedScene(event){
-     this.shareService.deleteScene(event);
-    debugger
+    this.shareService.deleteScene(event);
     alert(event)
   }
 
