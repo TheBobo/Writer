@@ -14,6 +14,11 @@
    (addScene)="addscene($event)"
    (addNewScene)=addNewScene($event)>
   </app-right-side>
-  <app-modal-confirm ></app-modal-confirm>
+
+
+  <app-modal-confirm #confirmModalView *ngIf="deleteScene" [deleteScene]='deleteScene' [isOpen]="showModal">
+
+  </app-modal-confirm>
+
 </div>
 

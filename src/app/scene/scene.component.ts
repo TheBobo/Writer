@@ -9,7 +9,7 @@ import { ActsService } from './../acts.service';
   templateUrl: './scene.component.html',
   styleUrls: ['./scene.component.scss'],
   inputs:['scene', 'scenes', 'chapterId', 'actId'],
-  outputs: ['outScene'],
+  outputs: ['outScene', 'deleteScene'],
   providers: [ActsService]
 })
 export class SceneComponent implements OnInit {
