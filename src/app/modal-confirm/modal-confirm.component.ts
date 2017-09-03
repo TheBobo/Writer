@@ -21,7 +21,7 @@ export class ModalConfirmComponent implements OnInit {
   }
 
   delete(){
-    
+    debugger
     this.deleteSelectedScene.emit(this.deleteScene);
     this.deleteScene = {};
   }

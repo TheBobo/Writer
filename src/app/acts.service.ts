@@ -87,7 +87,7 @@ export class ActsService {
       
       
 
-      chapter.scenes.splice(scene.id, 1, scene);
+      chapter.scenes.splice((scene.id-1), 1);
 
       this.updateSceneId(chapter);
 
