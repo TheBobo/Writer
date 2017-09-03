@@ -24,24 +24,8 @@ export class ChapterComponent implements OnInit {
     this.sceneEmit=event;
     this.outScene.emit(event);
   }
-  // addScene(sceneId:number, chapterId:number, actId:number){
-
-  //       //this.actsService.prepareScene(sceneId,chapterId, actId);
-  //       $('body').toggleClass('show-right-panel');
-  // }
-
-  OnAddScene(){
-  }
-
-  ngOnChanges() {
-    
-  }
 
   ngOnInit() {
-  }
-
-  onAddScene(scene : Scene): void{
-      
   }
 
 }

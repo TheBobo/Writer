@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Scene } from './../models/Scene';
+import { Chapter } from './../models/Chapter';
 import { ActsService } from './../acts.service';
 
 
@@ -14,6 +15,8 @@ import { ActsService } from './../acts.service';
 })
 export class SceneComponent implements OnInit {
   @Input() scene;
+  @Input() scenes;
+  @Input() lastItem;
 
   isSceneOpen = false;
   newScene : Scene;
@@ -21,18 +24,29 @@ export class SceneComponent implements OnInit {
   constructor(public shareService: ActsService) { }
   outScene = new EventEmitter<Scene>();
 
-  addScene(sceneId:number, chapterId:number, actId:number, type: string){
+  addScene(sceneId:number, chapterId:number, actId:number, type: string, last: boolean){
     if ( type === 'edit') {
       this.newScene = this.scene
       this.newScene.type = 'edit';
     } else if ( type === 'create') {
-      this.newScene = this.shareService.getNewScene(sceneId, actId, chapterId, type);
+      this.newScene = this.shareService.getNewScene(sceneId, actId, chapterId, type, last);
     } else if ( type === 'view') {
       this.newScene = this.scene
       this.newScene.type = 'view';
     }
-    this.isSceneOpen = !this.isSceneOpen;
-    this.outScene.emit(this.newScene);
+
+    this.scenes.forEach((item, i) => {
+      if ( item.id === sceneId && i != this.scenes.length && !last ) {
+        this.newScene.id += 1
+      }
+    })
+
+     this.isSceneOpen = !this.isSceneOpen;
+     this.outScene.emit(this.newScene);
+  }
+
+  deleteScene( sceneId:number, chapterId:number, actId:number ) {
+
   }
 
   ngOnInit() {

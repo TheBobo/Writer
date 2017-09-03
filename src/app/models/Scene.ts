@@ -11,12 +11,14 @@ export class Scene{
   chapterId: number;
   actId: number;
   type: string;
+  last: boolean = false;
 
-  constructor (id:number, chapterId:number, actId:number, type: string){
+  constructor (id:number, chapterId:number, actId:number, type: string, last?: boolean){
     this.id = id;
     this.chapterId = chapterId;
     this.actId = actId;
     this.type = type;
+    this.last = last;
 
     this.title = '';
     this.description = '';

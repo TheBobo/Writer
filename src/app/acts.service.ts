@@ -21,11 +21,12 @@ export class ActsService {
 
     }
 
-    getNewScene(sceneId:number, actId:number, chapterId:number, type: string){
+    getNewScene(sceneId:number, actId:number, chapterId:number, type: string, last?: boolean){
       this.NewScene.id = sceneId;
       this.NewScene.actId=actId;
       this.NewScene.chapterId = chapterId;
       this.NewScene.type = type;
+      this.NewScene.last = last;
       return this.NewScene;
     }
     getScene(){
@@ -59,7 +60,7 @@ export class ActsService {
 
       if ( !chapter )
         return;
-      
+
       if ( scene.type === 'edit') {
         let newScene = chapter.scenes.filter(item => item.id === scene.id)[0]
         chapter.scenes.forEach((item, i) => {
@@ -73,13 +74,21 @@ export class ActsService {
 
       chapter.scenes.splice(scene.id, 0, scene);
 
-      this.updateSceneId(chapter);
+      this.updateSceneId(chapter, scene.id, scene.last);
     }
 
-    updateSceneId(chapter: Chapter){
-      for(var i=0; i<chapter.scenes.length; i++){
-        chapter.scenes[i].id = i+1;
-      }
+    updateSceneId(chapter: Chapter, sceneId: number, last: boolean){
+      chapter.scenes.forEach((item, i) => {
+        if ( chapter.scenes[i].id === sceneId && !last && chapter.scenes[i].id != i) {
+          chapter.scenes[i].id = sceneId
+        } else if ( chapter.scenes[i].id === sceneId && !last && chapter.scenes[i].id === i ) {
+          chapter.scenes[i].id = chapter.scenes[i].id + 1;
+        } else {
+          chapter.scenes[i].id = i+1
+        }
+      })
+
+      console.log('chapter', chapter, sceneId, last)
     }
 
     labelPosition() {

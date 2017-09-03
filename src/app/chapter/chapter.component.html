@@ -48,8 +48,8 @@
     </div>
 
 
-    <app-scene *ngFor="let scene of chapter.scenes" [scene]='scene'
-             [scenes]='chapter.scenes'  [chapterId]='chapter.id' [actId]='actId'
+    <app-scene *ngFor="let scene of chapter.scenes; let last = last " [scene]='scene'
+             [scenes]='chapter.scenes' [lastItem]="last" [chapterId]='chapter.id' [actId]='actId'
              (outScene)="emitScene($event)"></app-scene>
     <span class="add-new add-chapter">
       <svg class="icon-plus">
