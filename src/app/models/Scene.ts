@@ -11,6 +11,7 @@ export class Scene{
   chapterId: number;
   actId: number;
   type: string;
+  isDelete:boolean;
 
   constructor (id:number, chapterId:number, actId:number, type: string){
     this.id = id;

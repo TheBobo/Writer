@@ -31,14 +31,21 @@ export class SceneComponent implements OnInit {
     } else if ( type === 'view') {
       this.newScene = this.scene
       this.newScene.type = 'view';
-    }
+    } 
     this.isSceneOpen = !this.isSceneOpen;
     this.outScene.emit(this.newScene);
   }
 
-  deleteScene(){
-    debugger
-    this.isDeleteOpen = true;
+  deleteScene(sceneId:number, chapterId:number, actId:number, type: string){
+    
+    this.newScene = this.scene
+    this.newScene.isDelete = true;
+    this.newScene.type = 'delete';
+
+    this.isDeleteOpen = !this.isDeleteOpen;
+    this.outScene.emit(this.newScene);
+
+
   }
 
   ngOnInit() {

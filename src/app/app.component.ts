@@ -18,6 +18,7 @@ export class AppComponent  implements OnInit  {
   rightTab: boolean;
   ACTS: Act[];
   @ViewChild('rightSlideView') rightSlideView;
+  @ViewChild('confirmModalView') confirmModalView;
 
 
   constructor(private shareService: ActsService) { }
