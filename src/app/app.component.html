@@ -4,21 +4,14 @@
   <app-header></app-header>
   <app-left-side></app-left-side>
   <app-main [ACTS] = "ACTS"
-            (outScene)="emitScene($event)" (showright)=emitRight($event)></app-main>
+            (outScene)="emitScene($event)" (showright)=emitRight($event) (showmodal)=showmodal($event)></app-main>
   <!-- <app-dashboard></app-dashboard> -->
   <!-- <app-write></app-write> -->
-  <app-right-side #rightSlideView *ngIf="newScene"
-   [scene]="newScene"
-   [rightOpen]="rightTab"
+  <app-right-side #rightSlideView *ngIf="newScene" [scene]="newScene" [rightOpen]="rightTab" 
    (close)="this.rightTab = $event"
    (addScene)="addscene($event)"
-   (addNewScene)=addNewScene($event)>
-  </app-right-side>
+   (addNewScene)=addNewScene($event)></app-right-side>
 
-
-  <app-modal-confirm #confirmModalView *ngIf="deleteScene" [deleteScene]='deleteScene' [isOpen]="showModal">
-
-  </app-modal-confirm>
-
+   <app-modal-confirm  #modalView *ngIf="newScene" [deleteScene]="newScene" (deleteSelectedScene)=deleteSelectedScene($event) ></app-modal-confirm>
 </div>
 

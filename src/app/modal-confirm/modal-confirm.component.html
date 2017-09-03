@@ -1,4 +1,4 @@
-<div [ngClass]="{'open': isOpen}" class="modal confirm-modal open">
+<div [ngClass]="{'open': deleteScene.type == 'delete'}" class="modal confirm-modal open">
   <div class="modal-body">
     <div class="modal-header">
       <svg class="icon-alert">
@@ -9,8 +9,8 @@
       <p>Are you sure you want to delete Scene</p>
     </div>
     <div class="buttons">
-      <button class="btn-cancel">Cancel</button>
-      <button class="btn-yellow">Yes</button>
+      <button class="btn-cancel" (click)="cancel()">Cancel</button>
+      <button class="btn-yellow" (click)='delete()'>Yes</button>
     </div>
   </div>
 </div>

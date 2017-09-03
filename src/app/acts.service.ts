@@ -76,6 +76,23 @@ export class ActsService {
       this.updateSceneId(chapter);
     }
 
+    deleteScene(scene: Scene){
+      
+      debugger
+      var act = this.ACTS.find(x=>x.id == scene.actId);
+      var chapter = act.chapters.find(x=>x.id == scene.chapterId);
+
+      if ( !chapter )
+        return;
+      
+      
+
+      chapter.scenes.splice(scene.id, 1, scene);
+
+      this.updateSceneId(chapter);
+
+    }
+
     updateSceneId(chapter: Chapter){
       for(var i=0; i<chapter.scenes.length; i++){
         chapter.scenes[i].id = i+1;

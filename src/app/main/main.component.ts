@@ -44,8 +44,10 @@ export class MainComponent implements OnInit {
 
     if(event.type != 'delete')
       this.showright.emit(true);
-    else 
-      this.showmodal.emit(true);
+    else {     
+       this.showmodal.emit(true);
+       debugger;
+      }
 
   }
 
