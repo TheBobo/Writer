@@ -37,13 +37,13 @@ export class RightSideComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log('this.scene', this.scene)
     if ( changes.scene ) {
       this.shareService.labelPosition();
 
       if ( this.scene.type === 'create') {
         this.clearForm();
       }
-
     }
   }
 

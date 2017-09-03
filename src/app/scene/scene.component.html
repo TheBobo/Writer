@@ -28,7 +28,8 @@
           <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
         </svg>
       </span>
-      <span data-balloon="Delete" data-balloon-pos="up-right">
+
+      <span data-balloon="Delete" data-balloon-pos="up-right" (click)='deleteScene(scene.id, chapterId, actId, "delete")'>
         <svg class="icon-trash">
           <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
         </svg>
@@ -37,7 +38,7 @@
   </div>
 </div>
 
-<span class="add-new-scene" (click)='addScene(scene.id, chapterId, actId, "create")'>
+<span class="add-new-scene" (click)='addScene(scene.id, chapterId, actId, "create", lastItem)'>
   <svg class="icon-plus">
     <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
   </svg>

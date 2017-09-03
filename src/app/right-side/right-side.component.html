@@ -1,7 +1,7 @@
 
 <aside class="right-side-panel" *ngIf="scene" [ngClass]="{'show': rightOpen}">
   <div class="subheader">
-    <span class="close">
+    <span class="close"  (click)="cancel()">
       <svg class="icon-close">
         <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-close"></use>
       </svg>
