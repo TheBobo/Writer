@@ -13,11 +13,12 @@ export class LeftSideComponent implements OnInit {
 
   constructor(private shareService: ActsService) { }
   isOpen:boolean
+  private menuItems = [];
 
   ngOnInit() {
     this.isOpen = false;
     this.ACTS = this.shareService.getAllActs();
-
+    this.menuItems = this.ACTS
     console.log('this.ACTS', this.ACTS)
   }
 

@@ -9,22 +9,18 @@
   </div>
   <nav class="chapters-menu">
     <ul class="collapsible-menu">
-      <li class="chapter has-sub">
-        <a href="javascript:void(0)" class="arrow">Chapter 
-          <span>1</span> 
-        </a>   
+      <li class="chapter has-sub" *ngFor="let item of menuItems; let i = index ">
+        <a href="javascript:void(0)" class="arrow"><strong>Act {{ i+1 }}</strong></a>   
         <ul>
-          <li class="scene">
-            Scene <span>1</span>
-          </li>  
-          <li class="new-element-menu add-scene">
-            <svg class="icon-plus">
-              <use xlink:href="/fonts/swiftpad-icons.svg#icon-plus"></use>
-            </svg>
+          <li *ngFor="let chapter of item.chapters; let i = index ">
+            <a href="javascript:void(0)" class="arrow">{{chapter.title}} {{ i+1}}
+            </a>   
+            <ul>
+              <li *ngFor="let scene of chapter.scenes" class="scene">
+                <span>{{scene.title}}</span>
+              </li>  
+            </ul>
           </li>
-          <li class="scene">Scene 
-            <span>1</span> 
-          </li>  
         </ul>
       </li>
       <li class="new-element-menu add-chapter">
@@ -32,29 +28,6 @@
             <use xlink:href="/fonts/swiftpad-icons.svg#icon-plus"></use>
           </svg>
       </li>
-      <li class="chapter has-sub">
-          <a href="javascript:void(0)" class="arrow">Chapter 
-            <span>2</span>
-          </a>   
-          <ul>
-            <li class="scene">
-              Scene <span>1</span>
-            </li>  
-            <li class="new-element-menu add-scene">
-              <svg class="icon-plus">
-                <use xlink:href="/fonts/swiftpad-icons.svg#icon-plus"></use>
-              </svg>
-            </li>
-            <li class="scene">Scene 
-              <span>1</span> 
-            </li>  
-          </ul>
-        </li>
-        <li class="new-element-menu add-chapter">
-            <svg class="icon-plus">
-              <use xlink:href="/fonts/swiftpad-icons.svg#icon-plus"></use>
-            </svg>
-        </li>
     </ul>
 
   </nav>
