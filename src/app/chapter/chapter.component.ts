@@ -40,13 +40,13 @@ export class ChapterComponent implements OnInit {
   }
   
   addScene(sceneId:number, chapterId:number, actId:number, type: string){
-    debugger
-    this.newScene = this.shareService.getNewScene(0, actId, chapterId, 'create');
+    this.newScene = this.shareService.getNewScene(sceneId, actId, chapterId, 'create');
     //this.isSceneOpen = !this.isSceneOpen;
     this.outScene.emit(this.newScene);
   }
 
   ngOnInit() {
+
   }
 
   onAddScene(scene : Scene): void{
