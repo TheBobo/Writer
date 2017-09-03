@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ModalConfirmComponent implements OnInit {
   @Input() isOpen;
+  @Input() deleteScene;
 
   constructor() { }
 

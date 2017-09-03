@@ -15,7 +15,10 @@ export class AppComponent  implements OnInit  {
   user = { username: 'bob'};
   isRightPanelOpen = false;
   newScene: Scene;
+  deleteScene: Scene;
   rightTab: boolean;
+  showModal: boolean;
+
   ACTS: Act[];
   @ViewChild('rightSlideView') rightSlideView;
   @ViewChild('confirmModalView') confirmModalView;
@@ -25,6 +28,10 @@ export class AppComponent  implements OnInit  {
 
   emitScene(event){
     this.newScene = event;
+  }
+
+  emitModal(event){
+    this.showModal = event;
   }
 
   emitRight(event){

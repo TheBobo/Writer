@@ -14,7 +14,7 @@
 
 
 
-<app-modal-confirm ></app-modal-confirm>
+<app-modal-confirm #confirmModalView *ngIf="deleteScene" [deleteScene]='deleteScene' [isOpen]="showModal"></app-modal-confirm>
 
 </div>
 
