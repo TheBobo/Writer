@@ -12,21 +12,26 @@ import { ActsService } from './../acts.service';
   selector: 'app-main',
   templateUrl: './main.component.html',
   inputs: ['ACTS'],
-  outputs:['outScene', 'showright'],
+  outputs:['outScene', 'showright', 'menuBar'],
   providers: [ActsService]
 })
 
 
 export class MainComponent implements OnInit {
   public ACTS: Act[];
+  menuBar = 'discover';
   
   outScene = new EventEmitter<Scene>()
   showright = new EventEmitter<true>()
   showmodal = new EventEmitter<true>()
+  menubar = new EventEmitter<string>()
+
   newScene: Scene
   showLeftPanel: boolean;
 
   constructor(private shareService: ActsService) { }
+
+  
 
   openMenu(){
     this.showLeftPanel = !this.showLeftPanel;
@@ -39,7 +44,6 @@ export class MainComponent implements OnInit {
 
   emitScene(event){
     this.newScene = event;
-
     this.outScene.emit(event);
 
     if(event.type != 'delete')
@@ -47,7 +51,6 @@ export class MainComponent implements OnInit {
     else {     
        this.showmodal.emit(true);
       }
-
   }
 
   addNewChapter(act, index){

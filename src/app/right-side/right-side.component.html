@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
       <label >chapter {{scene.chapterId}}</label>
-      <select name="chapter" data-placeholder="Chapter" formControlName="chapterId">
+      <select *ngIf='scene.type == "edit"' name="chapter" data-placeholder="Chapter" formControlName="chapterId">
         <option value="">Chapter 1</option>
         <option value="">Chapter 2</option>
         <option value="">Chapter 3</option>
@@ -30,7 +30,7 @@
     </div>
     <div class="form-group">
       <label >scene {{scene.id + 1}}</label>
-      <select name="" data-placeholder="Scene" formControlName="id">
+      <select  *ngIf='scene.type == "edit"' name="" data-placeholder="Scene" formControlName="id">
         <option value="">Scene 1</option>
         <option value="">Scene 2</option>
         <option value="">Scene 3</option>
@@ -46,7 +46,7 @@
       <label> Word taget </label>
       <input class="autoExpand form-control" formControlName="wordGoal" type="number" value="{{scene.wordGoal}}" class="form-control">
     </div>
-      <div class="panel-footer">
+      <div class="panel-footer" *ngIf="scene.type!='view'">
         <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
         <button class="btn btn-yellow" [disabled]="scene.type ==='view'" (click)="save()">Save</button>
       </div>

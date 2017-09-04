@@ -17,6 +17,9 @@ export class AppComponent  implements OnInit  {
   deleteScene: Scene;
   rightTab: boolean;
   showModal: boolean;
+  menubarItem:string;
+  showLeftPanel: boolean;
+  
 
   ACTS: Act[];
   @ViewChild('rightSlideView') rightSlideView;
@@ -24,6 +27,14 @@ export class AppComponent  implements OnInit  {
 
 
   constructor(private shareService: ActsService) { }
+
+  gotoMenu(option){
+    this.menubarItem = option;
+  }
+
+  emitGotoMenu(event){
+    this.menubarItem = event;
+  }
 
   emitScene(event){
     this.newScene = event;
@@ -55,8 +66,19 @@ export class AppComponent  implements OnInit  {
     alert(event)
   }
 
+  openMenu(){
+    this.showLeftPanel = !this.showLeftPanel;
+    let body = document.getElementsByTagName('body')[0];
+    if(this.showLeftPanel)
+      body.classList.add("show-left-panel");   //add the class
+    else
+      body.classList.remove("show-left-panel");   //remove the class
+  }
+
+
   ngOnInit() {
     this.ACTS = this.shareService.getAllActs();
+    this.menubarItem='menubarItem'
   }
 
 }
