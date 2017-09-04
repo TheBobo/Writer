@@ -48,8 +48,14 @@ main {
   main {
     width: calc(100% - 280px);
     left: 280px;
-    
+
   }
+  .trumbowyg-button-pane {
+    left: 300px;
+    width: calc(100% - 320px);
+
+  }
+
 }
 .show.right-side-panel {
     transform: translateX(0);
