@@ -22,6 +22,7 @@ export class ActsService {
     }
 
     getNewScene(sceneId:number, actId:number, chapterId:number, type: string, last?: boolean){
+      this.NewScene = new Scene(0,0,0,'')
       this.NewScene.id = sceneId;
       this.NewScene.actId=actId;
       this.NewScene.chapterId = chapterId;
@@ -72,20 +73,21 @@ export class ActsService {
         return;
       }
 
-      chapter.scenes.splice(scene.id, 0, scene);
+      chapter.scenes.splice((scene.id-1), 0, scene);
 
       this.updateSceneId(chapter, scene.id, scene.last);
     }
 
     updateSceneId(chapter: Chapter, sceneId: number, last?: boolean){
       chapter.scenes.forEach((item, i) => {
-        if ( chapter.scenes[i].id === sceneId && !last && chapter.scenes[i].id != i) {
-          chapter.scenes[i].id = sceneId
-        } else if ( chapter.scenes[i].id === sceneId && !last && chapter.scenes[i].id === i ) {
-          chapter.scenes[i].id = chapter.scenes[i].id + 1;
-        } else {
-          chapter.scenes[i].id = i+1
-        }
+        chapter.scenes[i].id = i+1;
+        // if ( chapter.scenes[i].id === sceneId && !last && chapter.scenes[i].id != i) {
+        //   chapter.scenes[i].id = sceneId
+        // } else if ( chapter.scenes[i].id === sceneId && !last && chapter.scenes[i].id === i ) {
+        //   chapter.scenes[i].id = chapter.scenes[i].id + 1;
+        // } else {
+        //   chapter.scenes[i].id = i+1
+        // }
       })
     }
 
