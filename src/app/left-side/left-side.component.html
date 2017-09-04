@@ -16,14 +16,15 @@
             <a href="javascript:void(0)" class="arrow">{{chapter.title}} {{ i+1}}
             </a>   
             <ul>
-              <li *ngFor="let scene of chapter.scenes" class="new-element-menu add-scene">
+              <li *ngFor="let scene of chapter.scenes" >
                 {{scene.title}}
-                <span class="add-new-scene">
-                  <svg class="icon-plus">
-                    <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
-                  </svg>
-                </span>
+                
               </li>  
+              <!-- <li *ngFor="let scene of chapter.scenes" class="new-element-menu add-scene">
+                <svg class="icon-plus">
+                  <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
+                </svg>
+              </li> -->
             </ul>
           </li>
         </ul>
