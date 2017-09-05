@@ -1,4 +1,5 @@
 import { Scene } from './../models/Scene';
+import { Chapter } from './../models/Chapter';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActsService } from './../acts.service';
 
@@ -7,17 +8,17 @@ import { ActsService } from './../acts.service';
   templateUrl: './chapter.component.html',
   styleUrls: ['./chapter.component.scss'],
   inputs:['chapter', 'scenes', 'actId'],
-  outputs:['outScene'],
+  outputs:['outScene','outChapter'],
   providers: [ActsService]
 })
-
 
 export class ChapterComponent implements OnInit {
   @Input() chapter;
   @Input() scenes;
   
   newScene : Scene;
-  outScene = new EventEmitter<Scene>()
+  outScene = new EventEmitter<Scene>();
+  outChapter = new EventEmitter<Chapter>()
   constructor(private shareService: ActsService) { }
 
   sceneEmit:Scene;
@@ -33,6 +34,12 @@ export class ChapterComponent implements OnInit {
     this.outScene.emit(this.newScene);
   }
 
+  
+  addNewChapter(chapter, actId){
+    debugger
+    chapter.actId = actId;
+    this.outChapter.emit(chapter);
+  }
   ngOnInit() {
 
   }

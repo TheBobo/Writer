@@ -21,6 +21,8 @@ export class RightSideComponent implements OnInit {
   addNewScene = new EventEmitter<Scene>()
   newModelScene = new Scene(0,0,0, '');
   private rightPanelForm: FormGroup;
+  private rightPanelCreateChapter: FormGroup;
+
   private panelTitle: string = 'New Scene'
 
   constructor(private shareService: ActsService, private fb: FormBuilder) {
@@ -33,6 +35,14 @@ export class RightSideComponent implements OnInit {
       chapterId: [this.scene ? this.scene.chapterId : ''],
       id: [this.scene ? this.scene.id : '']
     });
+
+    this.rightPanelCreateChapter = fb.group({
+      title: [this.chapter ? this.chapter.title : ''],
+      description:[this.chapter ? this.chapter.description : ''],
+      actId:[this.chapter ? this.chapter.actId : ''],
+      id:[this.chapter ? this.chapter.id : '']
+    })
+    debugger
   }
 
   ngOnInit() {
@@ -74,7 +84,7 @@ export class RightSideComponent implements OnInit {
 
 
   saveChapter(){
-    let formData = this.rightPanelForm.getRawValue();
+    let formData = this.rightPanelCreateChapter.getRawValue();
     debugger
     this.chapter.title = formData.title;
     this.chapter.description = formData.description;

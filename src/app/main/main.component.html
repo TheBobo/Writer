@@ -3,18 +3,14 @@
     <div class="story-map">
             <div class="acts-column"  *ngFor = "let act of ACTS">
                 <h4 class="title">Act <span> {{act.id}}</span></h4>
-                <div *ngFor="let chapter of act.chapters" > 
-                    <span class="add-new add-chapter" (click)='addNewChapter(chapter, act)'>
-                        <svg class="icon-plus">
-                          <use xlink:href="/fonts/swiftpad-icons.svg#icon-plus"></use>
-                        </svg>
-                    </span>
-                  <app-chapter class="chapter-column" 
-                    [chapter]="chapter"
-                    [actId]="act.id"
-                    (outScene)="emitScene($event)">
-                  </app-chapter>
-              </div>
+
+                
+                <app-chapter  *ngFor="let chapter of act.chapters" class="chapter-column" 
+                  [chapter]="chapter"
+                  [actId]="act.id"
+                  (outScene)="emitScene($event)"
+                  (outChapter)="emitNewChapter($event)">
+                </app-chapter>
 
              
               

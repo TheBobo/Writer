@@ -52,6 +52,11 @@
       </svg>
     </span>
     
+    <span class="add-new add-chapter" (click)='addNewChapter(chapter, actId)'>
+                        <svg class="icon-plus">
+                          <use xlink:href="/fonts/swiftpad-icons.svg#icon-plus"></use>
+                        </svg>
+                    </span>
 
 
     <app-scene *ngFor="let scene of chapter.scenes; let last = last " [scene]='scene'
