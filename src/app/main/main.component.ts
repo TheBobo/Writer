@@ -5,7 +5,7 @@ import { Scene } from '../models/Scene';
 import { ActsService } from './../acts.service';
 
 @Component({
-  selector: 'app-main',
+  selector: 'app-story-map',
   templateUrl: './main.component.html',
   inputs: ['ACTS'],
   outputs:['outScene', 'outChapter', 'showright', 'menuBar'],
@@ -16,7 +16,7 @@ import { ActsService } from './../acts.service';
 export class MainComponent implements OnInit {
   public ACTS: Act[];
   menuBar = 'discover';
-  
+
   outScene = new EventEmitter<Scene>()
   showright = new EventEmitter<true>()
   showmodal = new EventEmitter<true>()
@@ -27,7 +27,7 @@ export class MainComponent implements OnInit {
 
   constructor(private shareService: ActsService) { }
 
-  
+
 
 
   emitScene(event){
@@ -36,7 +36,7 @@ export class MainComponent implements OnInit {
 
     if(event.type != 'delete')
       this.showright.emit(true);
-    else {     
+    else {
        this.showmodal.emit(true);
       }
   }

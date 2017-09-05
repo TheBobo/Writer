@@ -16,13 +16,14 @@ export class AppComponent  implements OnInit  {
   isRightPanelOpen = false;
   newScene: Scene;
   newChapter: Chapter;
+  activeComponent: string;
 
   deleteScene: Scene;
   rightTab: boolean;
   showModal: boolean;
   menubarItem:string;
   showLeftPanel: boolean;
-  
+
 
   ACTS: Act[];
   @ViewChild('rightSlideView') rightSlideView;
@@ -31,8 +32,15 @@ export class AppComponent  implements OnInit  {
 
   constructor(private shareService: ActsService) { }
 
+  activeMenuItem(event) {
+    this.activeComponent = event;
+  }
+
   gotoMenu(option){
     this.menubarItem = option;
+
+    if (option == 'discover')
+      this.openMenu();
   }
 
   emitGotoMenu(event){
@@ -48,7 +56,6 @@ export class AppComponent  implements OnInit  {
     this.newChapter.actId = event.actId;
     this.newChapter.type = 'create';
     console.log(this.newChapter)
-    debugger
 
     }
 

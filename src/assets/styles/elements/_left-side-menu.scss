@@ -1,6 +1,6 @@
-.chapters-menu {
+.side-nav {
  ul {
-   .chapter {
+   .has-sub {
       padding-left: 45px;
       line-height: 45px;
       font-size: 15px;
@@ -45,7 +45,7 @@
             &:before, &:after {
               background-color: darken($yellow, 10%);
             }
-          }  
+          }
         }
       }
       ul {
@@ -71,7 +71,7 @@
             }
           }
         }
-   
+
       }
        ul {
         .scene {
