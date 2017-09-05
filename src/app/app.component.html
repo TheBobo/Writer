@@ -2,12 +2,14 @@
 
 <div [hidden]='user.username == undefined'>
   <app-header></app-header>
-  <app-left-side></app-left-side>
-  
+  <app-left-side
+    (activeMenu)='activeMenuItem($event)'
+    [menubarItem]='menubarItem'></app-left-side>
+
   <!-- <app-dashboard  *ngIf='menubarItem == "write"'></app-dashboard> -->
-  <main class="main-content">
+  <main class="main-content" >
     <div class="subheader">
-      <div class="hide-menu" (click)="openMenu()">
+      <div class="hide-menu" (click)="openMenu($event)">
         <svg class="icon-menu">
           <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-menu"></use>
         </svg>
@@ -19,20 +21,31 @@
         <li> Publish</li>
       </ul></nav>
     </div>
-  
-      <app-main *ngIf="menubarItem == 'discover'" [ACTS] = "ACTS"
+
+
+       <app-story-map *ngIf="menubarItem == 'discover'  && activeComponent =='storyMap'" [ACTS] = "ACTS"
             (outScene)="emitScene($event)"
             (outChapter)="emitNewChapter($event)"
-            (showright)=emitRight($event) 
+            (showright)=emitRight($event)
             (showmodal)=showmodal($event)
-            (menubar)=emitGotoMenu($event)></app-main>
+            (menubar)=emitGotoMenu($event)></app-story-map>
       <app-write *ngIf="menubarItem == 'write'"></app-write>
-    
+
+      <app-synopsis *ngIf="menubarItem == 'discover' && activeComponent =='synopsis'"></app-synopsis>
+
+      <app-audence *ngIf="menubarItem == 'discover' && activeComponent =='audence'">
+      </app-audence>
+
+      <app-character-list *ngIf="menubarItem == 'discover' && activeComponent =='characterList'"></app-character-list>
+
+
   </main>
+
+
   <app-right-side #rightSlideView *ngIf="newScene || newChapter"
-   [scene]="newScene" 
+   [scene]="newScene"
    [chapter]="newChapter"
-   [rightOpen]="rightTab" 
+   [rightOpen]="rightTab"
    (close)="this.rightTab = $event"
    (addScene)="addscene($event)"
    (addNewScene)=addNewScene($event)></app-right-side>

@@ -14,10 +14,16 @@ import { LoginComponent } from './login/login.component';
 import { ChapterComponent } from './chapter/chapter.component';
 import { SceneComponent } from './scene/scene.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { StoryComponent } from './story/story.component';
+import { StoryComponent } from './discover/story/story.component';
 import { WriteComponent } from './write/write.component';
 import { CreateSceneSidePanelComponent } from './create-scene-side-panel/create-scene-side-panel.component';
 import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
+import { CharacterComponent } from './discover/character/character.component';
+import { CharacterListComponent } from './discover/character-list/character-list.component';
+import { AssetsMenuComponent } from './assets-menu/assets-menu.component';
+import { ChaptersNavComponent } from './chapters-nav/chapters-nav.component';
+import { SynopsisComponent } from './discover/synopsis/synopsis.component';
+import { AudenceComponent } from './discover/audence/audence.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,13 @@ import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
     StoryComponent,
     WriteComponent,
     CreateSceneSidePanelComponent,
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    CharacterComponent,
+    CharacterListComponent,
+    AssetsMenuComponent,
+    ChaptersNavComponent,
+    SynopsisComponent,
+    AudenceComponent
   ],
   imports: [
     BrowserModule,
