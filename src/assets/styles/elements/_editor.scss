@@ -118,10 +118,22 @@
           &:nth-of-type(1) {
             background-color: $purple;
             left: 5px;
+            &:hover {
+              background-color: lighten($purple, 10%);
+            }
+            &:active {
+               background-color: darken($purple, 10%);
+            }
           }
           &:nth-of-type(2) {
             background-color: $violet;
             left: 85px;
+            &:hover {
+              background-color: lighten($purple, 10%);
+            }
+            &:active {
+              background-color: darken($violet, 10%);
+            }
           }
         }
       }
