@@ -21,7 +21,12 @@
 
 
 //open acordion
-$(document).on("click", '.chapter.has-sub' ,function(){
-  
-  $(this).addClass('open')
+$(document).on("click", '.chapter.has-sub' ,function(evt){
+  evt.stopPropagation();
+
+  var clickActiveElem=$(this).hasClass('open');
+  $(this).closest('.side-nav').find('.open').removeClass('open')
+
+  if(!clickActiveElem)
+    $(this).addClass('open')
 })
