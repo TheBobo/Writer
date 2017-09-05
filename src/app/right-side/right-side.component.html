@@ -1,5 +1,5 @@
 
-<aside class="right-side-panel" *ngIf="scene" [ngClass]="{'show': rightOpen}">
+<aside class="right-side-panel" *ngIf="scene || chapter" [ngClass]="{'show': rightOpen}">
   <div class="subheader">
     <span class="close"  (click)="cancel()">
       <svg class="icon-close">
@@ -9,8 +9,8 @@
   </div>
 
 <div class="panel-wrapper" >
-  <h4 class="title-item">{{panelTitle}}</h4>
-  <form class="material" [formGroup]="rightPanelForm">
+  <h4 class="title-item" *ngIf="scene">{{panelTitle}}</h4>
+  <form *ngIf="scene" class="material" [formGroup]="rightPanelForm">
       <div class="form-group">
         <label>Scene Name</label> 
         <input type="text" formControlName="title" class="form-control" value="{{scene.title}}">
@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
       <label >chapter {{scene.chapterId}}</label>
-      <select name="chapter" data-placeholder="Chapter" formControlName="chapterId">
+      <select *ngIf='scene.type == "edit"' name="chapter" data-placeholder="Chapter" formControlName="chapterId">
         <option value="">Chapter 1</option>
         <option value="">Chapter 2</option>
         <option value="">Chapter 3</option>
@@ -30,7 +30,7 @@
     </div>
     <div class="form-group">
       <label >scene {{scene.id + 1}}</label>
-      <select name="" data-placeholder="Scene" formControlName="id">
+      <select  *ngIf='scene.type == "edit"' name="" data-placeholder="Scene" formControlName="id">
         <option value="">Scene 1</option>
         <option value="">Scene 2</option>
         <option value="">Scene 3</option>
@@ -46,12 +46,51 @@
       <label> Word taget </label>
       <input class="autoExpand form-control" formControlName="wordGoal" type="number" value="{{scene.wordGoal}}" class="form-control">
     </div>
-      <div class="panel-footer">
+      <div class="panel-footer" *ngIf="scene.type!='view'">
         <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
         <button class="btn btn-yellow" [disabled]="scene.type ==='view'" (click)="save()">Save</button>
       </div>
   </form>
+
+
+  <h4 class="title-item" *ngIf="chapter">{{panelTitle}}</h4>
+  <form *ngIf="chapter" class="material" [formGroup]="rightPanelForm">
+      <div class="form-group">
+        <label>Chapter Name </label> 
+        <input type="text" formControlName="title" class="form-control" value="{{chapter.title}}">
+      </div>
+
+    <div class="form-group">
+      <label >act {{chapter.actId}}</label>
+    </div>
+    <div class="form-group">
+      <label >chapter {{chapter.id}}</label>
+      <select *ngIf='chapter.type == "edit"' name="chapter" data-placeholder="Chapter" formControlName="chapterId">
+        <option value="">Chapter 1</option>
+        <option value="">Chapter 2</option>
+        <option value="">Chapter 3</option>
+        <option value="">Chapter 4</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label>One Line Synopsis</label>
+      <textarea formControlName="description" class="autoExpand form-control" rows="1" value ="{{chapter.description}}" data-min-rows='1'></textarea>
+    </div>
+
+    
+    <!-- <div class="form-group">
+      <label> Word taget </label>
+      <input class="autoExpand form-control" formControlName="wordGoal" type="number" value="{{scene.wordGoal}}" class="form-control">
+    </div> -->
+      <div class="panel-footer">
+        <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
+        <button class="btn btn-yellow" (click)="saveChapter()">Save</button>
+      </div>
+  </form>
 </div>
+
+
 
 </aside>
 

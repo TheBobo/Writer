@@ -19,3 +19,9 @@
   });
 }, 400);
 
+
+//open acordion
+$(document).on("click", '.chapter.has-sub' ,function(){
+  
+  $(this).addClass('open')
+})

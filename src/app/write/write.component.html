@@ -1,19 +1,61 @@
-<main class="main-content">
-    <div class="subheader">
-      <div class="hide-menu">
-        <svg class="icon-menu">
-          <use xlink:href="/fonts/swiftpad-icons.svg#icon-menu"></use>
-        </svg>
+
+<div class="editor-wrapper">
+  <div class="chapter">
+    <div class="chapter-head">
+      <p class="chapter-count edit">Chapter 1</p>
+      <p class="chapter-title edit">Add Chapter Title</p>
+      <div class="tool-bar">
+        <span data-balloon="View Details" data-balloon-pos="up">
+          <svg class="icon-view">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
+          </svg>
+        </span>
+        <span data-balloon="Edit Details" data-balloon-pos="up">
+          <svg class="icon-edit">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
+          </svg>
+        </span>
+        <span data-balloon="Delete" data-balloon-pos="up-right">
+          <svg class="icon-trash">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
+          </svg>
+        </span>
       </div>
-      <div class="story-name">The Time Truck</div>
-      <nav class="main-nav"></nav>
     </div>
-    <div class="editor"></div>
+    <div class="scene">
+      <div class="scene-head">
+        <div class="scene-title">Scene 1: Some long name for scene title</div>
+        <div class="tool-bar">
+          <span data-balloon="View Details" data-balloon-pos="up">
+          <svg class="icon-view">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
+          </svg>
+        </span>
+          <span data-balloon="Edit Details" data-balloon-pos="up">
+          <svg class="icon-edit">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
+          </svg>
+        </span>
+          <span data-balloon="Delete" data-balloon-pos="up-right">
+          <svg class="icon-trash">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
+          </svg>
+        </span>
+        </div>
+      </div>
+      <trumbowyg [initialContent]="initialContentOne" [options]="options1" (savedContent)="contentOne=$event" placeholder="Start Your Scene Here">
+      </trumbowyg>
+      <div class="add-new">
+        <span>
+          <svg class="icon-plus">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
+          </svg>
+          <i>Add New Scene</i>
+          <i>Add New Chapter</i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <trumbowyg [initialContent]="initialContentOne"
-    [options]="options1"
-    (savedContent)="contentOne=$event">
 
-    </trumbowyg>
-
-  </main>

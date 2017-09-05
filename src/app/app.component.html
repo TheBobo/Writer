@@ -3,11 +3,36 @@
 <div [hidden]='user.username == undefined'>
   <app-header></app-header>
   <app-left-side></app-left-side>
-  <app-main [ACTS] = "ACTS"
-            (outScene)="emitScene($event)" (showright)=emitRight($event) (showmodal)=showmodal($event)></app-main>
-  <!-- <app-dashboard></app-dashboard> -->
-  <!-- <app-write></app-write> -->
-  <app-right-side #rightSlideView *ngIf="newScene" [scene]="newScene" [rightOpen]="rightTab" 
+  
+  <!-- <app-dashboard  *ngIf='menubarItem == "write"'></app-dashboard> -->
+  <main class="main-content">
+    <div class="subheader">
+      <div class="hide-menu" (click)="openMenu()">
+        <svg class="icon-menu">
+          <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-menu"></use>
+        </svg>
+      </div>
+      <div class="story-name">The Time Truck</div>
+      <nav class="main-nav"><ul>
+        <li (click)='gotoMenu("discover")' [ngClass]="{'active':menubarItem=='discover'}">Discover</li>
+        <li (click)='gotoMenu("write")' [ngClass]="{'active':menubarItem=='write'}">Write</li>
+        <li> Publish</li>
+      </ul></nav>
+    </div>
+  
+      <app-main *ngIf="menubarItem == 'discover'" [ACTS] = "ACTS"
+            (outScene)="emitScene($event)"
+            (outChapter)="emitNewChapter($event)"
+            (showright)=emitRight($event) 
+            (showmodal)=showmodal($event)
+            (menubar)=emitGotoMenu($event)></app-main>
+      <app-write *ngIf="menubarItem == 'write'"></app-write>
+    
+  </main>
+  <app-right-side #rightSlideView *ngIf="newScene || newChapter"
+   [scene]="newScene" 
+   [chapter]="newChapter"
+   [rightOpen]="rightTab" 
    (close)="this.rightTab = $event"
    (addScene)="addscene($event)"
    (addNewScene)=addNewScene($event)></app-right-side>

@@ -36,6 +36,11 @@ export class ActsService {
 
 
     getAllActs(){
+      return this.ACTS;
+    }
+
+    initAllActs(){
+      var chapterIndex = 0;
 
       for(var i=0; i<this.ACTS.length; i++){
 
@@ -43,14 +48,11 @@ export class ActsService {
         if(this.ACTS[i].chapters == undefined)
             this.ACTS[i].chapters =  new Array<Chapter>();
 
-        this.ACTS[i].chapters.push(new Chapter(this.ACTS[i].chapters.length+1));
-
-        // for(var j=0; j<this.ACTS[i].chapters.length; j++){
-        //   this.ACTS[i].chapters[j].scenes.push(new Scene( this.ACTS[i].chapters[j].scenes.length+1, j, i, ''));
-        // }
-
+        chapterIndex++;
+        this.ACTS[i].chapters.push(new Chapter(chapterIndex));
+        chapterIndex++;
+        this.ACTS[i].chapters.push(new Chapter(chapterIndex));
       }
-
       return this.ACTS;
     }
 
@@ -81,13 +83,6 @@ export class ActsService {
     updateSceneId(chapter: Chapter, sceneId: number, last?: boolean){
       chapter.scenes.forEach((item, i) => {
         chapter.scenes[i].id = i+1;
-        // if ( chapter.scenes[i].id === sceneId && !last && chapter.scenes[i].id != i) {
-        //   chapter.scenes[i].id = sceneId
-        // } else if ( chapter.scenes[i].id === sceneId && !last && chapter.scenes[i].id === i ) {
-        //   chapter.scenes[i].id = chapter.scenes[i].id + 1;
-        // } else {
-        //   chapter.scenes[i].id = i+1
-        // }
       })
     }
 

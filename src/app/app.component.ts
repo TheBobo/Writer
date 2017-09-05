@@ -1,4 +1,5 @@
 import { Scene } from './models/Scene';
+import { Chapter } from './models/Chapter';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActsService } from './acts.service';
 import { Act } from './models/Act';
@@ -14,9 +15,14 @@ export class AppComponent  implements OnInit  {
   user = { username: 'bob'};
   isRightPanelOpen = false;
   newScene: Scene;
+  newChapter: Chapter;
+
   deleteScene: Scene;
   rightTab: boolean;
   showModal: boolean;
+  menubarItem:string;
+  showLeftPanel: boolean;
+  
 
   ACTS: Act[];
   @ViewChild('rightSlideView') rightSlideView;
@@ -25,9 +31,26 @@ export class AppComponent  implements OnInit  {
 
   constructor(private shareService: ActsService) { }
 
+  gotoMenu(option){
+    this.menubarItem = option;
+  }
+
+  emitGotoMenu(event){
+    this.menubarItem = event;
+  }
+
   emitScene(event){
     this.newScene = event;
   }
+
+  emitNewChapter(event){
+    this.newChapter = new Chapter((event.id+1));
+    this.newChapter.actId = event.actId;
+    this.newChapter.type = 'create';
+    console.log(this.newChapter)
+    debugger
+
+    }
 
   emitModal(event){
     this.showModal = event;
@@ -55,8 +78,20 @@ export class AppComponent  implements OnInit  {
     alert(event)
   }
 
+  openMenu(){
+    this.showLeftPanel = !this.showLeftPanel;
+    let body = document.getElementsByTagName('body')[0];
+    if(this.showLeftPanel)
+      body.classList.add("show-left-panel");   //add the class
+    else
+      body.classList.remove("show-left-panel");   //remove the class
+  }
+
+
   ngOnInit() {
+    this.shareService.initAllActs();
     this.ACTS = this.shareService.getAllActs();
+    this.menubarItem='menubarItem'
   }
 
 }
