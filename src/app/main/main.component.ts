@@ -41,6 +41,8 @@ export class MainComponent implements OnInit {
     else {
        this.showmodal.emit(true);
       }
+
+    console.log('emitScene', event)
   }
 
   emitNewChapter(event){
@@ -49,16 +51,15 @@ export class MainComponent implements OnInit {
     this.newChapter.type = 'create';
 
     this.newScene = undefined;
-    console.log(this.newChapter)
-    debugger
+    console.log('this.newChapter чше', this.newChapter)
+    this.outChapter.emit(this.newChapter)
     if(event.type != 'delete')
       this.showright.emit(true);
     else {     
        this.showmodal.emit(true);
       }
-    debugger
-
     }
+
 
 
   ngOnInit() {

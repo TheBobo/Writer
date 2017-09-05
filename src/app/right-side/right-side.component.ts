@@ -26,8 +26,6 @@ export class RightSideComponent implements OnInit {
   private panelTitle: string = 'New Scene'
 
   constructor(private shareService: ActsService, private fb: FormBuilder) {
-    debugger
-    
     this.rightPanelForm = fb.group({
       title: [this.scene ? this.scene.title : ''],
       description: [this.scene ? this.scene.description : ''],
@@ -42,7 +40,6 @@ export class RightSideComponent implements OnInit {
       actId:[this.chapter ? this.chapter.actId : ''],
       id:[this.chapter ? this.chapter.id : '']
     })
-    debugger
   }
 
   ngOnInit() {
@@ -50,11 +47,10 @@ export class RightSideComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('this.scene', this.scene)
     if ( changes.scene ) {
       this.shareService.labelPosition();
 
-      if ( this.scene.type === 'create') {
+      if ( this.scene && this.scene.type === 'create') {
         this.clearForm();
       }
     }
