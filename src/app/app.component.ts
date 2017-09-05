@@ -1,4 +1,5 @@
 import { Scene } from './models/Scene';
+import { Chapter } from './models/Chapter';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActsService } from './acts.service';
 import { Act } from './models/Act';
@@ -14,6 +15,8 @@ export class AppComponent  implements OnInit  {
   user = { username: 'bob'};
   isRightPanelOpen = false;
   newScene: Scene;
+  newChapter: Chapter;
+
   deleteScene: Scene;
   rightTab: boolean;
   showModal: boolean;
@@ -39,6 +42,15 @@ export class AppComponent  implements OnInit  {
   emitScene(event){
     this.newScene = event;
   }
+
+  emitNewChapter(event){
+    this.newChapter = new Chapter((event.id+1));
+    this.newChapter.actId = event.actId;
+    this.newChapter.type = 'create';
+    console.log(this.newChapter)
+    debugger
+
+    }
 
   emitModal(event){
     this.showModal = event;
@@ -77,6 +89,7 @@ export class AppComponent  implements OnInit  {
 
 
   ngOnInit() {
+    this.shareService.initAllActs();
     this.ACTS = this.shareService.getAllActs();
     this.menubarItem='menubarItem'
   }

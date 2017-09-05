@@ -8,12 +8,13 @@ declare var $:any;
 @Component({
   selector: 'app-right-side',
   templateUrl: './right-side.component.html',
-  inputs: [ 'scene', 'rightOpen'],
+  inputs: [ 'scene', 'chapter', 'rightOpen'],
   outputs: ['close', 'addNewScene'],
   providers: [ActsService]
 })
 export class RightSideComponent implements OnInit {
   @Input() scene;
+  @Input() chapter;
   @Input() rightOpen;
 
   close = new EventEmitter<boolean>()
@@ -23,6 +24,8 @@ export class RightSideComponent implements OnInit {
   private panelTitle: string = 'New Scene'
 
   constructor(private shareService: ActsService, private fb: FormBuilder) {
+    debugger
+    
     this.rightPanelForm = fb.group({
       title: [this.scene ? this.scene.title : ''],
       description: [this.scene ? this.scene.description : ''],
@@ -66,6 +69,17 @@ export class RightSideComponent implements OnInit {
     this.scene.wordsGoal = formData.wordGoal ? parseInt(formData.wordGoal) : 0;
 
     this.addNewScene.emit(this.scene);
+    this.close.emit(false);
+  }
+
+
+  saveChapter(){
+    let formData = this.rightPanelForm.getRawValue();
+    debugger
+    this.chapter.title = formData.title;
+    this.chapter.description = formData.description;
+
+    //this.addNewScene.emit(this.scene);
     this.close.emit(false);
   }
 }
