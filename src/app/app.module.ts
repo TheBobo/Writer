@@ -21,7 +21,7 @@ import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
 import { CharacterComponent } from './discover/character/character.component';
 import { CharacterListComponent } from './discover/character-list/character-list.component';
 import { AssetsMenuComponent } from './assets-menu/assets-menu.component';
-import { ChaptersNavComponent } from './chapters-nav/chapters-nav.component';
+import { ChaptersNavComponent } from './write/chapters-nav/chapters-nav.component';
 import { SynopsisComponent } from './discover/synopsis/synopsis.component';
 import { AudenceComponent } from './discover/audence/audence.component';
 
