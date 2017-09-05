@@ -68,6 +68,7 @@ export class AppComponent  implements OnInit  {
 
   emitRight(event){
     this.rightTab = event;
+
     setTimeout(() => {
       if(this.newScene){
         if ( this.newScene.type === 'edit') {
@@ -76,6 +77,14 @@ export class AppComponent  implements OnInit  {
           this.rightSlideView.setRightSideTitle('New Scene')
         } else if ( this.newScene.type === 'view' ) {
           this.rightSlideView.setRightSideTitle('Scene')
+        }
+      } else if ( this.newChapter ) {
+        if ( this.newChapter.type === 'edit') {
+          this.rightSlideView.setRightSideTitle('Edit Chapter')
+        } else if ( this.newChapter.type === 'create' ) {
+          this.rightSlideView.setRightSideTitle('New Chapter')
+        } else if ( this.newChapter.type === 'view' ) {
+          this.rightSlideView.setRightSideTitle('Chapter')
         }
       }
     })
