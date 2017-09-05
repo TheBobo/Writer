@@ -3,7 +3,7 @@
 
     <ul class="collapsible-menu">
       <li class="chapter has-sub" *ngFor="let chapter of item.chapters; let i = index ">
-        <a href="javascript:void(0)" class="arrow">{{chapter.title}} {{ chapter.id }}
+        <a class="arrow">{{chapter.title}} {{ chapter.id }}
         </a>
         <ul>
           <li *ngFor="let scene of chapter.scenes" >
