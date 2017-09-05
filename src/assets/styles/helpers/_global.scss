@@ -216,6 +216,8 @@ hr {
 box-sizing: content-box; /* 1 */
 height: 0; /* 1 */
 overflow: visible; /* 2 */
+border-top: solid .5px darken($light-gray, 7%);
+
 }
 
 /**

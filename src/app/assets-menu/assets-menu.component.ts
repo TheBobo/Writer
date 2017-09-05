@@ -17,7 +17,6 @@ export class AssetsMenuComponent implements OnInit {
   }
 
   changeView(elem) {
-    debugger
     this.activeElement = elem;
     this.activeMenu.emit(this.activeElement);
   }

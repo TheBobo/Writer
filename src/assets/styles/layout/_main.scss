@@ -1,0 +1,17 @@
+.inner-wrapper {
+  padding: 30px;
+  width: 100%;
+  height: calc(100vh - 164px);
+  overflow-x: hidden;
+  overflow-y: auto;
+
+}
+.sub-subheader {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: solid thin darken($light-gray, 7%);
+  .title-inner {
+    font-size: 25px;
+  }
+}
