@@ -50,8 +50,6 @@ export class ActsService {
 
         chapterIndex++;
         this.ACTS[i].chapters.push(new Chapter(chapterIndex));
-        chapterIndex++;
-        this.ACTS[i].chapters.push(new Chapter(chapterIndex));
         // for(var j=0; j<this.ACTS[i].chapters.length; i++){
         //   if(this.ACTS[i].chapters[j].scenes == undefined)
         //     this.ACTS[i].chapters[j].scenes =  new Array<Scene>();
@@ -91,12 +89,13 @@ export class ActsService {
 
 
     addChapter(chapter: Chapter){
-      var act = this.ACTS.find(x=>x.id == chapter.id);
+      var act = this.ACTS.find(x => x.id == chapter.actId);
       if(chapter.type == 'edit'){
 
         return;
       }
-      act.chapters.push(chapter);
+      debugger;
+      act.chapters.splice((chapter.id - 1), 0, chapter);
       this.updateChapterId(this.ACTS);
     }
 
