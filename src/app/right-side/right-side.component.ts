@@ -1,4 +1,5 @@
 import { Scene } from './../models/Scene';
+import { Chapter } from './../models/Chapter'
 import { Component, Input, OnInit, Output, OnChanges, EventEmitter, SimpleChanges } from '@angular/core';
 import { ActsService } from './../acts.service';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
@@ -9,7 +10,7 @@ declare var $:any;
   selector: 'app-right-side',
   templateUrl: './right-side.component.html',
   inputs: [ 'scene', 'chapter', 'rightOpen'],
-  outputs: ['close', 'addNewScene'],
+  outputs: ['close', 'addNewScene', 'addNewChapter'],
   providers: [ActsService]
 })
 export class RightSideComponent implements OnInit {
@@ -19,6 +20,7 @@ export class RightSideComponent implements OnInit {
 
   close = new EventEmitter<boolean>()
   addNewScene = new EventEmitter<Scene>()
+  addNewChapter = new EventEmitter<Chapter>()
   newModelScene = new Scene(0,0,0, '');
   private rightPanelForm: FormGroup;
   private rightPanelCreateChapter: FormGroup;
@@ -80,11 +82,13 @@ export class RightSideComponent implements OnInit {
 
 
   saveChapter(){
+    debugger
     let formData = this.rightPanelCreateChapter.getRawValue();
     debugger
     this.chapter.title = formData.title;
     this.chapter.description = formData.description;
 
+    this.addNewChapter.emit(this.chapter);
     //this.addNewScene.emit(this.scene);
     this.close.emit(false);
   }

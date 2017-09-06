@@ -80,6 +80,28 @@ export class ActsService {
       this.updateSceneId(chapter, scene.id, scene.last);
     }
 
+    
+    addChapter(chapter: Chapter){
+      var act = this.ACTS.find(x=>x.id == chapter.id);
+      if(chapter.type == 'edit'){
+
+        return;
+      }
+      act.chapters.push(chapter);
+      this.updateChapterId(this.ACTS);
+    }
+
+    updateChapterId(ACTS){
+      var index = 1;
+      ACTS.forEach((item, i) => {
+        item.chaptes.forEach((element,i)=> {
+          element.id=index;
+          index++;
+        });
+      });
+
+    }
+
     updateSceneId(chapter: Chapter, sceneId: number, last?: boolean){
       chapter.scenes.forEach((item, i) => {
         chapter.scenes[i].id = i+1;

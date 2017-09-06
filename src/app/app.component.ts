@@ -94,6 +94,11 @@ export class AppComponent  implements OnInit  {
     this.shareService.addScene(event);
   }
 
+  addNewChapter(event){
+    debugger
+    this.shareService.addChapter(event);
+  }
+
   deleteSelectedScene(event){
     this.shareService.deleteScene(event);
     alert(event)
