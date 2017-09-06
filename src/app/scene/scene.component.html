@@ -1,45 +1,45 @@
-
 <div class="scene-item">
-  <div class="scene-wrapper">
-    <span class="tag-label violet">Resolution</span>
-    <h5 class="scene-count">Scene <span>{{scene.id}}</span></h5>
-    <h4 class="title-scene" *ngIf="!scene.title">Scene Title Long Name Two lines</h4>
-    <h4 class="title-scene">{{scene.title}}</h4>
-    <p class="synopsis">  {{scene.description}}.</p>
-    <div class="characters-holder">
+    <div class="scene-wrapper">
+      <div class="scene-content">
+        <span class="tag-label violet">Resolution</span>
+        <h5 class="scene-count">Scene <span>{{scene.id}}</span></h5>
+        <h4 class="title-scene" *ngIf="!scene.title">Scene Title Long Name Two lines</h4>
+        <h4 class="title-scene">{{scene.title}}</h4>
+        <p class="synopsis"> {{scene.description}}.</p>
+        <div class="characters-holder">
 
-      <span ngFor="let character of scene.characters" class="character-image"></span>
+          <span ngFor="let character of scene.characters" class="character-image"></span>
 
-    </div>
-    <div class="story-info">
-      <div class="info-cell">
-        <p class="label">words</p>
-        <p class="content">{{scene.wordCount}} of {{scene.wordsGoal}}</p>
+        </div>
+        <div class="story-info">
+          <div class="info-cell">
+            <p class="label">words</p>
+            <p class="content">{{scene.wordCount}} of {{scene.wordsGoal}}</p>
+          </div>
+        </div>
+        <div class="tool-bar">
+          <span data-balloon="View Details" data-balloon-pos="up" (click)='addScene(scene.id, chapterId, actId, "view")'>
+          <svg class="icon-view">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
+          </svg>
+        </span>
+          <span data-balloon="Edit Details" data-balloon-pos="up" (click)='addScene(scene.id, chapterId, actId, "edit")'>
+          <svg class="icon-edit">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
+          </svg>
+        </span>
+
+          <span data-balloon="Delete" data-balloon-pos="up-right" (click)='deleteScene(scene.id, chapterId, actId, "delete")'>
+          <svg class="icon-trash">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
+          </svg>
+        </span>
+        </div>
       </div>
     </div>
-    <div class="tool-bar">
-      <span data-balloon="View Details" data-balloon-pos="up" (click)='addScene(scene.id, chapterId, actId, "view")'>
-        <svg class="icon-view">
-          <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
-        </svg>
-      </span>
-      <span data-balloon="Edit Details" data-balloon-pos="up" (click)='addScene(scene.id, chapterId, actId, "edit")'>
-        <svg class="icon-edit">
-          <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
-        </svg>
-      </span>
-
-      <span data-balloon="Delete" data-balloon-pos="up-right" (click)='deleteScene(scene.id, chapterId, actId, "delete")'>
-        <svg class="icon-trash">
-          <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
-        </svg>
-      </span>
-    </div>
+    <span class="add-new-scene" (click)='addScene(scene.id, chapterId, actId, "create", lastItem)'>
+      <svg class="icon-plus">
+        <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
+      </svg>
+    </span>
   </div>
-</div>
-
-<span class="add-new-scene" (click)='addScene(scene.id, chapterId, actId, "create", lastItem)'>
-  <svg class="icon-plus">
-    <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
-  </svg>
-</span>

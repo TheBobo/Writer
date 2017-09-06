@@ -1,4 +1,3 @@
-
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Act } from '../models/Act';
 import { Chapter } from '../models/Chapter';
@@ -7,14 +6,14 @@ import { ActsService } from './../acts.service';
 
 @Component({
   selector: 'app-story-map',
-  templateUrl: './main.component.html',
+  templateUrl: './story-map.component.html',
   inputs: ['ACTS'],
   outputs:['outScene', 'outChapter', 'showright', 'menuBar'],
   providers: [ActsService]
 })
 
 
-export class MainComponent implements OnInit {
+export class StoryMapComponent implements OnInit {
   public ACTS: Act[];
   menuBar = 'discover';
 
@@ -55,7 +54,7 @@ export class MainComponent implements OnInit {
     this.outChapter.emit(this.newChapter)
     if(event.type != 'delete')
       this.showright.emit(true);
-    else {     
+    else {
        this.showmodal.emit(true);
       }
     }
@@ -66,3 +65,4 @@ export class MainComponent implements OnInit {
   }
 
 }
+

@@ -8,7 +8,6 @@ import { TrumbowygModule} from 'ng2-lazy-trumbowyg';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LeftSideComponent } from './left-side/left-side.component';
-import { MainComponent } from './main/main.component';
 import { RightSideComponent } from './right-side/right-side.component';
 import { LoginComponent } from './login/login.component';
 import { ChapterComponent } from './chapter/chapter.component';
@@ -24,13 +23,13 @@ import { AssetsMenuComponent } from './assets-menu/assets-menu.component';
 import { ChaptersNavComponent } from './write/chapters-nav/chapters-nav.component';
 import { SynopsisComponent } from './discover/synopsis/synopsis.component';
 import { AudenceComponent } from './discover/audence/audence.component';
+import { StoryMapComponent } from './story-map/story-map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LeftSideComponent,
-    MainComponent,
     RightSideComponent,
     LoginComponent,
     ChapterComponent,
@@ -45,7 +44,8 @@ import { AudenceComponent } from './discover/audence/audence.component';
     AssetsMenuComponent,
     ChaptersNavComponent,
     SynopsisComponent,
-    AudenceComponent
+    AudenceComponent,
+    StoryMapComponent
   ],
   imports: [
     BrowserModule,

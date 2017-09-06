@@ -31,7 +31,7 @@
     .chapter-column {
       width: 200px;
       float: left;
-      margin: 0 15px;
+      margin: 0 10px;
       &:first-of-type {
         margin-left: 0 !important;
       }
@@ -41,78 +41,91 @@
       .chapter-item {
         background-color: $light-gray;
         border: solid thin darken($light-gray, 7%);
-        padding: 15px;
-        margin-bottom: 7px;
+        margin-bottom: 15px;
         cursor: pointer;
-        overflow: hidden;
+        position: relative;
         .chapter-item-wrapper {
-          position: relative;
-          transform: translateY(0);
           width: 100%;
           height: 100%;
           display: inline-block;
           transition: all .3s ease;
-          .chapter-count {
-            font-family: Baskerville;
-            font-size: 10px;
-            font-weight: bold;
-            color: lighten($dark-purple, 25%);
-            text-transform: uppercase;
-            margin-top: 0px;
-          }
-          .title-chapter {
-            display: block; /* Fallback for non-webkit */
-            display: -webkit-box;
-            font-family: Baskerville;
-            font-size: 13px;
-            letter-spacing: 1px;
-            margin-bottom: 0;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -webkit-line-clamp:2;
-            height: 28px;
-          }
-          .synopsis {
-            font-family: Baskerville;
-            font-size: 10px;
-            line-height: 14px;
-            opacity: .6;
-            font-style: italic;
-            margin-bottom: 7px;
-          }
-          .characters-holder {
-            .character-image {
-              width: 18px !important;
-              height: 18px !important;
-              margin: 3px;
-              &::first-child {
-                margin-left: 0px;
+          padding: 15px;
+          overflow: hidden;
+          .chapter-content {
+            position: relative;
+            transform: translateY(0);
+            transition: all .3s;
+
+            .chapter-count {
+              font-family: Baskerville;
+              font-size: 10px;
+              font-weight: bold;
+              color: lighten($dark-purple, 25%);
+              text-transform: uppercase;
+              margin-top: 0px;
+            }
+
+            .title-chapter {
+              display: block;
+              /* Fallback for non-webkit */
+              display: -webkit-box;
+              font-family: Baskerville;
+              font-size: 13px;
+              letter-spacing: 1px;
+              margin-bottom: 0;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              -webkit-line-clamp: 2;
+              height: 28px;
+            }
+
+            .synopsis {
+              font-family: Baskerville;
+              font-size: 10px;
+              line-height: 14px;
+              opacity: .6;
+              font-style: italic;
+              margin-bottom: 7px;
+            }
+
+            .characters-holder {
+              .character-image {
+                width: 18px !important;
+                height: 18px !important;
+                margin: 3px;
+                &::first-child {
+                  margin-left: 0px;
+                }
+              }
+              .character-count {
+                width: 18px;
+                height: 18px;
+                line-height: 15px;
+                text-align: center;
+                border: solid thin darken($light-gray, 15%);
+                border-radius: 50%;
+                display: inline-block;
+                vertical-align: 9px;
+                font-size: 10px;
+                margin: 3px;
               }
             }
-            .character-count {
-              width: 18px;
-              height: 18px;
-              line-height: 15px;
-              text-align: center;
-              border: solid thin darken($light-gray, 15%);
-              border-radius: 50%;
-              display: inline-block;
-              vertical-align: 9px;
-              font-size: 10px;
-              margin: 3px;
+
+            .info-cell {
+              p {
+                margin-bottom: 0;
+                margin-top: 6px;
+              }
             }
-          }
-          .info-cell {
-            p {
-              margin-bottom: 0;
-              margin-top: 6px;
-            }
+
           }
         }
         &:hover {
           .chapter-item-wrapper {
-            transform: translateY(-50px)
+            .chapter-content {
+              transform: translateY(-50px)
+            }
           }
         }
       }
@@ -120,77 +133,94 @@
         width: 100%;
         background-color: #fff;
         border: solid thin darken($light-gray, 7%);
-        padding: 15px;
-        margin: 7px 0;
+        margin: 7px 0 14px;
         display: inline-block;
         position: relative;
-        overflow: hidden;
+
         .scene-wrapper {
-          position: relative;
-          transform: translateY(0);
           width: 100%;
           height: 100%;
           display: inline-block;
           transition: all .3s ease;
-          .tag-label {
-            position: absolute;
-            top: -4px;
-            right: 0px;
-          }
-          .scene-count {
-            font-family: Baskerville;
-            font-size: 10px;
-            font-weight: bold;
-            color: lighten($dark-purple, 25%);
-            text-transform: uppercase;
-            margin-top: 0px;
-          }
-          .title-scene {
-            font-family: Baskerville;
-            font-size: 13px;
-            letter-spacing: 1px;
-            margin-bottom: 0;
-          }
-          .synopsis {
-            font-family: Baskerville;
-            font-size: 10px;
-            line-height: 14px;
-            opacity: .6;
-            font-style: italic;
-            margin-bottom: 7px;
-          }
-          .characters-holder {
-            .character-image {
-              width: 18px !important;
-              height: 18px !important;
-              margin: 3px;
-              &::first-child {
-                margin-left: 0px;
+          overflow: hidden;
+          padding: 15px;
+
+          .scene-content {
+            position: relative;
+            transform: translateY(0);
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            transition: all .3s ease;
+
+            .tag-label {
+              position: absolute;
+              top: -4px;
+              right: 0px;
+            }
+
+            .scene-count {
+              font-family: Baskerville;
+              font-size: 10px;
+              font-weight: bold;
+              color: lighten($dark-purple, 25%);
+              text-transform: uppercase;
+              margin-top: 0px;
+            }
+
+            .title-scene {
+              font-family: Baskerville;
+              font-size: 13px;
+              letter-spacing: 1px;
+              margin-bottom: 0;
+            }
+
+            .synopsis {
+              font-family: Baskerville;
+              font-size: 10px;
+              line-height: 14px;
+              opacity: .6;
+              font-style: italic;
+              margin-bottom: 7px;
+            }
+
+            .characters-holder {
+              .character-image {
+                width: 18px !important;
+                height: 18px !important;
+                margin: 3px;
+                &::first-child {
+                  margin-left: 0px;
+                }
+              }
+              .character-count {
+                width: 18px;
+                height: 18px;
+                line-height: 15px;
+                text-align: center;
+                border: solid thin darken($light-gray, 15%);
+                border-radius: 50%;
+                display: inline-block;
+                vertical-align: 9px;
+                font-size: 10px;
+                margin: 3px;
               }
             }
-            .character-count {
-              width: 18px;
-              height: 18px;
-              line-height: 15px;
-              text-align: center;
-              border: solid thin darken($light-gray, 15%);
-              border-radius: 50%;
-              display: inline-block;
-              vertical-align: 9px;
-              font-size: 10px;
-              margin: 3px;
+
+            .info-cell {
+              p {
+                margin-bottom: 0;
+                margin-top: 6px;
+              }
             }
-          }
-          .info-cell {
-            p {
-              margin-bottom: 0;
-              margin-top: 6px;
-            }
+
           }
         }
         &:hover {
           .scene-wrapper {
-            transform: translateY(-50px);
+            .scene-content {
+              transform: translateY(-50px);
+            }
           }
         }
       }
@@ -237,6 +267,9 @@
     margin-top: 33px;
     position: relative;
     cursor: pointer;
+    position: absolute;
+    right: -12px;
+    top: -3px;
     svg {
       width: 20px;
       height: 20px;
@@ -305,6 +338,9 @@
     position: relative;
     display: inline-block;
     cursor: pointer;
+    position: absolute;
+    bottom: -18px;
+    left: 0px;
     svg {
       width: 20px;
       height: 20px;
