@@ -10,14 +10,15 @@ export class Chapter{
   wordCount: number;
   characters: Character[];
   actId: number;
-  
+
   scenes: Scene[];
 
 
   constructor(id:number){
+    var date = new Date();
     this.id = id;
     this.type='create';
-    this.title = 'Chapter Title';
+    this.title = 'mock Chapter Title';
     this.description = '';
     this.wordCount=0;
     this.characters = new Array<Character>();

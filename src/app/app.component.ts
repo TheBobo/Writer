@@ -1,6 +1,6 @@
 import { Scene } from './models/Scene';
 import { Chapter } from './models/Chapter';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActsService } from './acts.service';
 import { Act } from './models/Act';
 //import * as $ from 'jquery';
@@ -8,6 +8,7 @@ import { Act } from './models/Act';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  outputs:['createNewScene'],
   providers: [ActsService]
 })
 export class AppComponent  implements OnInit  {
@@ -17,8 +18,10 @@ export class AppComponent  implements OnInit  {
   newScene: Scene;
   newChapter: Chapter;
   activeComponent: string;
+  selectChapter:Chapter;
 
   deleteScene: Scene;
+
   rightTab: boolean;
   showModal: boolean;
   menubarItem:string;
@@ -31,6 +34,13 @@ export class AppComponent  implements OnInit  {
 
 
   constructor(private shareService: ActsService) { }
+
+  createScene(event){
+    debugger
+    this.rightTab = true;
+    this.newScene = event;
+    console.log(event);
+  }
 
   activeMenuItem(event) {
     this.activeComponent = event;
@@ -90,6 +100,10 @@ export class AppComponent  implements OnInit  {
     })
   }
 
+  selectedChapter(chapter){
+    this.selectChapter = chapter;
+  }
+
   addNewScene(event){
     this.shareService.addScene(event);
   }
@@ -117,6 +131,7 @@ export class AppComponent  implements OnInit  {
   ngOnInit() {
     this.shareService.initAllActs();
     this.ACTS = this.shareService.getAllActs();
+    this.selectChapter = this.ACTS[0].chapters[0];
     this.menubarItem='menubarItem'
   }
 

@@ -8,6 +8,9 @@
     </div>
   </div>
 
-   <app-chapters-nav *ngIf="menubarItem == 'write'"  [menuItems]='menuItems'></app-chapters-nav>
+   <app-chapters-nav *ngIf="menubarItem == 'write'"
+   (selectedChapter)="selectChapter($event)"
+   (createNewScene)="createScene($event)"
+   [menuItems]='menuItems'></app-chapters-nav>
   <app-assets-menu *ngIf="menubarItem == 'discover'" (activeMenu)='currentView($event)'></app-assets-menu>
 </aside>

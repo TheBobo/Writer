@@ -4,7 +4,9 @@
   <app-header></app-header>
   <app-left-side
     (activeMenu)='activeMenuItem($event)'
-    [menubarItem]='menubarItem'></app-left-side>
+    [menubarItem]='menubarItem'
+    (selectedChapter)='selectedChapter($event)'
+    (createNewScene)='createScene($event)'></app-left-side>
 
   <!-- <app-dashboard  *ngIf='menubarItem == "write"'></app-dashboard> -->
   <main class="main-content" >
@@ -29,7 +31,8 @@
             (showright)=emitRight($event)
             (showmodal)=showmodal($event)
             (menubar)=emitGotoMenu($event)></app-story-map>
-      <app-write *ngIf="menubarItem == 'write'"></app-write>
+      <app-write *ngIf="menubarItem == 'write'"
+                 [chapter]="selectChapter"></app-write>
 
       <app-synopsis *ngIf="menubarItem == 'discover' && activeComponent =='synopsis'"></app-synopsis>
 

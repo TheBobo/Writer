@@ -2,41 +2,44 @@
 <div class="editor-wrapper">
   <div class="chapter">
     <div class="chapter-head">
-      <p class="chapter-count edit">Chapter 1</p>
-      <p class="chapter-title edit">Add Chapter Title</p>
+      <p class="chapter-count edit">Chapter  {{currentChapter.id}}</p>
+      <p class="chapter-title edit" *ngIf='currentChapter.title == ""'>Add Chapter Title</p>
+      <p class="chapter-title edit" *ngIf='currentChapter.title != ""'>{{currentChapter.title}}</p>
       <div class="tool-bar">
-        <span data-balloon="View Details" data-balloon-pos="up">
+        <span data-balloon="View Details" data-balloon-pos="up" (click)='viewChapter(currentChapter.id)'>
           <svg class="icon-view">
             <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
           </svg>
         </span>
-        <span data-balloon="Edit Details" data-balloon-pos="up">
+        <span data-balloon="Edit Details" data-balloon-pos="up"  (click)='editChapter(currentChapter.id)'>
           <svg class="icon-edit">
             <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
           </svg>
         </span>
-        <span data-balloon="Delete" data-balloon-pos="up-right">
+        <span data-balloon="Delete" data-balloon-pos="up-right"  (click)='deleteChapter(currentChapter.id)'>
           <svg class="icon-trash">
             <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
           </svg>
         </span>
       </div>
     </div>
-    <div class="scene">
+    {{currentChapter.scenes.length}}
+    <!-- <div class="scene" *ngIf="currentChapter.scenes" *ngFor='let scene on currentChapter.scenes'>
       <div class="scene-head">
-        <div class="scene-title">Scene 1: Some long name for scene title</div>
+          <div class="scene-title" *ngIf="scene.title == ''">Scene 1: Some long name for scene title</div>
+          <div class="scene-title" *ngIf="scene.title != ''">{{scene.title}}</div>
         <div class="tool-bar">
-          <span data-balloon="View Details" data-balloon-pos="up">
+          <span data-balloon="View Details" data-balloon-pos="up" (click)='viewScene(scene)'>
           <svg class="icon-view">
             <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
           </svg>
         </span>
-          <span data-balloon="Edit Details" data-balloon-pos="up">
+          <span data-balloon="Edit Details" data-balloon-pos="up" (click)='editScene(scene)'>
           <svg class="icon-edit">
             <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
           </svg>
         </span>
-          <span data-balloon="Delete" data-balloon-pos="up-right">
+          <span data-balloon="Delete" data-balloon-pos="up-right"  (click)='deleteScene(scene)'>
           <svg class="icon-trash">
             <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
           </svg>
@@ -50,11 +53,11 @@
           <svg class="icon-plus">
             <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
           </svg>
-          <i>Add New Scene</i>
-          <i>Add New Chapter</i>
+          <i>Add New Chapter {{currentChapter.id}}</i>
+          <i>Add New Scene {{currentChapter.scenes.length}}</i>
         </span>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 
