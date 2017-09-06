@@ -25,6 +25,8 @@ export class WriteComponent implements OnInit {
   public options1: any = {
   };
   constructor(private shareService: ActsService) {
+    this.currentChapter = new Chapter(1);
+    this.currentChapter.scenes = new Array<Scene>();
    }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -55,7 +57,7 @@ export class WriteComponent implements OnInit {
 
   ngOnInit() {
     this.ACTS = this.shareService.getAllActs();
-    this.currentChapter = new Chapter(1);
+
   }
 
 }

@@ -12,7 +12,7 @@ import { Act } from './models/Act';
   providers: [ActsService]
 })
 export class AppComponent  implements OnInit  {
-  title = 'app works!';
+
   user = { username: 'bob'};
   isRightPanelOpen = false;
   newScene: Scene;
@@ -132,6 +132,8 @@ export class AppComponent  implements OnInit  {
     this.shareService.initAllActs();
     this.ACTS = this.shareService.getAllActs();
     this.selectChapter = this.ACTS[0].chapters[0];
+    // this.selectChapter = new Chapter(1);
+    this.selectChapter.scenes = new Array<Scene>()
     this.menubarItem='menubarItem'
   }
 
