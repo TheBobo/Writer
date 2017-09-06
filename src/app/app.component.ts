@@ -17,6 +17,7 @@ export class AppComponent  implements OnInit  {
   newScene: Scene;
   newChapter: Chapter;
   activeComponent: string;
+  selectChapter:number;
 
   deleteScene: Scene;
   rightTab: boolean;
@@ -88,6 +89,10 @@ export class AppComponent  implements OnInit  {
         }
       }
     })
+  }
+
+  selectedChapter(chapterId){
+    this.selectChapter =(chapterId);
   }
 
   addNewScene(event){

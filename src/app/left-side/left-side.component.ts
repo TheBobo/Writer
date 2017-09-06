@@ -5,12 +5,13 @@ import { ActsService } from '../acts.service';
   templateUrl: './left-side.component.html',
   encapsulation: ViewEncapsulation.None,
   inputs: ['menubarItem'],
-  outputs: ['activeMenu']
+  outputs: ['activeMenu', 'selectedChapter']
 })
 export class LeftSideComponent implements OnInit {
   @Input() chapter
 
   activeMenu = new EventEmitter<string>()
+  selectedChapter = new EventEmitter<number>()
 
   private ACTS;
 
@@ -27,6 +28,11 @@ export class LeftSideComponent implements OnInit {
 
   currentView(event) {
     this.activeMenu.emit(event);
+  }
+
+  selectChapter(event){
+    debugger
+    this.selectedChapter.emit(event);
   }
 
 

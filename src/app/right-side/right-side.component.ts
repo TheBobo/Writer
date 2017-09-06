@@ -37,7 +37,7 @@ export class RightSideComponent implements OnInit {
     });
 
     this.rightPanelCreateChapter = fb.group({
-      title: [this.chapter ? this.chapter.title : ''],
+      chaptertitle: [this.chapter ? this.chapter.title : ''],
       description:[this.chapter ? this.chapter.description : ''],
       actId:[this.chapter ? this.chapter.actId : ''],
       id:[this.chapter ? this.chapter.id : '']

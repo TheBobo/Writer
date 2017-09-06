@@ -2,7 +2,7 @@
 <div class="editor-wrapper">
   <div class="chapter">
     <div class="chapter-head">
-      <p class="chapter-count edit">Chapter 1</p>
+      <p class="chapter-count edit">Chapter 1 {{currentChapter.id}}</p>
       <p class="chapter-title edit">Add Chapter Title</p>
       <div class="tool-bar">
         <span data-balloon="View Details" data-balloon-pos="up">
@@ -50,7 +50,7 @@
           <svg class="icon-plus">
             <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
           </svg>
-          <i>Add New Scene</i>
+          <i>Add New Scene {{chapterId}}</i>
           <i>Add New Chapter</i>
         </span>
       </div>

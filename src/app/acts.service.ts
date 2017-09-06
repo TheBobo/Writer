@@ -91,10 +91,22 @@ export class ActsService {
       this.updateChapterId(this.ACTS);
     }
 
+    getChapter(chapterId: number):Chapter{
+      console.log(this.ACTS)
+
+      for(var i=0; i< this.ACTS.length; i++){
+        if(this.ACTS[i].chapters)
+          for(var j=0; j<this.ACTS[i].chapters.length; j++){
+            return this.ACTS[i].chapters[j];
+          }
+      }
+      return new Chapter(-1);
+    }
+
     updateChapterId(ACTS){
       var index = 1;
       ACTS.forEach((item, i) => {
-        item.chaptes.forEach((element,i)=> {
+        item.chapters.forEach((element,i)=> {
           element.id=index;
           index++;
         });
