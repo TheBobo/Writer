@@ -68,7 +68,7 @@ export class RightSideComponent implements OnInit {
 
   public setRightSideTitle(title) {
     this.panelTitle = title;
-  }   
+  }
 
   save(){
     let formData = this.rightPanelForm.getRawValue();
@@ -82,10 +82,9 @@ export class RightSideComponent implements OnInit {
 
 
   saveChapter(){
-    debugger
     let formData = this.rightPanelCreateChapter.getRawValue();
+    this.chapter.title = formData.chaptertitle;
     debugger
-    this.chapter.title = formData.title;
     this.chapter.description = formData.description;
 
     this.addNewChapter.emit(this.chapter);
