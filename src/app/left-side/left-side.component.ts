@@ -1,23 +1,28 @@
 import { Component, ViewEncapsulation, OnInit, Input, EventEmitter } from '@angular/core';
 import { ActsService } from '../acts.service';
+import { Scene } from './../models/Scene';
+import { Chapter } from './../models/Chapter';
 @Component({
   selector: 'app-left-side',
   templateUrl: './left-side.component.html',
   encapsulation: ViewEncapsulation.None,
   inputs: ['menubarItem'],
-  outputs: ['activeMenu', 'selectedChapter']
+  outputs: ['activeMenu', 'selectedChapter', 'createNewScene']
 })
 export class LeftSideComponent implements OnInit {
   @Input() chapter
 
   activeMenu = new EventEmitter<string>()
-  selectedChapter = new EventEmitter<number>()
+  selectedChapter = new EventEmitter<Chapter>()
+  createNewScene  = new EventEmitter<Scene>()
+
 
   private ACTS;
 
   constructor(private shareService: ActsService) { }
   isOpen:boolean
   private menuItems = [];
+
 
   ngOnInit() {
     this.isOpen = false;
@@ -31,8 +36,11 @@ export class LeftSideComponent implements OnInit {
   }
 
   selectChapter(event){
-    debugger
     this.selectedChapter.emit(event);
+  }
+
+  createScene(event){
+    this.createNewScene.emit(event)
   }
 
 

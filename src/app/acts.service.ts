@@ -52,6 +52,14 @@ export class ActsService {
         this.ACTS[i].chapters.push(new Chapter(chapterIndex));
         chapterIndex++;
         this.ACTS[i].chapters.push(new Chapter(chapterIndex));
+        // for(var j=0; j<this.ACTS[i].chapters.length; i++){
+        //   if(this.ACTS[i].chapters[j].scenes == undefined)
+        //     this.ACTS[i].chapters[j].scenes =  new Array<Scene>();
+
+        //   this.ACTS[i].chapters[j].scenes.push(new Scene(1,j,i,"test"));
+        //   this.ACTS[i].chapters[j].scenes.push(new Scene(2,j,i,"test"));
+        //   this.ACTS[i].chapters[j].scenes.push(new Scene(3,j,i,"test"));
+        // }
       }
       return this.ACTS;
     }
@@ -59,6 +67,7 @@ export class ActsService {
 
     addScene(scene: Scene){
       var act = this.ACTS.find(x=>x.id == scene.actId);
+      debugger
       var chapter = act.chapters.find(x=>x.id == scene.chapterId);
 
       if ( !chapter )
@@ -80,7 +89,7 @@ export class ActsService {
       this.updateSceneId(chapter, scene.id, scene.last);
     }
 
-    
+
     addChapter(chapter: Chapter){
       var act = this.ACTS.find(x=>x.id == chapter.id);
       if(chapter.type == 'edit'){

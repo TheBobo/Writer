@@ -9,11 +9,12 @@ import { Chapter } from './../models/Chapter';
   selector: 'app-write',
   templateUrl: './write.component.html',
   styleUrls: ['./write.component.scss'],
-  inputs:['chapterId'],
+  inputs:['chapter'],
   providers: [ActsService]
 })
 export class WriteComponent implements OnInit {
-  
+
+  ACTS;
   currentChapterId = 0;
   currentChapter: Chapter
 
@@ -23,18 +24,38 @@ export class WriteComponent implements OnInit {
   public contentTwo: string;
   public options1: any = {
   };
-  constructor(private shareService: ActsService) { 
-    this.currentChapter = new Chapter(-1);
+  constructor(private shareService: ActsService) {
    }
 
   ngOnChanges(changes: SimpleChanges) {
-      if(changes.chapterId){
-        this.currentChapter = this.shareService.getChapter(changes.chapterId.currentValue);
+      if(changes.chapter){
+
+        this.currentChapter = changes.chapter.currentValue;
+      //  var test =  this.shareService.getAllActs();
+       debugger
       }
-    
+
+  }
+
+  getChapter(chapterId: number):Chapter{
+    console.log(this.ACTS)
+
+    for(var i=0; i< this.ACTS.length; i++){
+      if(this.ACTS[i].chapters){
+        for(var j=0; j<this.ACTS[i].chapters.length; j++){
+          if(this.ACTS[i].chapters[j].chapterId == chapterId){
+            debugger
+            return this.ACTS[i].chapters[j];
+          }
+        }
+      }
     }
+    return new Chapter(-1);
+  }
 
   ngOnInit() {
+    this.ACTS = this.shareService.getAllActs();
+    this.currentChapter = new Chapter(1);
   }
 
 }
