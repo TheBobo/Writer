@@ -1,3 +1,4 @@
+
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Act } from '../models/Act';
 import { Chapter } from '../models/Chapter';
@@ -24,6 +25,7 @@ export class MainComponent implements OnInit {
   outChapter = new EventEmitter<Chapter>()
 
   newScene: Scene
+  newChapter: Chapter
 
   constructor(private shareService: ActsService) { }
 
@@ -39,13 +41,26 @@ export class MainComponent implements OnInit {
     else {
        this.showmodal.emit(true);
       }
+
+    console.log('emitScene', event)
   }
 
-  addNewChapter(chaptter, act){
-    chaptter.actId = act.id;
-    this.outChapter.emit(chaptter);
-    this.showright.emit(true);
-  }
+  emitNewChapter(event){
+    this.newChapter = new Chapter((event.id+1));
+    this.newChapter.actId = event.actId;
+    this.newChapter.type = 'create';
+
+    this.newScene = undefined;
+    console.log('this.newChapter чше', this.newChapter)
+    this.outChapter.emit(this.newChapter)
+    if(event.type != 'delete')
+      this.showright.emit(true);
+    else {     
+       this.showmodal.emit(true);
+      }
+    }
+
+
 
   ngOnInit() {
   }

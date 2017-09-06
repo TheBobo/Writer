@@ -54,7 +54,7 @@
 
 
   <h4 class="title-item" *ngIf="chapter">{{panelTitle}}</h4>
-  <form *ngIf="chapter" class="material" [formGroup]="rightPanelForm">
+  <form *ngIf="chapter" class="material" [formGroup]="rightPanelCreateChapter">
       <div class="form-group">
         <label>Chapter Name </label> 
         <input type="text" formControlName="title" class="form-control" value="{{chapter.title}}">

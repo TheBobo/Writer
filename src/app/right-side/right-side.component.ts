@@ -1,4 +1,5 @@
 import { Scene } from './../models/Scene';
+import { Chapter } from './../models/Chapter'
 import { Component, Input, OnInit, Output, OnChanges, EventEmitter, SimpleChanges } from '@angular/core';
 import { ActsService } from './../acts.service';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
@@ -9,7 +10,7 @@ declare var $:any;
   selector: 'app-right-side',
   templateUrl: './right-side.component.html',
   inputs: [ 'scene', 'chapter', 'rightOpen'],
-  outputs: ['close', 'addNewScene'],
+  outputs: ['close', 'addNewScene', 'addNewChapter'],
   providers: [ActsService]
 })
 export class RightSideComponent implements OnInit {
@@ -19,13 +20,14 @@ export class RightSideComponent implements OnInit {
 
   close = new EventEmitter<boolean>()
   addNewScene = new EventEmitter<Scene>()
+  addNewChapter = new EventEmitter<Chapter>()
   newModelScene = new Scene(0,0,0, '');
   private rightPanelForm: FormGroup;
+  private rightPanelCreateChapter: FormGroup;
+
   private panelTitle: string = 'New Scene'
 
   constructor(private shareService: ActsService, private fb: FormBuilder) {
-    debugger
-    
     this.rightPanelForm = fb.group({
       title: [this.scene ? this.scene.title : ''],
       description: [this.scene ? this.scene.description : ''],
@@ -33,6 +35,13 @@ export class RightSideComponent implements OnInit {
       chapterId: [this.scene ? this.scene.chapterId : ''],
       id: [this.scene ? this.scene.id : '']
     });
+
+    this.rightPanelCreateChapter = fb.group({
+      title: [this.chapter ? this.chapter.title : ''],
+      description:[this.chapter ? this.chapter.description : ''],
+      actId:[this.chapter ? this.chapter.actId : ''],
+      id:[this.chapter ? this.chapter.id : '']
+    })
   }
 
   ngOnInit() {
@@ -40,11 +49,10 @@ export class RightSideComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('this.scene', this.scene)
     if ( changes.scene ) {
       this.shareService.labelPosition();
 
-      if ( this.scene.type === 'create') {
+      if ( this.scene && this.scene.type === 'create') {
         this.clearForm();
       }
     }
@@ -74,11 +82,13 @@ export class RightSideComponent implements OnInit {
 
 
   saveChapter(){
-    let formData = this.rightPanelForm.getRawValue();
+    debugger
+    let formData = this.rightPanelCreateChapter.getRawValue();
     debugger
     this.chapter.title = formData.title;
     this.chapter.description = formData.description;
 
+    this.addNewChapter.emit(this.chapter);
     //this.addNewScene.emit(this.scene);
     this.close.emit(false);
   }

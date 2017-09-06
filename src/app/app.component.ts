@@ -49,12 +49,15 @@ export class AppComponent  implements OnInit  {
 
   emitScene(event){
     this.newScene = event;
+    this.newChapter = undefined;
   }
 
   emitNewChapter(event){
     this.newChapter = new Chapter((event.id+1));
     this.newChapter.actId = event.actId;
     this.newChapter.type = 'create';
+
+    this.newScene = undefined;
     console.log(this.newChapter)
 
     }
@@ -65,19 +68,35 @@ export class AppComponent  implements OnInit  {
 
   emitRight(event){
     this.rightTab = event;
+
     setTimeout(() => {
-      if ( this.newScene.type === 'edit') {
-        this.rightSlideView.setRightSideTitle('Edit Scene')
-      } else if ( this.newScene.type === 'create' ) {
-        this.rightSlideView.setRightSideTitle('New Scene')
-      } else if ( this.newScene.type === 'view' ) {
-        this.rightSlideView.setRightSideTitle('Scene')
+      if(this.newScene){
+        if ( this.newScene.type === 'edit') {
+          this.rightSlideView.setRightSideTitle('Edit Scene')
+        } else if ( this.newScene.type === 'create' ) {
+          this.rightSlideView.setRightSideTitle('New Scene')
+        } else if ( this.newScene.type === 'view' ) {
+          this.rightSlideView.setRightSideTitle('Scene')
+        }
+      } else if ( this.newChapter ) {
+        if ( this.newChapter.type === 'edit') {
+          this.rightSlideView.setRightSideTitle('Edit Chapter')
+        } else if ( this.newChapter.type === 'create' ) {
+          this.rightSlideView.setRightSideTitle('New Chapter')
+        } else if ( this.newChapter.type === 'view' ) {
+          this.rightSlideView.setRightSideTitle('Chapter')
+        }
       }
     })
   }
 
   addNewScene(event){
     this.shareService.addScene(event);
+  }
+
+  addNewChapter(event){
+    debugger
+    this.shareService.addChapter(event);
   }
 
   deleteSelectedScene(event){
