@@ -1,19 +1,14 @@
 
   <div class="story-map-wrapper">
     <div class="story-map">
-            <div class="acts-column"  *ngFor = "let act of ACTS">
-                <h4 class="title">Act <span> {{act.id}}</span></h4>
-
-                
-                <app-chapter  *ngFor="let chapter of act.chapters" class="chapter-column" 
-                  [chapter]="chapter"
-                  [actId]="act.id"
-                  (outScene)="emitScene($event)"
-                  (outChapter)="emitNewChapter($event)">
-                </app-chapter>
-
-             
-              
-            </div>
+      <div class="acts-column"  *ngFor = "let act of ACTS">
+        <h4 class="title">Act <span> {{act.id}}</span></h4>
+        <app-chapter  *ngFor="let chapter of act.chapters" class="chapter-column"
+          [chapter]="chapter"
+          [actId]="act.id"
+          (outScene)="emitScene($event)"
+          (outChapter)="emitNewChapter($event)">
+        </app-chapter>
+      </div>
     </div>
   </div>

@@ -1,65 +1,66 @@
 
-    <div class="chapter-item">
-      <div class="chapter-item-wrapper">
-        <h5 class="chapter-count">Chapter <span>{{chapter.id}}</span></h5>
-        <h4 class="title-chapter">
-            {{chapter.title}}
-          <!-- <input type='text' value= {{chapter.title}} placeholder="title"/> -->
-        </h4>
-        <p class="synopsis">
-          {{chapter.description}}
-          <!-- <textarea type='text' placeholder="chapter text">{{chapter.title}}</textarea> -->
-        </p>
-        <div class="characters-holder">
-            <span *ngFor="let character of chapter.charaters" class="character-image"></span>
-            <!-- <span class="character-image"></span>
-            <span class="character-image"></span>
-            <span class="character-image"></span>
-            <span class="character-count">+5</span> -->
-          </div>
-          <div class="story-info">
-            <div class="info-cell">
-              <p class="label">Scenes</p>
-              <p class="content">{{chapter.scenes.length}} </p>
-            </div>
-            <div class="info-cell">
-              <p class="label">words</p>
-              <p class="content">{{chapter.wordCount}} of 50,000</p>
-            </div>
-          </div>
-          <div class="tool-bar">
-            <span data-balloon="View Details" data-balloon-pos="up">
-              <svg class="icon-view">
-                <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
-              </svg>
-            </span>
-            <span data-balloon="Edit Details" data-balloon-pos="up">
-              <svg class="icon-edit">
-                <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
-              </svg>
-            </span>
-            <span data-balloon="Delete" data-balloon-pos="up-right">
-              <svg class="icon-trash">
-                <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
-              </svg>
-            </span>
-          </div>
+<div class="chapter-item">
+  <div class="chapter-item-wrapper">
+    <div class="chapter-content">
+      <h5 class="chapter-count">Chapter <span>{{chapter.id}}</span></h5>
+      <h4 class="title-chapter">
+          {{chapter.title}}
+      </h4>
+      <p class="synopsis">
+        {{chapter.description}}
+        <!-- <textarea type='text' placeholder="chapter text">{{chapter.title}}</textarea> -->
+      </p>
+      <div class="characters-holder">
+        <span *ngFor="let character of chapter.charaters" class="character-image"></span>
+      </div>
+      <div class="story-info">
+        <div class="info-cell">
+          <p class="label">Scenes</p>
+          <p class="content">{{chapter.scenes.length}} </p>
+        </div>
+        <div class="info-cell">
+          <p class="label">words</p>
+          <p class="content">{{chapter.wordCount}} of 50,000</p>
+        </div>
+      </div>
+      <div class="tool-bar">
+        <span data-balloon="View Details" data-balloon-pos="up">
+          <svg class="icon-view">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
+          </svg>
+        </span>
+        <span data-balloon="Edit Details" data-balloon-pos="up">
+          <svg class="icon-edit">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
+          </svg>
+        </span>
+        <span data-balloon="Delete" data-balloon-pos="up-right">
+          <svg class="icon-trash">
+            <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
+          </svg>
+        </span>
       </div>
     </div>
-    <span class="add-new-scene" (click)='addScene(0, chapter.id, actId, "create")'>
-      <svg class="icon-plus">
-        <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
-      </svg>
-    </span>
-    
-    <span class="add-new add-chapter" (click)='addNewChapter(chapter, actId)'>
-                        <svg class="icon-plus">
-                          <use xlink:href="/fonts/swiftpad-icons.svg#icon-plus"></use>
-                        </svg>
-                    </span>
+  </div>
+  <span class="add-new-scene" (click)='addScene(0, chapter.id, actId, "create")'>
+    <svg class="icon-plus">
+      <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
+    </svg>
+  </span>
+  <span class="add-new add-chapter" (click)='addNewChapter(chapter, actId)'>
+    <svg class="icon-plus">
+      <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
+    </svg>
+  </span>
+</div>
 
+<app-scene
+  *ngFor="let scene of chapter.scenes; let last = last "
+  [scene]='scene'
+  [scenes]='chapter.scenes'
+  [lastItem]="last"
+  [chapterId]='chapter.id'
+  [actId]='actId'
+  (outScene)="emitScene($event)">
+</app-scene>
 
-    <app-scene *ngFor="let scene of chapter.scenes; let last = last " [scene]='scene'
-             [scenes]='chapter.scenes' [lastItem]="last" [chapterId]='chapter.id' [actId]='actId'
-             (outScene)="emitScene($event)"></app-scene>
-    
