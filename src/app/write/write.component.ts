@@ -1,5 +1,4 @@
 import { Component, OnInit, Input,Output, EventEmitter, SimpleChanges } from '@angular/core';
-import { ScrollEvent } from 'ngx-scroll-event';
 
 import { TrumbowygModule} from 'ng2-lazy-trumbowyg';
 import { ActsService } from './../acts.service';
@@ -34,17 +33,6 @@ export class WriteComponent implements OnInit {
   constructor(private shareService: ActsService) {
    }
 
-   public handleScroll(event: ScrollEvent) {
-     debugger
-    console.log('scroll occurred', event.originalEvent);
-    if (event.isReachingBottom) {
-      console.log(`the user is reaching the bottom`);
-    }
-    if (event.isWindowEvent) {
-      console.log(`This event is fired on Window not on an element.`);
-    }
-
-  }
 
   focusMe(scene){
     for(var i=0; i<this.ACTS.length; i++)
@@ -62,7 +50,7 @@ export class WriteComponent implements OnInit {
             this.ACTS[i].chapters[j].scenes[k].isFocus = false;
 
             var id = 'scene-'+this.ACTS[i].chapters[j].id+'-'+this.ACTS[i].chapters[j].scenes[k].id;
-            document.getElementById(id).classList.remove('active');
+            document.getElementById(id).classList.remove('activeп');
 
           }
 }
