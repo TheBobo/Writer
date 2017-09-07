@@ -24,6 +24,7 @@ import { ChaptersNavComponent } from './write/chapters-nav/chapters-nav.componen
 import { SynopsisComponent } from './discover/synopsis/synopsis.component';
 import { AudenceComponent } from './discover/audence/audence.component';
 import { StoryMapComponent } from './story-map/story-map.component';
+import { ScrollEventModule } from 'ngx-scroll-event';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { StoryMapComponent } from './story-map/story-map.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    TrumbowygModule
+    TrumbowygModule,
+    ScrollEventModule
   ],
   providers: [],
   bootstrap: [AppComponent]

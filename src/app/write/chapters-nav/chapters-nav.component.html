@@ -1,14 +1,20 @@
 <nav class="side-nav test">
   <div class="chapter has-sub" *ngFor="let item of menuItems; let i = index ">
     <ul class="collapsible-menu">
-      <li class="chapter has-sub" *ngFor="let chapter of item.chapters; let i = index "
+      <li class="chapter has-sub" [id]="'chapter-'+chapter.id" *ngFor="let chapter of item.chapters; let i = index "
         (click)='selectChapter(chapter)'>
         <div class="wrapper-nav-item">
           <a href="javascript:void(0)"  class="arrow">
-            {{chapter.title}} {{ chapter.id }}
+            <span *ngIf='chapter.title == 0'>Chapter </span>
+             {{ chapter.id }}
+             <span *ngIf='chapter.title != 0'>
+              : {{chapter.title}}
+            </span>
           </a>
+
           <ul>
-            <li *ngFor="let scene of chapter.scenes">
+            <li *ngFor="let scene of chapter.scenes" class='sc' [id]="'scene-'+chapter.id+'-'+scene.id" [ngClass]="{'open':chapter.isFocus == true}">
+              Scene {{scene.id}}
               {{scene.title}}
               <span *ngFor="let scene of chapter.scenes" class="new-element-menu add-scene"
               (click)='addScene(scene.id, chapter.id, item.id, "create", lastItem)'>
@@ -21,7 +27,8 @@
             </li>
           </ul>
         </div>
-        <span class="new-element-menu add-chapter">
+        <span class="new-element-menu add-chapter"
+        (click)='addChapter(chapter)'>
           <div class="add-new-wrapper">
             <svg class="icon-plus">
               <use xlink:href="../../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>

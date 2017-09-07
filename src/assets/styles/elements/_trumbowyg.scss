@@ -137,6 +137,7 @@
     border-bottom-width: 0;
     left: 20px;
     transition: all .4s;
+    display: none;
 
     &::after {
         content: " ";
@@ -236,7 +237,13 @@
         }
     }
 }
-
+.scene {
+  &.focus {
+    .trumbowyg-button-pane {
+      display: flex;
+    }
+  }
+}
 .trumbowyg-dropdown {
     width: 200px;
     border: 1px solid $light-color;

@@ -12,7 +12,7 @@
   <h4 class="title-item" *ngIf="scene">{{panelTitle}}</h4>
   <form *ngIf="scene" class="material" [formGroup]="rightPanelForm">
       <div class="form-group">
-        <label>Scene Name</label> 
+        <label>Scene Name</label>
         <input type="text" formControlName="title" class="form-control" value="{{scene.title}}">
       </div>
 
@@ -56,7 +56,7 @@
   <h4 class="title-item" *ngIf="chapter">{{panelTitle}}</h4>
   <form *ngIf="chapter" class="material" [formGroup]="rightPanelCreateChapter">
       <div class="form-group">
-        <label>Chapter Name </label> 
+        <label>Chapter Name </label>
         <input type="text" formControlName="chaptertitle" class="form-control" value="{{chapter.title}}">
       </div>
 
@@ -72,13 +72,13 @@
         <option value="">Chapter 4</option>
       </select>
     </div>
-    
+
     <div class="form-group">
       <label>One Line Synopsis</label>
-      <textarea formControlName="description" class="autoExpand form-control" rows="1" value ="{{chapter.description}}" data-min-rows='1'></textarea>
+      <textarea formControlName="description" class="autoExpand form-control" rows="1" value ="{{chapter.synopsis}}" data-min-rows='1'></textarea>
     </div>
 
-    
+
     <!-- <div class="form-group">
       <label> Word taget </label>
       <input class="autoExpand form-control" formControlName="wordGoal" type="number" value="{{scene.wordGoal}}" class="form-control">

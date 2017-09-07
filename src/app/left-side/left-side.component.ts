@@ -7,13 +7,14 @@ import { Chapter } from './../models/Chapter';
   templateUrl: './left-side.component.html',
   encapsulation: ViewEncapsulation.None,
   inputs: ['menubarItem'],
-  outputs: ['activeMenu', 'selectedChapter', 'createNewScene']
+  outputs: ['activeMenu', 'selectedChapter', 'createNewScene', 'createNewChapter']
 })
 export class LeftSideComponent implements OnInit {
   @Input() chapter
 
   activeMenu = new EventEmitter<string>()
   selectedChapter = new EventEmitter<Chapter>()
+  createNewChapter = new EventEmitter<Chapter>()
   createNewScene  = new EventEmitter<Scene>()
 
 
@@ -41,6 +42,10 @@ export class LeftSideComponent implements OnInit {
 
   createScene(event){
     this.createNewScene.emit(event)
+  }
+
+  createChapter(event){
+    this.createNewChapter.emit(event);
   }
 
 

@@ -3,9 +3,8 @@
       <div class="scene-content">
         <span class="tag-label violet">Resolution</span>
         <h5 class="scene-count">Scene <span>{{scene.id}}</span></h5>
-        <h4 class="title-scene" *ngIf="!scene.title">Scene Title Long Name Two lines</h4>
         <h4 class="title-scene">{{scene.title}}</h4>
-        <p class="synopsis"> {{scene.description}}.</p>
+        <p class="synopsis"> {{scene.synopsis}}.</p>
         <div class="characters-holder">
 
           <span ngFor="let character of scene.characters" class="character-image"></span>

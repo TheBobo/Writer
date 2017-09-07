@@ -21,12 +21,28 @@
 
 
 //open acordion
-$(document).on("click", '.chapter.has-sub' ,function(evt){
+$(document).on("click", '.chapter.has-sub a' ,function(evt){
   evt.stopPropagation();
 
-  var clickActiveElem=$(this).hasClass('open');
+  var clickActiveElem=$(this).closest('li').hasClass('open');
   $(this).closest('.side-nav').find('.open').removeClass('open')
 
   if(!clickActiveElem)
-    $(this).addClass('open')
+    $(this).closest('li').addClass('open')
+})
+
+
+// $(document).on('scroll', '.editor-wrapper', function(){
+//   console.log('windows was scrool')
+// })
+$(document).ready(function(){
+//   debugger
+// $().scroll(function(){
+//   debugger
+//   console.log('windows was scrool')
+// });
+
+$('.editor-wrapper').on( 'scroll', function(){
+  console.log('Event Fired');
+});
 })
