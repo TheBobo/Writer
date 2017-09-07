@@ -8,6 +8,7 @@ import { TrumbowygModule} from 'ng2-lazy-trumbowyg';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LeftSideComponent } from './left-side/left-side.component';
+import { MainComponent } from './main/main.component';
 import { RightSideComponent } from './right-side/right-side.component';
 import { LoginComponent } from './login/login.component';
 import { ChapterComponent } from './chapter/chapter.component';
@@ -24,13 +25,13 @@ import { ChaptersNavComponent } from './write/chapters-nav/chapters-nav.componen
 import { SynopsisComponent } from './discover/synopsis/synopsis.component';
 import { AudenceComponent } from './discover/audence/audence.component';
 import { StoryMapComponent } from './story-map/story-map.component';
-import { ScrollEventModule } from 'ngx-scroll-event';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LeftSideComponent,
+    MainComponent,
     RightSideComponent,
     LoginComponent,
     ChapterComponent,
@@ -53,8 +54,7 @@ import { ScrollEventModule } from 'ngx-scroll-event';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    TrumbowygModule,
-    ScrollEventModule
+    TrumbowygModule
   ],
   providers: [],
   bootstrap: [AppComponent]
