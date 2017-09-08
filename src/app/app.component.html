@@ -37,7 +37,8 @@
       <app-write *ngIf="menubarItem == 'write'"
                 (createNewScene)="createScene($event)"
                 (createNewChapter)="emitNewChapter($event)"
-                [chapter]="selectChapter"></app-write>
+                [chapter]="selectChapter"
+                [menuItems]='ACTS'></app-write>
 
       <app-synopsis *ngIf="menubarItem == 'discover' && activeComponent =='synopsis'"></app-synopsis>
 

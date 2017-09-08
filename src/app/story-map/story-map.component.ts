@@ -50,7 +50,7 @@ export class StoryMapComponent implements OnInit {
     this.newChapter.type = 'create';
 
     this.newScene = undefined;
-    console.log('this.newChapter чше', this.newChapter)
+    console.log('this.newChapter ', this.newChapter)
     this.outChapter.emit(this.newChapter)
     if(event.type != 'delete')
       this.showright.emit(true);

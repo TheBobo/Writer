@@ -8,15 +8,13 @@ import { Scene } from './../models/Scene';
   outputs:['deleteSelectedScene']
 })
 export class ModalConfirmComponent implements OnInit {
-  
+
   deleteSelectedScene = new EventEmitter<Scene>()
   @Input() deleteScene;
 
   constructor() { }
 
   cancel(){
-
-    console.log(this.deleteScene)
     this.deleteScene={};
   }
 

@@ -24,12 +24,11 @@ export class LeftSideComponent implements OnInit {
   isOpen:boolean
   private menuItems = [];
 
-
   ngOnInit() {
     this.isOpen = false;
     this.ACTS = this.shareService.getAllActs();
     this.menuItems = this.ACTS
-    console.log('this.ACTS', this.ACTS)
+    console.log('om init left side component this.ACTS', this.ACTS)
   }
 
   currentView(event) {

@@ -38,7 +38,7 @@ export class AppComponent  implements OnInit  {
   createScene(event){
     this.rightTab = true;
     this.newScene = event;
-    this.newChapter = undefined;
+    this.newChapter = undefined
   }
 
   activeMenuItem(event) {
@@ -65,10 +65,8 @@ export class AppComponent  implements OnInit  {
     this.newChapter = new Chapter((event.id+1));
     this.newChapter.actId = event.actId;
     this.newChapter.type = 'create';
-    this.newScene = undefined;
-    this.rightTab = true;
-    console.log(this.newChapter)
 
+    this.newScene = undefined;
     }
 
   emitModal(event){
@@ -105,10 +103,15 @@ export class AppComponent  implements OnInit  {
 
   addNewScene(event){
     this.shareService.addScene(event);
+    this.ACTS = this.shareService.getAllActs();
+    debugger;
   }
+
 
   addNewChapter(event){
     this.shareService.addChapter(event);
+
+  debugger;
   }
 
   deleteSelectedScene(event){
@@ -131,7 +134,6 @@ export class AppComponent  implements OnInit  {
     this.ACTS = this.shareService.getAllActs();
     this.selectChapter = this.ACTS[0].chapters[0];
     this.menubarItem='menubarItem'
-    debugger
   }
 
 }

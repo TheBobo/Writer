@@ -1,6 +1,6 @@
 
 <div class="editor-wrapper" (onScroll)="handleScroll($event)">
-  <span *ngFor='let act of ACTS'>
+  <span *ngFor='let act of menuItems'>
     <div *ngFor='let chapter of act.chapters' class="chapter" on-mouseover="over(chapter)"  [ngClass]="{'selected':chapter.isFocus == true}">
       <div class="chapter-head">
         <p class="chapter-count edit">Chapter  {{chapter.id}}</p>

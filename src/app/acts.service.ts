@@ -114,7 +114,6 @@ export class ActsService {
     }
 
     getChapter(chapterId: number):Chapter{
-      console.log(this.ACTS)
 
       for(var i=0; i< this.ACTS.length; i++){
         if(this.ACTS[i].chapters)

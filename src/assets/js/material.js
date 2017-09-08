@@ -42,7 +42,6 @@ $(document).ready(function(){
 //   console.log('windows was scrool')
 // });
 
-$('.editor-wrapper').on( 'scroll', function(){
-  console.log('Event Fired');
-});
+  $('.editor-wrapper').on( 'scroll', function(){
+  });
 })

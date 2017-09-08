@@ -10,7 +10,7 @@ import { Chapter } from './../models/Chapter';
   selector: 'app-write',
   templateUrl: './write.component.html',
   styleUrls: ['./write.component.scss'],
-  inputs:['chapter'],
+  inputs:['chapter', 'menuItems'],
   outputs:['selectedChapter', 'createNewScene', 'createNewChapter'],
   providers: [ActsService]
 })
@@ -32,6 +32,8 @@ export class WriteComponent implements OnInit {
   };
   constructor(private shareService: ActsService) {
    }
+
+   private menuItems = [];
 
 
   focusMe(scene){
@@ -66,10 +68,6 @@ export class WriteComponent implements OnInit {
 
   }
 
-  clicked(event){
-
-  }
-
 
 
   addNewScene(actId, chapterId, sceneId ) {
@@ -83,8 +81,15 @@ export class WriteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.shareService.initAllActs();
+    // this.shareService.initAllActs();
+    // this.ACTS = this.shareService.getAllActs();
+    // this.menuItems = this.ACTS;
+
+
     this.ACTS = this.shareService.getAllActs();
+    this.menuItems = this.ACTS
+
+    console.log('om init write component this.ACTS', this.ACTS)
     //this.currentChapter = this.ACTS[0].chapters[0];
   }
 
