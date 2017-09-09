@@ -15,6 +15,7 @@ export class ActsService {
 
   ACTS: Act[]=[new Act(1),new Act(2), new Act(3)];
   NewScene: Scene = new Scene(0,0,0, '');
+  NewChapter: Chapter = new Chapter('create',0);
   RightSlide: RightSideComponent;
 
     ngOnInit() {
@@ -30,6 +31,16 @@ export class ActsService {
       this.NewScene.last = last;
       return this.NewScene;
     }
+
+    getNewChapter(chapterId:number, actId:number,  type: string){
+      this.NewChapter = new Chapter(type, chapterId, actId, )
+      this.NewChapter.id = chapterId;
+      this.NewChapter.actId=actId;
+
+      this.NewChapter.type = type;
+      return this.NewChapter;
+    }
+
     getScene(){
       return this.NewScene;
     }
@@ -50,13 +61,13 @@ export class ActsService {
             this.ACTS[i].chapters =  new Array<Chapter>();
 
             chapterIndex++;
-            this.ACTS[i].chapters.push(new Chapter(chapterIndex,(i+1)));
+            this.ACTS[i].chapters.push(new Chapter('create', chapterIndex,(i+1)));
             if(isFirstScene){
               this.ACTS[i].chapters[0].scenes[0].isFocus=true;
               isFirstScene=false;
             }
             chapterIndex++;
-            this.ACTS[i].chapters.push(new Chapter(chapterIndex,(i+1)));
+            this.ACTS[i].chapters.push(new Chapter('create',chapterIndex,(i+1)));
 
         }
 
@@ -121,7 +132,7 @@ export class ActsService {
             return this.ACTS[i].chapters[j];
           }
       }
-      return new Chapter(-1);
+      return new Chapter('create',-1);
     }
 
     updateChapterId(ACTS){

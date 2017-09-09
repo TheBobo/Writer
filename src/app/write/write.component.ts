@@ -71,6 +71,8 @@ export class WriteComponent implements OnInit {
     this.createNewScene.emit(newScene);
   }
 
+  
+
 
   addChapter(chapter ) {
     this.createNewChapter.emit(chapter);

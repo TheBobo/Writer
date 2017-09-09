@@ -15,11 +15,11 @@ export class Chapter{
   scenes: Scene[];
 
 
-  constructor(id:number, actId?:number){
+  constructor(type:string, id:number, actId?:number){
     var date = new Date();
     this.id = id;
 
-    this.type='create';
+    this.type=type;
     this.title = '';
     this.description = 'enter you scene text';
     this.wordCount=0;
