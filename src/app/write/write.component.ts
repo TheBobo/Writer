@@ -2,6 +2,7 @@ import { Component, OnInit, Input,Output, EventEmitter, SimpleChanges } from '@a
 
 import { TrumbowygModule} from 'ng2-lazy-trumbowyg';
 import { ActsService } from './../acts.service';
+import { Act } from './../models/Act'
 import { Scene } from './../models/Scene';
 import { Chapter } from './../models/Chapter';
 
@@ -10,13 +11,13 @@ import { Chapter } from './../models/Chapter';
   selector: 'app-write',
   templateUrl: './write.component.html',
   styleUrls: ['./write.component.scss'],
-  inputs:['chapter', 'menuItems'],
+  inputs:['chapter', 'ACTS'],
   outputs:['selectedChapter', 'createNewScene', 'createNewChapter'],
   providers: [ActsService]
 })
 export class WriteComponent implements OnInit {
 
-  ACTS;
+  public ACTS: Act[];
   scenes: Scene[];
   currentChapterId = 0;
   currentChapter: Chapter;
@@ -32,9 +33,6 @@ export class WriteComponent implements OnInit {
   };
   constructor(private shareService: ActsService) {
    }
-
-   private menuItems = [];
-
 
   focusMe(scene){
     for(var i=0; i<this.ACTS.length; i++)
@@ -59,8 +57,6 @@ export class WriteComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
       if(changes.chapter){
-          this.shareService.initAllActs();
-          this.ACTS = this.shareService.getAllActs();
 
           this.currentChapter = changes.chapter.currentValue; //this.shareService.getChapter(id);
           console.log(this.currentChapter.scenes)
@@ -81,16 +77,6 @@ export class WriteComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.shareService.initAllActs();
-    // this.ACTS = this.shareService.getAllActs();
-    // this.menuItems = this.ACTS;
-
-
-    this.ACTS = this.shareService.getAllActs();
-    this.menuItems = this.ACTS
-
-    console.log('om init write component this.ACTS', this.ACTS)
-    //this.currentChapter = this.ACTS[0].chapters[0];
   }
 
   over(chapter){

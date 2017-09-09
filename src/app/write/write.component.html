@@ -1,6 +1,6 @@
 
 <div class="editor-wrapper" (onScroll)="handleScroll($event)">
-  <span *ngFor='let act of menuItems'>
+  <span *ngFor='let act of ACTS'>
     <div *ngFor='let chapter of act.chapters' class="chapter" on-mouseover="over(chapter)"  [ngClass]="{'selected':chapter.isFocus == true}">
       <div class="chapter-head">
         <p class="chapter-count edit">Chapter  {{chapter.id}}</p>
@@ -50,7 +50,7 @@
               </div>
             </div>
 
-            <trumbowyg (click)='clicked($event)' [initialContent]="scene.description" [options]="options1" (savedContent)="scene.description=$event"
+            <trumbowyg  [initialContent]="scene.description" [options]="options1" (savedContent)="scene.description=$event"
             placeholder="Your text as placeholder">
             </trumbowyg>
 
