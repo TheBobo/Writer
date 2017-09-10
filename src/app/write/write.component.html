@@ -50,9 +50,18 @@
               </div>
             </div>
 
-            <trumbowyg  [initialContent]="scene.description" [options]="options1" (savedContent)="scene.description=$event"
-            placeholder="Your text as placeholder">
-            </trumbowyg>
+
+            <div style="position:relative">
+              <span class="placeholder"  style="position:absolute" *ngIf='scene.isFocus == false && scene.description.length == 0'>
+                  Start writing your story here
+              </span>
+
+              <trumbowyg  [(initialContent)]="scene.description" [options]="options1" (savedContent)="scene.description=$event"
+              placeholder="Your text as placeholder"
+              [ngModel]='scene.description'>
+              </trumbowyg>
+
+            </div>
 
             <div class="add-new">
               <span>

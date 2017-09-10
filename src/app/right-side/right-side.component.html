@@ -13,7 +13,8 @@
   <form *ngIf="scene" class="material" [formGroup]="rightPanelForm">
       <div class="form-group">
         <label>Scene Name</label>
-        <input type="text" formControlName="title" class="form-control" value="{{scene.title}}">
+        <input type="text" formControlName="title" #scenetitle class="form-control" value="{{scene.title}}">
+        <small class="form-text text-muted"><code>{{ 116 - scenetitle.value.length}}</code> characters left</small>
       </div>
 
     <div class="form-group">
@@ -39,7 +40,9 @@
     </div>
     <div class="form-group">
       <label>One Line Synopsis</label>
-      <textarea formControlName="description" class="autoExpand form-control" rows="1" value ="{{scene.description}}" data-min-rows='1'></textarea>
+      <textarea formControlName="description" #sceneDescription class="autoExpand form-control" rows="1" value ="{{scene.description}}" data-min-rows='1'></textarea>
+      <small class="form-text text-muted"><code>{{ 116 - sceneDescription.value.length}}</code> characters left</small>
+
     </div>
 
     <div class="form-group">
@@ -57,7 +60,8 @@
   <form *ngIf="chapter" class="material" [formGroup]="rightPanelCreateChapter">
       <div class="form-group">
         <label>Chapter Name </label>
-        <input type="text" formControlName="chaptertitle" class="form-control" value="{{chapter.title}}">
+        <input type="text" formControlName="chaptertitle" #chaptertitle class="form-control" value="{{chapter.title}}">
+        <small class="form-text text-muted"><code>{{ 116 - chaptertitle.value.length}}</code> characters left</small>
       </div>
 
     <div class="form-group">
@@ -75,7 +79,8 @@
 
     <div class="form-group">
       <label>One Line Synopsis</label>
-      <textarea formControlName="description" class="autoExpand form-control" rows="1" value ="{{chapter.synopsis}}" data-min-rows='1'></textarea>
+      <textarea formControlName="description" #chapterDescription class="autoExpand form-control" rows="1" value ="{{chapter.synopsis}}" data-min-rows='1'></textarea>
+      <small class="form-text text-muted"><code>{{ 116 - chapterDescription.value.length}}</code> characters left</small>
     </div>
 
 
@@ -83,7 +88,7 @@
       <label> Word taget </label>
       <input class="autoExpand form-control" formControlName="wordGoal" type="number" value="{{scene.wordGoal}}" class="form-control">
     </div> -->
-      <div class="panel-footer">
+    <div class="panel-footer" *ngIf="chapter.type!='view'">
         <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
         <button class="btn btn-yellow" (click)="saveChapter()">Save</button>
       </div>
@@ -94,3 +99,5 @@
 
 </aside>
 
+
+<script src="./assets/js/lite-select.js"></script>

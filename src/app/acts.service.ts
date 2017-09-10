@@ -117,10 +117,16 @@ export class ActsService {
       var act = this.ACTS.find(x => x.id == chapter.actId);
       if(chapter.type == 'edit'){
 
+        let NewChapter = act.chapters.filter(item=> item.id === chapter.id)[0]
+        act.chapters.forEach((item,i)=>{
+          if(item.id === chapter.id){
+            act.chapters[i]=chapter;
+          }
+        })
         return;
       }
       debugger;
-      act.chapters.splice((chapter.id - 1), 0, chapter);
+      act.chapters.splice((chapter.id ), 0, chapter);
       this.updateChapterId(this.ACTS);
     }
 

@@ -42,6 +42,31 @@ $(document).ready(function(){
 //   console.log('windows was scrool')
 // });
 
-  $('.editor-wrapper').on( 'scroll', function(){
-  });
+
+var typingTimer;                //timer identifier
+var doneTypingInterval = 5000;  //time in ms, 5 second for example
+
+//on keydown, clear the countdown
+$(document).on('keydown', '.trumbowyg-editor', function () {
+  clearTimeout(typingTimer);
+  typingTimer = setTimeout(doneTyping, doneTypingInterval);
+});
+
+//user is "finished typing," do something
+function doneTyping () {
+  var text = $('.scene.focus .trumbowyg-editor').html();
+  var scene = $('.scene.focus')
+  debugger
+  if(text.length != 0){
+    $('.scene.focus').find('.placeholder').addClass('hidden')
+  }
+  else{
+    $('.scene.focus').find('.placeholder').removeClass('hidden')
+  }
+
+  $('.scene.focus').find(' .text-description').val(text)
+  console.log(text)
+  //do something
+}
+
 })

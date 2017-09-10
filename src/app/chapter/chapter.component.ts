@@ -37,9 +37,21 @@ export class ChapterComponent implements OnInit {
 
   addNewChapter(chapter, actId){
     chapter.actId = actId;
-    chapter.id = chapter.id-1;
+    chapter.type ='create';
+    chapter.id = chapter.id;
     this.outChapter.emit(chapter);
   }
+
+  editChapter(chapter){
+    chapter.type='edit'
+    this.outChapter.emit(chapter);
+  }
+
+  viewChapter(chapter){
+    chapter.type='view'
+    this.outChapter.emit(chapter);
+  }
+
   ngOnInit() {
 
   }

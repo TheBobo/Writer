@@ -25,6 +25,7 @@ import { SynopsisComponent } from './discover/synopsis/synopsis.component';
 import { AudenceComponent } from './discover/audence/audence.component';
 import { StoryMapComponent } from './story-map/story-map.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,7 @@ import { StoryMapComponent } from './story-map/story-map.component';
     ReactiveFormsModule,
     HttpModule,
     TrumbowygModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

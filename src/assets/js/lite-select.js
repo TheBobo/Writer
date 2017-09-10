@@ -478,7 +478,7 @@ $(document).ready(function(){
 
       function initLiteItems() {
         var items = $('select')
-
+        debugger
         for(var i=0; i<items.length; i++){
           var lSelectObj = {
             placeholder: "",

@@ -62,9 +62,10 @@ export class AppComponent  implements OnInit  {
   }
 
   emitNewChapter(event){
-    this.newChapter = new Chapter('create',(event.id+1));
-    this.newChapter.actId = event.actId;
-    this.newChapter.type = 'create';
+    // this.newChapter = new Chapter(event.type,(event.id+1));
+    // this.newChapter.actId = event.actId;
+    this.newChapter = event;
+    debugger
     this.rightTab =true;
     this.newScene = undefined;
     }

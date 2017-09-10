@@ -44,9 +44,14 @@ export class WriteComponent implements OnInit {
 
                var id = 'scene-'+this.ACTS[i].chapters[j].id+'-'+this.ACTS[i].chapters[j].scenes[k].id;
                document.getElementById(id).classList.add('active');
-               debugger
+
             }
          else{
+           if(this.ACTS[i].chapters[j].scenes[k].isFocus){
+            var id = 'scene-trumbowyg-'+this.ACTS[i].chapters[j].id+'-'+this.ACTS[i].chapters[j].scenes[k].id;
+
+             console.log( document.getElementById(id))
+           }
             this.ACTS[i].chapters[j].scenes[k].isFocus = false;
 
             var id = 'scene-'+this.ACTS[i].chapters[j].id+'-'+this.ACTS[i].chapters[j].scenes[k].id;
@@ -71,11 +76,14 @@ export class WriteComponent implements OnInit {
     this.createNewScene.emit(newScene);
   }
 
-  
+
 
 
   addChapter(chapter ) {
-    this.createNewChapter.emit(chapter);
+    chapter.type="create"
+
+    var newChapter = new Chapter("create",chapter.id,chapter.actId)
+    this.createNewChapter.emit(newChapter);
   }
 
   ngOnInit() {
