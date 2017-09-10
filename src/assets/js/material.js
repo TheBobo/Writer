@@ -44,7 +44,7 @@ $(document).ready(function(){
 
 
 var typingTimer;                //timer identifier
-var doneTypingInterval = 5000;  //time in ms, 5 second for example
+var doneTypingInterval = 2000;  //time in ms, 2 second for example
 
 //on keydown, clear the countdown
 $(document).on('keydown', '.trumbowyg-editor', function () {
@@ -64,7 +64,9 @@ function doneTyping () {
     $('.scene.focus').find('.placeholder').removeClass('hidden')
   }
 
-  $('.scene.focus').find(' .text-description').val(text)
+  $('.scene.focus').find('.text-description').val(text)
+  $('.scene.focus').find('.text-description').trigger('input')
+  $('.scene.focus').find('.text-description').trigger('change')
   console.log(text)
   //do something
 }
