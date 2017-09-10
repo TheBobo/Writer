@@ -21,12 +21,54 @@
 
 
 //open acordion
-$(document).on("click", '.chapter.has-sub' ,function(evt){
+$(document).on("click", '.chapter.has-sub a' ,function(evt){
   evt.stopPropagation();
 
-  var clickActiveElem=$(this).hasClass('open');
+  var clickActiveElem=$(this).closest('li').hasClass('open');
   $(this).closest('.side-nav').find('.open').removeClass('open')
 
   if(!clickActiveElem)
-    $(this).addClass('open')
+    $(this).closest('li').addClass('open')
+})
+
+
+// $(document).on('scroll', '.editor-wrapper', function(){
+//   console.log('windows was scrool')
+// })
+$(document).ready(function(){
+//   debugger
+// $().scroll(function(){
+//   debugger
+//   console.log('windows was scrool')
+// });
+
+
+var typingTimer;                //timer identifier
+var doneTypingInterval = 2000;  //time in ms, 2 second for example
+
+//on keydown, clear the countdown
+$(document).on('keydown', '.trumbowyg-editor', function () {
+  clearTimeout(typingTimer);
+  typingTimer = setTimeout(doneTyping, doneTypingInterval);
+});
+
+//user is "finished typing," do something
+function doneTyping () {
+  var text = $('.scene.focus .trumbowyg-editor').html();
+  var scene = $('.scene.focus')
+  debugger
+  if(text.length != 0){
+    $('.scene.focus').find('.placeholder').addClass('hidden')
+  }
+  else{
+    $('.scene.focus').find('.placeholder').removeClass('hidden')
+  }
+
+  $('.scene.focus').find('.text-description').val(text)
+  $('.scene.focus').find('.text-description').trigger('input')
+  $('.scene.focus').find('.text-description').trigger('change')
+  console.log(text)
+  //do something
+}
+
 })

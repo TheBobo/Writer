@@ -30,7 +30,7 @@ export class RightSideComponent implements OnInit {
   constructor(private shareService: ActsService, private fb: FormBuilder) {
     this.rightPanelForm = fb.group({
       title: [this.scene ? this.scene.title : ''],
-      description: [this.scene ? this.scene.description : ''],
+      description: [this.scene ? this.scene.synopsis : ''],
       wordGoal: [this.scene ? this.scene.wordGoal : ''],
       chapterId: [this.scene ? this.scene.chapterId : ''],
       id: [this.scene ? this.scene.id : '']

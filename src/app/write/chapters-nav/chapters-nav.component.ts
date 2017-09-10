@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActsService } from './../../acts.service';
 import { Scene } from './../../models/Scene';
+import { Chapter } from './../../models/Chapter';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { Scene } from './../../models/Scene';
   templateUrl: './chapters-nav.component.html',
   styleUrls: ['./chapters-nav.component.scss'],
   inputs:['menuItems'],
-  outputs:['selectedChapter', 'createNewScene']
+  outputs:['selectedChapter', 'createNewScene', 'createNewChapter']
 })
 export class ChaptersNavComponent implements OnInit {
 
@@ -17,6 +18,7 @@ export class ChaptersNavComponent implements OnInit {
 
   selectedChapter =  new EventEmitter<Number>();
   createNewScene =  new EventEmitter<Scene>();
+  createNewChapter =  new EventEmitter<Chapter>();
 
 
   selectChapter(chapter){
@@ -29,8 +31,12 @@ export class ChaptersNavComponent implements OnInit {
 
   addScene(sceneId:number, chapterId:number, actId:number, type: string, last: boolean){
     var newScene = this.shareService.getNewScene(sceneId, actId, chapterId, type, last);
-    debugger
+
     this.createNewScene.emit(newScene);
+  }
+
+  addChapter(chapter){
+    this.createNewChapter.emit(chapter);
   }
 
   ngOnInit() {

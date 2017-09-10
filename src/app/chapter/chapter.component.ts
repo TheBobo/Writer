@@ -15,7 +15,7 @@ import { ActsService } from './../acts.service';
 export class ChapterComponent implements OnInit {
   @Input() chapter;
   @Input() scenes;
-  
+
   newScene : Scene;
   outScene = new EventEmitter<Scene>();
   outChapter = new EventEmitter<Chapter>()
@@ -27,19 +27,31 @@ export class ChapterComponent implements OnInit {
     this.sceneEmit=event;
     this.outScene.emit(event);
   }
-  
+
   addScene(sceneId:number, chapterId:number, actId:number, type: string){
     this.newScene = this.shareService.getNewScene(sceneId, actId, chapterId, 'create');
     //this.isSceneOpen = !this.isSceneOpen;
     this.outScene.emit(this.newScene);
   }
 
-  
+
   addNewChapter(chapter, actId){
-    debugger
     chapter.actId = actId;
+    chapter.type ='create';
+    chapter.id = chapter.id;
     this.outChapter.emit(chapter);
   }
+
+  editChapter(chapter){
+    chapter.type='edit'
+    this.outChapter.emit(chapter);
+  }
+
+  viewChapter(chapter){
+    chapter.type='view'
+    this.outChapter.emit(chapter);
+  }
+
   ngOnInit() {
 
   }

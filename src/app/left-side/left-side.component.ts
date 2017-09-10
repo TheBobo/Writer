@@ -7,13 +7,14 @@ import { Chapter } from './../models/Chapter';
   templateUrl: './left-side.component.html',
   encapsulation: ViewEncapsulation.None,
   inputs: ['menubarItem'],
-  outputs: ['activeMenu', 'selectedChapter', 'createNewScene']
+  outputs: ['activeMenu', 'selectedChapter', 'createNewScene', 'createNewChapter']
 })
 export class LeftSideComponent implements OnInit {
   @Input() chapter
 
   activeMenu = new EventEmitter<string>()
   selectedChapter = new EventEmitter<Chapter>()
+  createNewChapter = new EventEmitter<Chapter>()
   createNewScene  = new EventEmitter<Scene>()
 
 
@@ -23,12 +24,11 @@ export class LeftSideComponent implements OnInit {
   isOpen:boolean
   private menuItems = [];
 
-
   ngOnInit() {
     this.isOpen = false;
     this.ACTS = this.shareService.getAllActs();
     this.menuItems = this.ACTS
-    console.log('this.ACTS', this.ACTS)
+    console.log('om init left side component this.ACTS', this.ACTS)
   }
 
   currentView(event) {
@@ -41,6 +41,10 @@ export class LeftSideComponent implements OnInit {
 
   createScene(event){
     this.createNewScene.emit(event)
+  }
+
+  createChapter(event){
+    this.createNewChapter.emit(event);
   }
 
 

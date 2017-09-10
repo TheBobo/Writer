@@ -2,6 +2,7 @@
  ul {
    .has-sub {
 
+
       line-height: 45px;
       font-size: 15px;
       border-bottom: solid thin darken($light-gray, 7%);
@@ -14,13 +15,16 @@
         height: 100%;
         overflow: hidden;
         a {
-          width: 100%;
+          width: calc(100% - 15px);
           height: 100%;
           display: block;
           color: $dark-purple;
           text-decoration: none;
           transition: all .3s;
           position: relative;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
           &.arrow {
             right: 10px;
             &:before,
@@ -156,9 +160,10 @@
              color: $purple;
              font-size: 9px;
              position: absolute;
-             top: -18px;
+             top: -1px;
              right: 30px;
              background-color: $light-gray;
+             line-height: 11px;
            }
         }
       }

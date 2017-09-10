@@ -11,6 +11,8 @@
    <app-chapters-nav *ngIf="menubarItem == 'write'"
    (selectedChapter)="selectChapter($event)"
    (createNewScene)="createScene($event)"
+   (createNewChapter)="createChapter($event)"
    [menuItems]='menuItems'></app-chapters-nav>
+
   <app-assets-menu *ngIf="menubarItem == 'discover'" (activeMenu)='currentView($event)'></app-assets-menu>
 </aside>

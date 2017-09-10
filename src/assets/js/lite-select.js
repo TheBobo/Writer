@@ -226,7 +226,7 @@ function buildLiteSelectComponent() {
             $searchDD.width("1em");
           }
           $searchDD.focus();
-        
+
         }, 400);
       $(".ls-select").find(".active").removeClass("active");
 
@@ -244,7 +244,7 @@ function buildLiteSelectComponent() {
       elementsUL.addClass("ls-hidden")
       var timeOut = 450;
       var itm = $wrapperList.find("li.selected");
-      
+
         var itms = $wrapperList.find("li");
         for(var i=0; i<elementsUL.length; i++){
           if(i < 10){
@@ -255,7 +255,7 @@ function buildLiteSelectComponent() {
             setTimeout(showElement, 0, elementsUL[i])
           }
         }
-      
+
     }
   });
 
@@ -296,7 +296,7 @@ function buildLiteSelectComponent() {
   });
 
   function filterItem(searchTxt){
-    
+
     searchTxt=searchTxt.toLowerCase();
     var options = $list.find("li");
 
@@ -372,7 +372,7 @@ function buildLiteSelectComponent() {
         }
         $this.find(".ls-search-input").show();
         $this.find(".ls-search-input").focus();
-        
+
       }
   });
 
@@ -472,14 +472,13 @@ $(document).ready(function(){
             if($(e.target).parent().parent().hasClass("ls-multiselect")){
               var widthInput = (0.5 + len*0.75) +"em";
               $(itm).width(widthInput);
-              console.log(widthInput)
             }
 
           })
 
       function initLiteItems() {
         var items = $('select')
-
+        debugger
         for(var i=0; i<items.length; i++){
           var lSelectObj = {
             placeholder: "",

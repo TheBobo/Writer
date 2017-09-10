@@ -15,6 +15,7 @@ export class ActsService {
 
   ACTS: Act[]=[new Act(1),new Act(2), new Act(3)];
   NewScene: Scene = new Scene(0,0,0, '');
+  NewChapter: Chapter = new Chapter('create',0);
   RightSlide: RightSideComponent;
 
     ngOnInit() {
@@ -30,6 +31,16 @@ export class ActsService {
       this.NewScene.last = last;
       return this.NewScene;
     }
+
+    getNewChapter(chapterId:number, actId:number,  type: string){
+      this.NewChapter = new Chapter(type, chapterId, actId, )
+      this.NewChapter.id = chapterId;
+      this.NewChapter.actId=actId;
+
+      this.NewChapter.type = type;
+      return this.NewChapter;
+    }
+
     getScene(){
       return this.NewScene;
     }
@@ -41,25 +52,39 @@ export class ActsService {
 
     initAllActs(){
       var chapterIndex = 0;
+      var isFirstScene = true;
 
       for(var i=0; i<this.ACTS.length; i++){
 
 
-        if(this.ACTS[i].chapters == undefined)
+        if(this.ACTS[i].chapters == undefined){
             this.ACTS[i].chapters =  new Array<Chapter>();
 
-        chapterIndex++;
-        this.ACTS[i].chapters.push(new Chapter(chapterIndex));
-        // for(var j=0; j<this.ACTS[i].chapters.length; i++){
-        //   if(this.ACTS[i].chapters[j].scenes == undefined)
-        //     this.ACTS[i].chapters[j].scenes =  new Array<Scene>();
+            chapterIndex++;
+            this.ACTS[i].chapters.push(new Chapter('create', chapterIndex,(i+1)));
+            if(isFirstScene){
+              this.ACTS[i].chapters[0].scenes[0].isFocus=true;
+              isFirstScene=false;
+            }
+            chapterIndex++;
+            this.ACTS[i].chapters.push(new Chapter('create',chapterIndex,(i+1)));
 
-        //   this.ACTS[i].chapters[j].scenes.push(new Scene(1,j,i,"test"));
-        //   this.ACTS[i].chapters[j].scenes.push(new Scene(2,j,i,"test"));
-        //   this.ACTS[i].chapters[j].scenes.push(new Scene(3,j,i,"test"));
-        // }
+        }
+
       }
       return this.ACTS;
+    }
+
+    updateChapter(chapter){
+      for(var i=0; i<this.ACTS.length; i++)
+        for(var j=0; j<this.ACTS[i].chapters.length; j++)
+          if(this.ACTS[i].chapters[j].id == chapter.id)
+            this.ACTS[i].chapters[j]=chapter;
+    }
+
+    updateActs(ACTS){
+
+      this.ACTS = ACTS;
     }
 
 
@@ -92,15 +117,20 @@ export class ActsService {
       var act = this.ACTS.find(x => x.id == chapter.actId);
       if(chapter.type == 'edit'){
 
+        let NewChapter = act.chapters.filter(item=> item.id === chapter.id)[0]
+        act.chapters.forEach((item,i)=>{
+          if(item.id === chapter.id){
+            act.chapters[i]=chapter;
+          }
+        })
         return;
       }
       debugger;
-      act.chapters.splice((chapter.id - 1), 0, chapter);
+      act.chapters.splice((chapter.id ), 0, chapter);
       this.updateChapterId(this.ACTS);
     }
 
     getChapter(chapterId: number):Chapter{
-      console.log(this.ACTS)
 
       for(var i=0; i< this.ACTS.length; i++){
         if(this.ACTS[i].chapters)
@@ -108,7 +138,7 @@ export class ActsService {
             return this.ACTS[i].chapters[j];
           }
       }
-      return new Chapter(-1);
+      return new Chapter('create',-1);
     }
 
     updateChapterId(ACTS){

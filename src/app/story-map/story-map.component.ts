@@ -45,12 +45,17 @@ export class StoryMapComponent implements OnInit {
   }
 
   emitNewChapter(event){
-    this.newChapter = new Chapter((event.id+1));
-    this.newChapter.actId = event.actId;
-    this.newChapter.type = 'create';
+    if(event.type == 'create'){
+      this.newChapter = new Chapter(event.type, (event.id+1));
+      this.newChapter.actId = event.actId;
+    }
+    else if(event.type == 'edit')
+      this.newChapter=event;
 
+    debugger
     this.newScene = undefined;
-    console.log('this.newChapter чше', this.newChapter)
+    console.log('this.newChapter ', this.newChapter)
+
     this.outChapter.emit(this.newChapter)
     if(event.type != 'delete')
       this.showright.emit(true);

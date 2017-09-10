@@ -36,10 +36,9 @@ export class AppComponent  implements OnInit  {
   constructor(private shareService: ActsService) { }
 
   createScene(event){
-    debugger
     this.rightTab = true;
     this.newScene = event;
-    console.log(event);
+    this.newChapter = undefined
   }
 
   activeMenuItem(event) {
@@ -63,13 +62,12 @@ export class AppComponent  implements OnInit  {
   }
 
   emitNewChapter(event){
-    this.newChapter = new Chapter((event.id+1));
-    this.newChapter.actId = event.actId;
-    this.newChapter.type = 'create';
-
+    // this.newChapter = new Chapter(event.type,(event.id+1));
+    // this.newChapter.actId = event.actId;
+    this.newChapter = event;
+    debugger
+    this.rightTab =true;
     this.newScene = undefined;
-    console.log(this.newChapter)
-
     }
 
   emitModal(event){
@@ -106,11 +104,15 @@ export class AppComponent  implements OnInit  {
 
   addNewScene(event){
     this.shareService.addScene(event);
+    this.ACTS = this.shareService.getAllActs();
+    debugger;
   }
 
+
   addNewChapter(event){
-    debugger
     this.shareService.addChapter(event);
+
+  debugger;
   }
 
   deleteSelectedScene(event){
