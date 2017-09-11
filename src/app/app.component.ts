@@ -135,8 +135,11 @@ export class AppComponent  implements OnInit  {
 
   addNewChapter(event){
     this.shareService.addChapter(event);
+  }
 
-  debugger;
+  addNewCharacter(event){
+    this.appCharacters.push(event);
+    this.rightTab=false;
   }
 
   deleteSelectedScene(event){

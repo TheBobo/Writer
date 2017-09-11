@@ -1,3 +1,4 @@
+import { Character } from 'app/models/Character';
 import { Scene } from './../models/Scene';
 import { Chapter } from './../models/Chapter'
 import { Component, Input, OnInit, Output, OnChanges, EventEmitter, SimpleChanges } from '@angular/core';
@@ -14,7 +15,7 @@ declare var LiteSelectFunctionality: any;
   selector: 'app-right-side',
   templateUrl: './right-side.component.html',
   inputs: [ 'scene', 'chapter', 'character', 'rightOpen'],
-  outputs: ['close', 'addNewScene', 'addNewChapter'],
+  outputs: ['close', 'addNewScene', 'addNewChapter', 'addNewCharacter'],
   providers: [ActsService]
 })
 export class RightSideComponent implements OnInit {
@@ -26,6 +27,8 @@ export class RightSideComponent implements OnInit {
   close = new EventEmitter<boolean>()
   addNewScene = new EventEmitter<Scene>()
   addNewChapter = new EventEmitter<Chapter>()
+  addNewCharacter = new EventEmitter<Character>()
+
   newModelScene = new Scene(0,0,0, '');
   private rightPanelForm: FormGroup;
   private rightPanelCreateChapter: FormGroup;
@@ -116,8 +119,16 @@ export class RightSideComponent implements OnInit {
   saveCharapter(){
     
     let formData = this.rightPanelCreateCharacter.getRawValue();
-  
+
+    this.character.name = formData.characterName;
+    this.character.storyline=formData.storyline;
+    this.character.goal = formData.goal;
+    this.character.conflict = formData.conflict;
+    this.character.epiphany = formData.epiphany;
+
+    this.character.role = formData.role;
     debugger
+    this.addNewCharacter.emit(this.character);
   }
 
 }

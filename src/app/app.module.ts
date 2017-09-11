@@ -25,6 +25,7 @@ import { ChaptersNavComponent } from './write/chapters-nav/chapters-nav.componen
 import { SynopsisComponent } from './discover/synopsis/synopsis.component';
 import { AudenceComponent } from './discover/audence/audence.component';
 import { StoryMapComponent } from './story-map/story-map.component';
+import { ImgUploadComponent } from './img-upload/img-upload.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { StoryMapComponent } from './story-map/story-map.component';
     ChaptersNavComponent,
     SynopsisComponent,
     AudenceComponent,
-    StoryMapComponent
+    StoryMapComponent,
+    ImgUploadComponent
   ],
   imports: [
     BrowserModule,

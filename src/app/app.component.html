@@ -62,7 +62,8 @@
    (close)="this.rightTab = $event"
    (addScene)="addscene($event)"
    (addNewScene)=addNewScene($event)
-   (addNewChapter)=addNewChapter($event)></app-right-side>
+   (addNewChapter)=addNewChapter($event)
+   (addNewCharacter)=addNewCharacter($event)></app-right-side>
 
    <app-modal-confirm  #modalView *ngIf="newScene" [deleteScene]="newScene" (deleteSelectedScene)=deleteSelectedScene($event) ></app-modal-confirm>
 </div>
