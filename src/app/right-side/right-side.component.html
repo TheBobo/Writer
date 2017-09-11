@@ -57,12 +57,15 @@
 
     <h4 class="title-item" *ngIf="character">Create Character</h4>
     <form  class="material" *ngIf="character" [formGroup]="rightPanelCreateCharacter">
-      
-      <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+      <div>
+        <span>image upload</span>
+        <image-upload></image-upload>
+      </div>
+      <!-- <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
      
       <div id="fileList">
         <p>No files selected!</p>
-      </div>
+      </div> -->
 
         <div class="form-group">
           <label>character Name</label>
