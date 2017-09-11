@@ -1,5 +1,5 @@
 
-<aside class="right-side-panel" *ngIf="scene || chapter" [ngClass]="{'show': rightOpen}">
+<aside class="right-side-panel" *ngIf="scene || chapter || character" [ngClass]="{'show': rightOpen}">
   <div class="subheader">
     <span class="close"  (click)="cancel()">
       <svg class="icon-close">
@@ -7,7 +7,6 @@
       </svg>
     </span>
   </div>
-
 <div class="panel-wrapper" >
   <h4 class="title-item" *ngIf="scene">{{panelTitle}}</h4>
   <form *ngIf="scene" class="material" [formGroup]="rightPanelForm">
@@ -22,7 +21,7 @@
     </div>
     <div class="form-group">
       <label >chapter {{scene.chapterId}}</label>
-      <select *ngIf='scene.type == "edit"' name="chapter" data-placeholder="Chapter" formControlName="chapterId">
+      <select class="lite-select" *ngIf='scene.type == "edit"' name="chapter" data-placeholder="Chapter" formControlName="chapterId">
         <option value="">Chapter 1</option>
         <option value="">Chapter 2</option>
         <option value="">Chapter 3</option>
@@ -31,7 +30,7 @@
     </div>
     <div class="form-group">
       <label >scene {{scene.id + 1}}</label>
-      <select  *ngIf='scene.type == "edit"' name="" data-placeholder="Scene" formControlName="id">
+      <select class="lite-select"  *ngIf='scene.type == "edit"' name="" data-placeholder="Scene" formControlName="id">
         <option value="">Scene 1</option>
         <option value="">Scene 2</option>
         <option value="">Scene 3</option>
@@ -56,6 +55,54 @@
   </form>
 
 
+    <h4 class="title-item" *ngIf="character">Create Character</h4>
+    <form  class="material" *ngIf="character" [formGroup]="rightPanelCreateCharacter">
+      
+      <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+     
+      <div id="fileList">
+        <p>No files selected!</p>
+      </div>
+
+        <div class="form-group">
+          <label>character Name</label>
+          <input type="text" formControlName="characterName" #charactername class="form-control" value="{{character.name}}">
+        </div>
+
+        
+        <div class="form-group">
+          <label>Role</label>
+          <input type="text" formControlName="role" #role class="form-control" value="{{character.role}}">
+        </div>
+
+
+        <div class="form-group">
+          <label>Story Line</label>
+          <input type="text" formControlName="storyline" #storyline class="form-control" value="{{character.storyline}}">
+        </div>
+
+        <div class="form-group">
+          <label>Goal</label>
+          <input type="text" formControlName="goal" #goal class="form-control" value="{{character.goal}}">
+        </div>
+
+        <div class="form-group">
+          <label>Conflict</label>
+          <input type="text" formControlName="conflict" #conflict class="form-control" value="{{character.conflict}}">
+        </div>
+
+        <div class="form-group">
+          <label>Epiphany </label>
+          <input type="text" formControlName="epiphany" #storyline class="form-control" value="{{character.epiphany}}">
+        </div>
+
+        <div class="panel-footer" *ngIf="character.type!='view'">
+          <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
+          <button class="btn btn-yellow" [disabled]="character.type ==='view'" (click)="saveCharapter()">Save</button>
+        </div>
+    </form>
+
+
   <h4 class="title-item" *ngIf="chapter">{{panelTitle}}</h4>
   <form *ngIf="chapter" class="material" [formGroup]="rightPanelCreateChapter">
       <div class="form-group">
@@ -69,7 +116,7 @@
     </div>
     <div class="form-group">
       <label >chapter {{chapter.id}}</label>
-      <select *ngIf='chapter.type == "edit"' name="chapter" data-placeholder="Chapter" formControlName="chapterId">
+      <select class="lite-select" *ngIf='chapter.type == "edit"' name="chapter" data-placeholder="Chapter" formControlName="chapterId">
         <option value="">Chapter 1</option>
         <option value="">Chapter 2</option>
         <option value="">Chapter 3</option>
@@ -98,6 +145,3 @@
 
 
 </aside>
-
-
-<script src="./assets/js/lite-select.js"></script>

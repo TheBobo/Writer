@@ -29,7 +29,7 @@
 
        <app-story-map *ngIf="menubarItem == 'discover'  && activeComponent =='storyMap'" 
             [ACTS] = "ACTS"
-            (outScene)="emitScene($event)"
+          (outScene)="emitScene($event)"
             (outChapter)="emitNewChapter($event)"
             (showright)=emitRight($event)
             (showmodal)=showmodal($event)
@@ -46,15 +46,18 @@
       <app-audence *ngIf="menubarItem == 'discover' && activeComponent =='audence'">
       </app-audence>
 
-      <app-character-list *ngIf="menubarItem == 'discover' && activeComponent =='characterList'"></app-character-list>
+      <app-character-list *ngIf="menubarItem == 'discover' && activeComponent =='characterList'"
+                          (newCharacter)="createNewCharacter()"
+                          [characters]="appCharacters"></app-character-list>
 
 
   </main>
 
 
-  <app-right-side #rightSlideView *ngIf="newScene || newChapter"
+  <app-right-side #rightSlideView *ngIf="newScene || newChapter || newCharacter"
    [scene]="newScene"
    [chapter]="newChapter"
+   [character]="newCharacter"
    [rightOpen]="rightTab"
    (close)="this.rightTab = $event"
    (addScene)="addscene($event)"

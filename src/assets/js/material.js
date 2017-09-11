@@ -67,8 +67,6 @@ function doneTyping () {
   $('.scene.focus').find('.text-description').val(text)
   $('.scene.focus').find('.text-description').trigger('input')
   $('.scene.focus').find('.text-description').trigger('change')
-  console.log(text)
-  //do something
 }
 
 })

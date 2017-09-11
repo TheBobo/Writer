@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {ImageUploadModule} from "angular2-image-upload";
 
 import { TrumbowygModule} from 'ng2-lazy-trumbowyg';
 
@@ -24,7 +25,6 @@ import { ChaptersNavComponent } from './write/chapters-nav/chapters-nav.componen
 import { SynopsisComponent } from './discover/synopsis/synopsis.component';
 import { AudenceComponent } from './discover/audence/audence.component';
 import { StoryMapComponent } from './story-map/story-map.component';
-
 
 @NgModule({
   declarations: [
@@ -53,7 +53,8 @@ import { StoryMapComponent } from './story-map/story-map.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    TrumbowygModule
+    TrumbowygModule,
+    ImageUploadModule.forRoot(),
 
   ],
   providers: [],

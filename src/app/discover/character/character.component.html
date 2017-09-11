@@ -1,32 +1,31 @@
 <div class="character-item">
   <div class="character-picture">
-    <img src="" alt="" class="">
+    <img [src]="character.img" alt="" class="">
   </div>
   <div class="character-details">
     <div class="character-role">
-      Protagonist
+      {{character.role}}
     </div>
-    <h2 class="character-name">Ludmil Dimitrov</h2>
+    <h2 class="character-name">{{character.name}}</h2>
       <hr>
       <p class="info-label" for="story-line">Storyline</p>
       <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+          {{character.storyline}}
       </p>
       <hr>
       <p class="info-label" for="story-line">Goal</p>
       <p>
-        Lorem Ipsum
+        {{character.goal}}
       </p>
       <hr>
       <p class="info-label" for="story-line">Conflict</p>
       <p>
-        Lorem Ipsum
+        {{character.conflict}}
       </p>
       <hr>
       <p class="info-label" for="story-line">Epiphany</p>
       <p>
-        Lorem Ipsum
+        {{character.epiphany}}
       </p>
   </div>
 </div>

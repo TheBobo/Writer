@@ -3,7 +3,7 @@ import { Chapter } from './models/Chapter';
 import { Component, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActsService } from './acts.service';
 import { Act } from './models/Act';
-//import * as $ from 'jquery';
+import { Character } from "app/models/Character";
 
 @Component({
   selector: 'app-root',
@@ -17,6 +17,7 @@ export class AppComponent  implements OnInit  {
   isRightPanelOpen = false;
   newScene: Scene;
   newChapter: Chapter;
+  newCharacter: Character;
   activeComponent: string;
   selectChapter:Chapter;
 
@@ -29,16 +30,31 @@ export class AppComponent  implements OnInit  {
 
 
   ACTS: Act[];
+  appCharacters: Character[];
   @ViewChild('rightSlideView') rightSlideView;
   @ViewChild('confirmModalView') confirmModalView;
+
+  clearState(){
+    this.newChapter = undefined;
+    this.newScene = undefined;
+    this.newCharacter = undefined;
+  }
 
 
   constructor(private shareService: ActsService) { }
 
+  createNewCharacter(){
+    this.clearState();
+    this.newCharacter = new Character(1);
+    this.newCharacter.type="create"
+    this.rightTab = true;
+    debugger
+  }
+
   createScene(event){
     this.rightTab = true;
+    this.clearState();
     this.newScene = event;
-    this.newChapter = undefined
   }
 
   activeMenuItem(event) {
@@ -47,7 +63,6 @@ export class AppComponent  implements OnInit  {
 
   gotoMenu(option){
     this.menubarItem = option;
-
     if (option == 'discover')
       this.openMenu();
   }
@@ -62,10 +77,7 @@ export class AppComponent  implements OnInit  {
   }
 
   emitNewChapter(event){
-    // this.newChapter = new Chapter(event.type,(event.id+1));
-    // this.newChapter.actId = event.actId;
     this.newChapter = event;
-    debugger
     this.rightTab =true;
     this.newScene = undefined;
     }
@@ -75,11 +87,13 @@ export class AppComponent  implements OnInit  {
   }
 
   emitRight(event){
+    debugger
     this.rightTab = event;
 
     setTimeout(() => {
       if(this.newScene){
         if ( this.newScene.type === 'edit') {
+          debugger
           this.rightSlideView.setRightSideTitle('Edit Scene')
         } else if ( this.newScene.type === 'create' ) {
           this.rightSlideView.setRightSideTitle('New Scene')
@@ -92,7 +106,17 @@ export class AppComponent  implements OnInit  {
         } else if ( this.newChapter.type === 'create' ) {
           this.rightSlideView.setRightSideTitle('New Chapter')
         } else if ( this.newChapter.type === 'view' ) {
-          this.rightSlideView.setRightSideTitle('Chapter')
+          this.rightSlideView.setRightSideTitle('View Chapter')
+        }
+      }
+      else if ( this.newCharacter ) {
+        
+        if ( this.newCharacter.type === 'edit') {
+          this.rightSlideView.setRightSideTitle('Edit Character')
+        } else if ( this.newCharacter.type === 'create' ) {
+          this.rightSlideView.setRightSideTitle('New Character')
+        } else if ( this.newCharacter.type === 'view' ) {
+          this.rightSlideView.setRightSideTitle('View Character')
         }
       }
     })
@@ -135,6 +159,19 @@ export class AppComponent  implements OnInit  {
     this.ACTS = this.shareService.getAllActs();
     this.selectChapter = this.ACTS[0].chapters[0];
     this.menubarItem='menubarItem'
+
+    var firstCharacter = new Character(1);
+    firstCharacter.name = 'lusso 1';
+    firstCharacter.storyline ='I am first mockup created character.';
+    firstCharacter.goal ="run fast";
+    firstCharacter.conflict='no conflicts';
+    firstCharacter.epiphany = 'n/a';
+    firstCharacter.role ='main';
+    firstCharacter.img = 'scr/avatar.png'
+    
+
+    this.appCharacters = new Array<Character>();
+    this.appCharacters.push(firstCharacter);
   }
 
 }

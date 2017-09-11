@@ -22,7 +22,9 @@
         "assets/styles/app.scss"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.min.js"
+        "../node_modules/jquery/dist/jquery.min.js",
+        "assets/js/lite-select.js",
+        "assets/js/external.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

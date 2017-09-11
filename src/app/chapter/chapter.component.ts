@@ -18,7 +18,7 @@ export class ChapterComponent implements OnInit {
 
   newScene : Scene;
   outScene = new EventEmitter<Scene>();
-  outChapter = new EventEmitter<Chapter>()
+  outChapter = new EventEmitter<Chapter>();
   constructor(private shareService: ActsService) { }
 
   sceneEmit:Scene;

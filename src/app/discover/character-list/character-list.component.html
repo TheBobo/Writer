@@ -1,9 +1,7 @@
 <div class="sub-subheader">
   <span class="title-inner">Characters</span>
-  <button class="btn btn-yellow btn-sm">Add New Character</button>
+  <button class="btn btn-yellow btn-sm" (click)="addCharacter()">Add New Character</button>
 </div>
 <div class="inner-wrapper">
-  <app-character></app-character>
-  <app-character></app-character>
-  <app-character></app-character>
+  <app-character *ngFor='let character of characters' [character]="character"></app-character>
 </div>

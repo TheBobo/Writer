@@ -3,19 +3,24 @@ import { Chapter } from './../models/Chapter'
 import { Component, Input, OnInit, Output, OnChanges, EventEmitter, SimpleChanges } from '@angular/core';
 import { ActsService } from './../acts.service';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import './../../assets/js/lite-select'
 
 declare var $:any;
+declare var jQuery: any;
+declare var LiteSelectFunctionality: any;
+
 
 @Component({
   selector: 'app-right-side',
   templateUrl: './right-side.component.html',
-  inputs: [ 'scene', 'chapter', 'rightOpen'],
+  inputs: [ 'scene', 'chapter', 'character', 'rightOpen'],
   outputs: ['close', 'addNewScene', 'addNewChapter'],
   providers: [ActsService]
 })
 export class RightSideComponent implements OnInit {
   @Input() scene;
   @Input() chapter;
+  @Input() character
   @Input() rightOpen;
 
   close = new EventEmitter<boolean>()
@@ -24,10 +29,15 @@ export class RightSideComponent implements OnInit {
   newModelScene = new Scene(0,0,0, '');
   private rightPanelForm: FormGroup;
   private rightPanelCreateChapter: FormGroup;
+  private rightPanelCreateCharacter: FormGroup;
 
-  private panelTitle: string = 'New Scene'
+  private panelTitle: string = 'New Scene';
+  
 
   constructor(private shareService: ActsService, private fb: FormBuilder) {
+    // this.liteSelectObj = new LiteSelect()
+    debugger
+
     this.rightPanelForm = fb.group({
       title: [this.scene ? this.scene.title : ''],
       description: [this.scene ? this.scene.synopsis : ''],
@@ -42,10 +52,22 @@ export class RightSideComponent implements OnInit {
       actId:[this.chapter ? this.chapter.actId : ''],
       id:[this.chapter ? this.chapter.id : '']
     })
+
+    this.rightPanelCreateCharacter = fb.group({
+      characterName: [this.character ? this.character.name : ''],
+      role:[this.character ? this.character.role : ''],
+      storyline:[this.character ? this.character.storyline : ''],
+      goal:[this.character ? this.character.goal : ''],
+      conflict:[this.character ? this.character.conflict : ''],
+      epiphany:[this.character ? this.character.epiphany : ''],
+      image:[this.character ? this.character.image : '']
+    })
   }
 
   ngOnInit() {
     this.shareService.RightSlide = this;
+    LiteSelectFunctionality.initLiteItems();
+    
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -84,11 +106,18 @@ export class RightSideComponent implements OnInit {
   saveChapter(){
     let formData = this.rightPanelCreateChapter.getRawValue();
     this.chapter.title = formData.chaptertitle;
-    debugger
+  
     this.chapter.description = formData.description;
 
-    this.addNewChapter.emit(this.chapter);
-    //this.addNewScene.emit(this.scene);
+    this.addNewChapter.emit(this.chapter)
     this.close.emit(false);
   }
+
+  saveCharapter(){
+    
+    let formData = this.rightPanelCreateCharacter.getRawValue();
+  
+    debugger
+  }
+
 }

@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "angular-trix": "^1.0.2",
+    "angular2-image-upload": "^0.6.6",
     "core-js": "^2.4.1",
     "jquery": "^3.2.1",
     "ng2-lazy-trumbowyg": "^2.3.3",
