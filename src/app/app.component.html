@@ -43,8 +43,10 @@
 
       <app-synopsis *ngIf="menubarItem == 'discover' && activeComponent =='synopsis'"></app-synopsis>
 
-      <app-audence *ngIf="menubarItem == 'discover' && activeComponent =='audence'">
-      </app-audence>
+      <app-audence-list *ngIf="menubarItem == 'discover' && activeComponent =='audence'"
+                        [audences]="appAudences"
+                        (newAudence)="appAudence">
+      </app-audence-list>
 
       <app-character-list *ngIf="menubarItem == 'discover' && activeComponent =='characterList'"
                           (newCharacter)="createNewCharacter()"

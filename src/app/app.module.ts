@@ -18,12 +18,16 @@ import { StoryComponent } from './discover/story/story.component';
 import { WriteComponent } from './write/write.component';
 import { CreateSceneSidePanelComponent } from './create-scene-side-panel/create-scene-side-panel.component';
 import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
-import { CharacterComponent } from './discover/character/character.component';
+
 import { CharacterListComponent } from './discover/character-list/character-list.component';
+import { CharacterComponent } from './discover/character/character.component';
+
+import { AudenceListComponent } from './discover/audence-list/audence-list.component';
+import { AudenceComponent } from './discover/audence/audence.component';
+
 import { AssetsMenuComponent } from './assets-menu/assets-menu.component';
 import { ChaptersNavComponent } from './write/chapters-nav/chapters-nav.component';
 import { SynopsisComponent } from './discover/synopsis/synopsis.component';
-import { AudenceComponent } from './discover/audence/audence.component';
 import { StoryMapComponent } from './story-map/story-map.component';
 import { ImgUploadComponent } from './img-upload/img-upload.component';
 
@@ -48,7 +52,8 @@ import { ImgUploadComponent } from './img-upload/img-upload.component';
     SynopsisComponent,
     AudenceComponent,
     StoryMapComponent,
-    ImgUploadComponent
+    ImgUploadComponent,
+    AudenceListComponent
   ],
   imports: [
     BrowserModule,

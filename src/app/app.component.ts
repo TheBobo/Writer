@@ -1,3 +1,4 @@
+import { Audence } from './models/Audence';
 import { Scene } from './models/Scene';
 import { Chapter } from './models/Chapter';
 import { Component, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
@@ -31,6 +32,7 @@ export class AppComponent  implements OnInit  {
 
   ACTS: Act[];
   appCharacters: Character[];
+  appAudences: Audence[];
   @ViewChild('rightSlideView') rightSlideView;
   @ViewChild('confirmModalView') confirmModalView;
 
