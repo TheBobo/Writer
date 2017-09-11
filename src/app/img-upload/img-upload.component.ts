@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Header, ImageService } from './img-upload.service';
+import { Header, ImageService } from '../../../node_modules/angular2-image-upload/lib/image.service';
 
 export class FileHolder {
   public serverResponse: { status: number, response: any };
