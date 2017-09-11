@@ -50,7 +50,6 @@ export class AppComponent  implements OnInit  {
     this.newCharacter = new Character(1);
     this.newCharacter.type="create"
     this.rightTab = true;
-    debugger
   }
 
   createScene(event){
@@ -112,7 +111,7 @@ export class AppComponent  implements OnInit  {
         }
       }
       else if ( this.newCharacter ) {
-        
+
         if ( this.newCharacter.type === 'edit') {
           this.rightSlideView.setRightSideTitle('Edit Character')
         } else if ( this.newCharacter.type === 'create' ) {
@@ -173,7 +172,7 @@ export class AppComponent  implements OnInit  {
     firstCharacter.epiphany = 'n/a';
     firstCharacter.role ='main';
     firstCharacter.img = 'scr/avatar.png'
-    
+
 
     this.appCharacters = new Array<Character>();
     this.appCharacters.push(firstCharacter);

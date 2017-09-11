@@ -35,11 +35,10 @@ export class RightSideComponent implements OnInit {
   private rightPanelCreateCharacter: FormGroup;
 
   private panelTitle: string = 'New Scene';
-  
+
 
   constructor(private shareService: ActsService, private fb: FormBuilder) {
     // this.liteSelectObj = new LiteSelect()
-    debugger
 
     this.rightPanelForm = fb.group({
       title: [this.scene ? this.scene.title : ''],
@@ -70,7 +69,7 @@ export class RightSideComponent implements OnInit {
   ngOnInit() {
     this.shareService.RightSlide = this;
     LiteSelectFunctionality.initLiteItems();
-    
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -109,7 +108,7 @@ export class RightSideComponent implements OnInit {
   saveChapter(){
     let formData = this.rightPanelCreateChapter.getRawValue();
     this.chapter.title = formData.chaptertitle;
-  
+
     this.chapter.description = formData.description;
 
     this.addNewChapter.emit(this.chapter)
@@ -117,7 +116,7 @@ export class RightSideComponent implements OnInit {
   }
 
   saveCharapter(){
-    
+
     let formData = this.rightPanelCreateCharacter.getRawValue();
 
     this.character.name = formData.characterName;
@@ -127,7 +126,6 @@ export class RightSideComponent implements OnInit {
     this.character.epiphany = formData.epiphany;
 
     this.character.role = formData.role;
-    debugger
     this.addNewCharacter.emit(this.character);
   }
 
