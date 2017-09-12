@@ -60,6 +60,13 @@
         min-height: 60px;
       }
     }
+    .text-inline {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      font-size: 10px;
+      color: lighten($dark-purple, 25%);
+    }
     textarea {
       display:block;
       box-sizing: padding-box;
