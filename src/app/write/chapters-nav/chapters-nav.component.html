@@ -12,7 +12,10 @@
             </span>
           </a>
           <ul>
-            <li *ngFor="let scene of chapter.scenes" class='sc' [id]="'scene-'+chapter.id+'-'+scene.id" [ngClass]="{'open':chapter.isFocus == true}">
+            <li *ngFor="let scene of chapter.scenes" 
+                class='sc' [id]="'scene-'+chapter.id+'-'+scene.id" 
+                [ngClass]="{'open':chapter.isFocus == true}"
+                (click)="scroolToScene(scene.id, chapter.id)">
               Scene {{scene.id}}
               {{scene.title}}
               <!-- <span *ngFor="let scene of chapter.scenes" class="new-element-menu add-scene"

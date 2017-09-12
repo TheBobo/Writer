@@ -239,7 +239,8 @@ function buildLiteSelectComponent() {
       }
 
       $(this).addClass('active');
-      $wrapperList.addClass("active");
+      $wrapperList.addClass("active")
+      debugger;
       var elementsUL = $wrapperList.find("ul li");
       elementsUL.addClass("ls-hidden")
       var timeOut = 450;

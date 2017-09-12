@@ -55,7 +55,7 @@ export class WriteComponent implements OnInit {
             this.ACTS[i].chapters[j].scenes[k].isFocus = false;
 
             var id = 'scene-'+this.ACTS[i].chapters[j].id+'-'+this.ACTS[i].chapters[j].scenes[k].id;
-            document.getElementById(id).classList.remove('activeп');
+            document.getElementById(id).classList.remove('active');
 
           }
 }
