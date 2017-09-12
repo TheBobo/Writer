@@ -160,7 +160,7 @@
       <label >act {{chapter.actId}}</label>
     </div>
     <div class="form-group">
-      <label >chapter {{chapter.id}}</label>
+      <label >chapter {{chapter.id + 1}}</label>
       <select class="lite-select" *ngIf='chapter.type == "edit"' name="chapter" data-placeholder="Chapter" formControlName="chapterId">
         <option value="">Chapter 1</option>
         <option value="">Chapter 2</option>
