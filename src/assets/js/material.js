@@ -5,11 +5,9 @@
     $(this).parents('.form-group').toggleClass('active', (e.type === 'focus' || this.value.length > 0));
   });
     $(input).on('focus', function() {
-      debugger
       $(this).parents('.form-group').addClass('focus')
     })
     $(input).on('blur', function() {
-      debugger
       $(this).parents('.form-group').removeClass('focus')
     })
       .trigger('blur');
@@ -28,12 +26,9 @@ $(document).on("click", '.chapter.has-sub a' ,function(evt){
 
   var clickActiveElem=$(this).closest('li').hasClass('open');
   $(this).closest('.side-nav').find('.open').removeClass('open')
-  debugger
 
-  if(!clickActiveElem){
-    debugger
+  if(!clickActiveElem)
     $(this).closest('li').addClass('open')
-  }
 })
 
 
@@ -49,7 +44,7 @@ $(document).ready(function(){
 
 
 var typingTimer;                //timer identifier
-var doneTypingInterval = 2000;  //time in ms, 2 second for example
+var doneTypingInterval = 5000;  //time in ms, 5 second for example
 
 //on keydown, clear the countdown
 $(document).on('keydown', '.trumbowyg-editor', function () {
@@ -61,7 +56,6 @@ $(document).on('keydown', '.trumbowyg-editor', function () {
 function doneTyping () {
   var text = $('.scene.focus .trumbowyg-editor').html();
   var scene = $('.scene.focus')
-  debugger
   if(text.length != 0){
     $('.scene.focus').find('.placeholder').addClass('hidden')
   }
@@ -70,8 +64,19 @@ function doneTyping () {
   }
 
   $('.scene.focus').find('.text-description').val(text)
-  $('.scene.focus').find('.text-description').trigger('input')
-  $('.scene.focus').find('.text-description').trigger('change')
+  console.log(text)
+  //do something
 }
+
+$(document).on("keyup", ".trumbowyg-editor", function(e) {
+
+  if (this.textContent.indexOf("@") == this.textContent.length - 1 && this.textContent.length != 0) {
+  }
+  else if (this.textContent.indexOf("@") != -1 ){
+    var index = this.textContent.indexOf("@")+1;
+    var filter =  this.textContent.substr(index);
+    alert(filter)
+  }
+});
 
 })

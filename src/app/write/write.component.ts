@@ -5,19 +5,21 @@ import { ActsService } from './../acts.service';
 import { Act } from './../models/Act'
 import { Scene } from './../models/Scene';
 import { Chapter } from './../models/Chapter';
+import { Character } from './../models/Character'
 
 
 @Component({
   selector: 'app-write',
   templateUrl: './write.component.html',
   styleUrls: ['./write.component.scss'],
-  inputs:['chapter', 'ACTS'],
+  inputs:['chapter', 'ACTS', 'characters'],
   outputs:['selectedChapter', 'createNewScene', 'createNewChapter'],
   providers: [ActsService]
 })
 export class WriteComponent implements OnInit {
 
   public ACTS: Act[];
+  public characters: Character[]
   scenes: Scene[];
   currentChapterId = 0;
   currentChapter: Chapter;
@@ -76,14 +78,41 @@ export class WriteComponent implements OnInit {
     this.createNewScene.emit(newScene);
   }
 
+  editScene(scene,chapterId){
+    scene.type = 'edit';
+    scene.chapterId = chapterId;
+    this.createNewScene.emit(scene);
+  }
+
+  viewScene(scene){
+    scene.type = 'view';
+    this.createNewScene.emit(scene);
+  }
 
 
+  deleteScene(scene, actId:number){
+    scene.isDelete = true;
+    scene.type = 'delete';
+    scene.actId = actId;
+
+    this.createNewScene.emit(scene);
+  }
 
   addChapter(chapter ) {
     chapter.type="create"
 
     var newChapter = new Chapter("create",chapter.id,chapter.actId)
     this.createNewChapter.emit(newChapter);
+  }
+
+  viewChapter(chapter){
+    chapter.type = 'view';
+    this.createNewChapter.emit(chapter);
+  }
+
+  editChapter(chapter){
+    chapter.type = 'edit';
+    this.createNewChapter.emit(chapter);
   }
 
   ngOnInit() {
@@ -110,5 +139,7 @@ export class WriteComponent implements OnInit {
 
       this.shareService.updateActs(this.ACTS);
   }
+
+
 
 }

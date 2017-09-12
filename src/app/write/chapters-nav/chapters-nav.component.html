@@ -1,7 +1,9 @@
 <nav class="side-nav test">
   <div class="chapter has-sub" *ngFor="let item of menuItems; let i = index ">
     <ul class="collapsible-menu">
-      <li class="chapter has-sub" [id]="'chapter-'+chapter.id" *ngFor="let chapter of item.chapters; let i = index "
+      <li class="chapter has-sub"
+         [id]="'chapter-'+chapter.id"
+          *ngFor="let chapter of item.chapters; let i = index "
         (click)='selectChapter(chapter)'>
         <div class="wrapper-nav-item">
           <a href="javascript:void(0)"  class="arrow">
@@ -12,8 +14,8 @@
             </span>
           </a>
           <ul>
-            <li *ngFor="let scene of chapter.scenes" 
-                class='sc' [id]="'scene-'+chapter.id+'-'+scene.id" 
+            <li *ngFor="let scene of chapter.scenes"
+                class='scene' [id]="'scene-'+chapter.id+'-'+scene.id"
                 [ngClass]="{'open':chapter.isFocus == true}"
                 (click)="scroolToScene(scene.id, chapter.id)">
               Scene {{scene.id}}

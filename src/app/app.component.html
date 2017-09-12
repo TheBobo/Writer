@@ -27,19 +27,21 @@
     </div>
 
 
-       <app-story-map *ngIf="menubarItem == 'discover'  && activeComponent =='storyMap'" 
+       <app-story-map *ngIf="menubarItem == 'discover'  && activeComponent =='storyMap'"
             [ACTS] = "ACTS"
           (outScene)="emitScene($event)"
             (outChapter)="emitNewChapter($event)"
             (showright)=emitRight($event)
             (showmodal)=showmodal($event)
-            (menubar)=emitGotoMenu($event)></app-story-map>
+            (menubar)=emitGotoMenu($event)
+            (deletechapter)='deleteChapter($event)'></app-story-map>
 
       <app-write *ngIf="menubarItem == 'write'"
                 (createNewScene)="createScene($event)"
                 (createNewChapter)="emitNewChapter($event)"
                 [chapter]="selectChapter"
-                [ACTS] = "ACTS"></app-write>
+                [ACTS] = "ACTS"
+                [characters]=appCharacters></app-write>
 
       <app-synopsis *ngIf="menubarItem == 'discover' && activeComponent =='synopsis'"></app-synopsis>
 

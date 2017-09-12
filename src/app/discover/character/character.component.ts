@@ -9,8 +9,12 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 })
 export class CharacterComponent implements OnInit {
 
-  
+
   Characters: Character[];
+
+  deleteChapter(characterId){
+    alert(characterId)
+  }
 
 
   constructor() { }

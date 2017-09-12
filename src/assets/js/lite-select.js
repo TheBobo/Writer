@@ -240,7 +240,7 @@ function buildLiteSelectComponent() {
 
       $(this).addClass('active');
       $wrapperList.addClass("active")
-      debugger;
+
       var elementsUL = $wrapperList.find("ul li");
       elementsUL.addClass("ls-hidden")
       var timeOut = 450;
@@ -455,7 +455,7 @@ function buildLiteSelectComponent() {
 
   function initLiteItems() {
     setTimeout(function() {
-      
+
     var items = $('.lite-select')
     for(var i=0; i<items.length; i++){
       var lSelectObj = {
@@ -491,7 +491,7 @@ function buildLiteSelectComponent() {
       }
       $(items[i]).liteSelect(lSelectObj);
     }
-    
+
   }, 600);
   }
 
@@ -523,4 +523,3 @@ $(document).ready(function(){
 
     });
 
-    

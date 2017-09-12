@@ -6,7 +6,8 @@
           [chapter]="chapter"
           [actId]="act.id"
           (outScene)="emitScene($event)"
-          (outChapter)="emitNewChapter($event)">
+          (outChapter)="emitNewChapter($event)"
+          (deleteChapter)="emitDeleteChapter($event)">
         </app-chapter>
       </div>
     </div>

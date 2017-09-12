@@ -47,12 +47,12 @@ export class AppComponent  implements OnInit  {
 
   constructor(private shareService: ActsService) { }
 
-  
+
   createNewAudence(){
     this.clearState();
     this.newAudence = new Audence(1);
     this.newAudence.type="create";
-    
+
     this.emitRight(true);
   }
 
@@ -60,7 +60,7 @@ export class AppComponent  implements OnInit  {
     this.clearState();
     this.newCharacter = new Character(1);
     this.newCharacter.type="create";
-    
+
     this.emitRight(true);
   }
 
@@ -146,7 +146,6 @@ export class AppComponent  implements OnInit  {
   }
 
   addNewScene(event){
-    debugger
     this.shareService.addScene(event);
     this.ACTS = this.shareService.getAllActs();
   }
@@ -168,7 +167,11 @@ export class AppComponent  implements OnInit  {
 
   deleteSelectedScene(event){
     this.shareService.deleteScene(event);
-    alert(event)
+  }
+
+  deleteChapter(event){
+    debugger
+    this.shareService.deleteChapter(event);
   }
 
   openMenu(){

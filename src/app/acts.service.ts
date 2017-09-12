@@ -168,6 +168,12 @@ export class ActsService {
       this.updateSceneId(chapter, scene.id);
     }
 
+    deleteChapter(chapter: Chapter){
+      var act = this.ACTS.find(x=>x.id == chapter.actId);
+      act.chapters.splice(chapter.id-1, 1)
+      this.updateChapterId(this.ACTS);
+    }
+
     labelPosition() {
        setTimeout(function() {
         var input  = $(".form-control");
