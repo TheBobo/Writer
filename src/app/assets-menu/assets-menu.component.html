@@ -1,25 +1,16 @@
 <nav class="side-nav assets-nav">
-  <div class="chapter has-sub">
-    <ul class="collapsible-menu">
-      <li class="chapter has-sub open">
-        <div class="wrapper-nav-item">
-          <a href="javascript:void(0)" class="arrow"> Outlines </a>
-          <ul>
-            <li (click)='changeView("synopsis")' [ngClass]="{'active': activeElement == 'synopsis'}">
-              Synopsis
-            </li>
-            <li (click)='changeView("audence")' [ngClass]="{'active': activeElement == 'audence'}">
-              Audence
-            </li>
-            <li (click)='changeView("characterList")' [ngClass]="{'active': activeElement == 'characterList'}">
-              Characters
-            </li>
-            <li (click)='changeView("storyMap")' [ngClass]="{'active': activeElement == 'storyMap'}">
-              Story Map
-            </li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </div>
+  <ul class="">
+    <li (click)='changeView("synopsis")' [ngClass]="{'active': activeElement == 'synopsis'}">
+      Synopsis
+    </li>
+    <li (click)='changeView("audence")' [ngClass]="{'active': activeElement == 'audence'}">
+      Audence
+    </li>
+    <li (click)='changeView("characterList")' [ngClass]="{'active': activeElement == 'characterList'}">
+      Characters
+    </li>
+    <li (click)='changeView("storyMap")' [ngClass]="{'active': activeElement == 'storyMap'}">
+      Story Map
+    </li>
+  </ul>
 </nav>

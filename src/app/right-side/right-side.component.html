@@ -38,19 +38,17 @@
     </div>
     <div class="form-group">
       <label>One Line Synopsis</label>
-      <textarea formControlName="description" #sceneDescription class="autoExpand form-control" rows="1" value ="{{scene.description}}" data-min-rows='1'></textarea>
+      <textarea formControlName="description" #sceneDescription class="autoExpand form-control" rows="2" value ="{{scene.description}}" data-min-rows='1'></textarea>
       <span class="text-inline">{{ 116 - sceneDescription.value.length}}</span>
-
     </div>
-
     <div class="form-group">
       <label> Word taget </label>
       <input class="autoExpand form-control" formControlName="wordGoal" type="number" value="{{scene.wordGoal}}" class="form-control">
     </div>
-      <div class="panel-footer" *ngIf="scene.type!='view'">
-        <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
-        <button class="btn btn-yellow" [disabled]="scene.type ==='view'" (click)="save()">Save</button>
-      </div>
+    <div class="panel-footer" *ngIf="scene.type!='view'">
+      <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
+      <button class="btn btn-yellow" [disabled]="scene.type ==='view'" (click)="save()">Save</button>
+    </div>
   </form>
 
 
@@ -152,7 +150,6 @@
       <div class="form-group">
         <label>Chapter Name </label>
         <input type="text" formControlName="chaptertitle" #chaptertitle class="form-control" value="{{chapter.title}}">
-        <span class="text-inline">{{ 116 - chaptertitle.value.length}}</span>
       </div>
 
     <div class="form-group">
