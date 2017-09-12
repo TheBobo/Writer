@@ -36,7 +36,8 @@ export class ChaptersNavComponent implements OnInit {
   }
 
   addChapter(chapter){
-    this.createNewChapter.emit(chapter);
+    var newChapter = new Chapter('create',chapter.id,chapter.actId)
+    this.createNewChapter.emit(newChapter);
   }
 
   ngOnInit() {
