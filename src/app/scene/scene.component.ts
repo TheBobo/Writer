@@ -29,7 +29,6 @@ export class SceneComponent implements OnInit {
     if ( type === 'edit') {
       this.newScene = this.scene
       this.newScene.type = 'edit';
-      debugger
     } else if ( type === 'create') {
       this.newScene = this.shareService.getNewScene(sceneId, actId, chapterId, type, last);
       this.scenes.forEach((item, i) => {

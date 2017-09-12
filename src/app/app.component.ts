@@ -50,21 +50,22 @@ export class AppComponent  implements OnInit  {
   
   createNewAudence(){
     this.clearState();
-    debugger
     this.newAudence = new Audence(1);
-    this.newAudence.type="create"
-    this.rightTab = true;
+    this.newAudence.type="create";
+    
+    this.emitRight(true);
   }
 
   createNewCharacter(){
     this.clearState();
     this.newCharacter = new Character(1);
-    this.newCharacter.type="create"
-    this.rightTab = true;
+    this.newCharacter.type="create";
+    
+    this.emitRight(true);
   }
 
   createScene(event){
-    this.rightTab = true;
+    this.emitRight(true);
     this.clearState();
     this.newScene = event;
   }
@@ -89,23 +90,21 @@ export class AppComponent  implements OnInit  {
   }
 
   emitNewChapter(event){
+    this.clearState();
     this.newChapter = event;
-    this.rightTab =true;
-    this.newScene = undefined;
-    }
+    this.emitRight(true);
+  }
 
   emitModal(event){
     this.showModal = event;
   }
 
   emitRight(event){
-    debugger
     this.rightTab = event;
 
     setTimeout(() => {
       if(this.newScene){
         if ( this.newScene.type === 'edit') {
-          debugger
           this.rightSlideView.setRightSideTitle('Edit Scene')
         } else if ( this.newScene.type === 'create' ) {
           this.rightSlideView.setRightSideTitle('New Scene')
@@ -122,13 +121,21 @@ export class AppComponent  implements OnInit  {
         }
       }
       else if ( this.newCharacter ) {
-
         if ( this.newCharacter.type === 'edit') {
           this.rightSlideView.setRightSideTitle('Edit Character')
         } else if ( this.newCharacter.type === 'create' ) {
           this.rightSlideView.setRightSideTitle('New Character')
         } else if ( this.newCharacter.type === 'view' ) {
           this.rightSlideView.setRightSideTitle('View Character')
+        }
+      }
+      else if ( this.newAudence ) {
+        if ( this.newAudence.type === 'edit') {
+          this.rightSlideView.setRightSideTitle('Edit Audence')
+        } else if ( this.newAudence.type === 'create' ) {
+          this.rightSlideView.setRightSideTitle('New Audence')
+        } else if ( this.newAudence.type === 'view' ) {
+          this.rightSlideView.setRightSideTitle('View Audence')
         }
       }
     })
@@ -141,7 +148,6 @@ export class AppComponent  implements OnInit  {
   addNewScene(event){
     this.shareService.addScene(event);
     this.ACTS = this.shareService.getAllActs();
-    debugger;
   }
 
 
@@ -155,7 +161,6 @@ export class AppComponent  implements OnInit  {
   }
 
   addNewAudence(event){
-    debugger
     this.appAudences.push(event);
     this.rightTab=false;
   }
@@ -181,20 +186,7 @@ export class AppComponent  implements OnInit  {
     this.selectChapter = this.ACTS[0].chapters[0];
     this.menubarItem='menubarItem'
 
-    var firstCharacter = new Character(1);
-    firstCharacter.name = 'lusso 1';
-    firstCharacter.storyline ='I am first mockup created character.';
-    firstCharacter.goal ="run fast";
-    firstCharacter.conflict='no conflicts';
-    firstCharacter.epiphany = 'n/a';
-    firstCharacter.role ='main';
-    firstCharacter.img = 'scr/avatar.png'
-
-
     this.appCharacters = new Array<Character>();
-    this.appCharacters.push(firstCharacter);
-
-    
     this.appAudences = new Array<Audence>();
   }
 
