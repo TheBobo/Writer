@@ -13,7 +13,6 @@
       <div class="form-group">
         <label>Scene Name</label>
         <input type="text" formControlName="title" #scenetitle class="form-control" value="{{scene.title}}">
-        <small class="form-text text-muted"><code>{{ 116 - scenetitle.value.length}}</code> characters left</small>
       </div>
 
     <div class="form-group">
@@ -40,7 +39,7 @@
     <div class="form-group">
       <label>One Line Synopsis</label>
       <textarea formControlName="description" #sceneDescription class="autoExpand form-control" rows="1" value ="{{scene.description}}" data-min-rows='1'></textarea>
-      <small class="form-text text-muted"><code>{{ 116 - sceneDescription.value.length}}</code> characters left</small>
+      <span class="text-inline">{{ 116 - chaptertitle.value.length}}</span>
 
     </div>
 
@@ -153,7 +152,7 @@
       <div class="form-group">
         <label>Chapter Name </label>
         <input type="text" formControlName="chaptertitle" #chaptertitle class="form-control" value="{{chapter.title}}">
-        <small class="form-text text-muted"><code>{{ 116 - chaptertitle.value.length}}</code> characters left</small>
+        <span class="text-inline">{{ 116 - chaptertitle.value.length}}</span>
       </div>
 
     <div class="form-group">
@@ -171,8 +170,9 @@
 
     <div class="form-group">
       <label>One Line Synopsis</label>
-      <textarea formControlName="description" #chapterDescription class="autoExpand form-control" rows="1" value ="{{chapter.synopsis}}" data-min-rows='1'></textarea>
-      <small class="form-text text-muted"><code>{{ 116 - chapterDescription.value.length}}</code> characters left</small>
+      <textarea formControlName="description" #chapterDescription class="autoExpand form-control" rows="1" value ="{{chapter.synopsis}}" data-min-rows='1'>
+      </textarea>
+      <span class="text-inline">{{ 116 - chapterDescription.value.length}}</span>
     </div>
 
 
