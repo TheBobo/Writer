@@ -19,28 +19,51 @@
 
 .character-item {
   display: flex;
-  border-bottom: solid thin darken($light-gray, 7%);
+  border: solid thin darken($light-gray, 7%);
   margin-bottom: 30px;
+  background-color: #fff;
+  padding: 20px;
 
-  .character-picture {
-    @include square(1, 1);
-    background-image: url(/assets/images/avatar.svg);
-    background-size: cover;
+  .picture-wrapper {
     width: 15%;
-    align-self:flex-start;
-
+    text-align: center;
+    .character-role {
+      padding: 5px 10px;
+      color: $purple;
+      border: solid thin $purple;
+    }
+    .character-picture {
+      @include square(1, 1);
+      background-image: url(/assets/images/avatar.svg);
+      background-size: cover;
+      align-self: flex-start;
+      margin-bottom: 20px;
+    }
   }
   .character-details {
     width: 85%;
     padding: 0 0 0 30px;
     position: relative;
-    .character-role {
+    .tool-bar {
       position: absolute;
-      right: 0;
-      top: 0;
-      padding: 5px 10px;
-      color: $purple;
-      border: solid thin $purple;
+      right: -10px;
+      top: -10px;
+      span {
+        width: 20px;
+        height: 20px;
+        margin: 5px;
+        display: inline-block;
+        svg {
+          width: 18px;
+          height: 18px;
+          margin: 0;
+        }
+        &:hover {
+          svg {
+            fill: $yellow;
+          }
+        }
+      }
     }
     .character-name {
       margin-top: 0;

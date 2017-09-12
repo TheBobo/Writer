@@ -1,10 +1,25 @@
 <div class="character-item">
-  <div class="character-picture">
-    <img [src]="character.img" alt="" class="">
-  </div>
-  <div class="character-details">
-    <div class="character-role">
+  <div class="picture-wrapper">
+    <div class="character-picture">
+      <img [src]="character.img" alt="" class="">
+    </div>
+    <span class="character-role">
       {{character.role}}
+    </span>
+  </div>
+
+  <div class="character-details">
+    <div class="tool-bar">
+      <span data-balloon="Edit Details" data-balloon-pos="up" (click)='editChapter(chapter.id)'>
+        <svg class="icon-edit">
+          <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
+        </svg>
+      </span>
+      <span data-balloon="Delete" data-balloon-pos="up-right" (click)='deleteChapter(chapter.id)'>
+        <svg class="icon-trash">
+          <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
+        </svg>
+      </span>
     </div>
     <h2 class="character-name">{{character.name}}</h2>
       <hr>
