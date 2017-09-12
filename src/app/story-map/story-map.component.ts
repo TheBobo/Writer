@@ -52,7 +52,6 @@ export class StoryMapComponent implements OnInit {
     else if(event.type == 'edit')
       this.newChapter=event;
 
-    debugger
     this.newScene = undefined;
     console.log('this.newChapter ', this.newChapter)
 

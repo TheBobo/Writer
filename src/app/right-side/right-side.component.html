@@ -55,7 +55,7 @@
   </form>
 
 
-    <h4 class="title-item" *ngIf="character">Create Character</h4>
+    <h4 class="title-item" *ngIf="character">{{panelTitle}}</h4>
     <form  class="material" *ngIf="character" [formGroup]="rightPanelCreateCharacter">
       <div>
         <app-img-upload></app-img-upload>
@@ -104,8 +104,8 @@
         </div>
     </form>
 
-    <h4 class="title-item" *ngIf="audence">Create Audence</h4>
-    <form  class="audence" *ngIf="audence" [formGroup]="rightPanelCreateAudence">
+    <h4 class="title-item" *ngIf="audence">{{panelTitle}}</h4>
+    <form  class="material" *ngIf="audence" [formGroup]="rightPanelCreateAudence">
       <div>
         <app-img-upload></app-img-upload>
       </div>

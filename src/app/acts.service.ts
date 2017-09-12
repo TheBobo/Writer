@@ -90,7 +90,6 @@ export class ActsService {
 
     addScene(scene: Scene){
       var act = this.ACTS.find(x=>x.id == scene.actId);
-      debugger
       var chapter = act.chapters.find(x=>x.id == scene.chapterId);
 
       if ( !chapter )
@@ -125,7 +124,6 @@ export class ActsService {
         })
         return;
       }
-      debugger;
       act.chapters.splice((chapter.id ), 0, chapter);
       this.updateChapterId(this.ACTS);
     }
