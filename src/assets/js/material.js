@@ -75,8 +75,18 @@ $(document).on("keyup", ".trumbowyg-editor", function(e) {
   else if (this.textContent.indexOf("@") != -1 ){
     var index = this.textContent.indexOf("@")+1;
     var filter =  this.textContent.substr(index);
-    alert(filter)
+    
+
+      $("#characters > li").each(function() {
+          if ($(this).text().search(filter) > -1) {
+              $(this).show();
+          }
+          else {
+              $(this).hide();
+          }
+      });
   }
+  
 });
 
 })
