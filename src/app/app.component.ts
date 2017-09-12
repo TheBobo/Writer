@@ -19,6 +19,7 @@ export class AppComponent  implements OnInit  {
   newScene: Scene;
   newChapter: Chapter;
   newCharacter: Character;
+  newAudence: Character;
   activeComponent: string;
   selectChapter:Chapter;
 
@@ -40,10 +41,20 @@ export class AppComponent  implements OnInit  {
     this.newChapter = undefined;
     this.newScene = undefined;
     this.newCharacter = undefined;
+    this.newAudence = undefined;
   }
 
 
   constructor(private shareService: ActsService) { }
+
+  
+  createNewAudence(){
+    this.clearState();
+    debugger
+    this.newAudence = new Audence(1);
+    this.newAudence.type="create"
+    this.rightTab = true;
+  }
 
   createNewCharacter(){
     this.clearState();
@@ -143,6 +154,12 @@ export class AppComponent  implements OnInit  {
     this.rightTab=false;
   }
 
+  addNewAudence(event){
+    debugger
+    this.appAudences.push(event);
+    this.rightTab=false;
+  }
+
   deleteSelectedScene(event){
     this.shareService.deleteScene(event);
     alert(event)
@@ -176,6 +193,9 @@ export class AppComponent  implements OnInit  {
 
     this.appCharacters = new Array<Character>();
     this.appCharacters.push(firstCharacter);
+
+    
+    this.appAudences = new Array<Audence>();
   }
 
 }

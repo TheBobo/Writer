@@ -1,5 +1,5 @@
-
-<aside class="right-side-panel" *ngIf="scene || chapter || character" [ngClass]="{'show': rightOpen}">
+{{audence}}
+<aside class="right-side-panel" *ngIf="scene || chapter || character || audence" [ngClass]="{'show': rightOpen}">
   <div class="subheader">
     <span class="close"  (click)="cancel()">
       <svg class="icon-close">
@@ -101,6 +101,49 @@
         <div class="panel-footer" *ngIf="character.type!='view'">
           <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
           <button class="btn btn-yellow" [disabled]="character.type ==='view'" (click)="saveCharapter()">Save</button>
+        </div>
+    </form>
+
+    <h4 class="title-item" *ngIf="audence">Create Audence</h4>
+    <form  class="audence" *ngIf="audence" [formGroup]="rightPanelCreateAudence">
+      <div>
+        <app-img-upload></app-img-upload>
+      </div>
+        <div class="form-group">
+          <label>Audence Name</label>
+          <input type="text" formControlName="audencerName" #audencename class="form-control" value="{{audence.name}}">
+        </div>
+
+
+        <div class="form-group">
+          <label>Role</label>
+          <input type="text" formControlName="role" #role class="form-control" value="{{audence.role}}">
+        </div>
+
+
+        <div class="form-group">
+          <label>Story Line</label>
+          <input type="text" formControlName="storyline" #storyline class="form-control" value="{{audence.storyline}}">
+        </div>
+
+        <div class="form-group">
+          <label>Goal</label>
+          <input type="text" formControlName="goal" #goal class="form-control" value="{{audence.goal}}">
+        </div>
+
+        <div class="form-group">
+          <label>Conflict</label>
+          <input type="text" formControlName="conflict" #conflict class="form-control" value="{{audence.conflict}}">
+        </div>
+
+        <div class="form-group">
+          <label>Epiphany </label>
+          <input type="text" formControlName="epiphany" #storyline class="form-control" value="{{audence.epiphany}}">
+        </div>
+
+        <div class="panel-footer" *ngIf="audence.type!='view'">
+          <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
+          <button class="btn btn-yellow" [disabled]="audence.type ==='view'" (click)="saveAudence()">Save</button>
         </div>
     </form>
 

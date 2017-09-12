@@ -1,3 +1,4 @@
+import { Audence } from './../models/Audence';
 import { Character } from 'app/models/Character';
 import { Scene } from './../models/Scene';
 import { Chapter } from './../models/Chapter'
@@ -14,25 +15,29 @@ declare var LiteSelectFunctionality: any;
 @Component({
   selector: 'app-right-side',
   templateUrl: './right-side.component.html',
-  inputs: [ 'scene', 'chapter', 'character', 'rightOpen'],
-  outputs: ['close', 'addNewScene', 'addNewChapter', 'addNewCharacter'],
+  inputs: [ 'scene', 'chapter', 'character','audence', 'rightOpen'],
+  outputs: ['close', 'addNewScene', 'addNewChapter', 'addNewCharacter', 'addNewAudence'],
   providers: [ActsService]
 })
 export class RightSideComponent implements OnInit {
   @Input() scene;
   @Input() chapter;
-  @Input() character
+  @Input() character;
+  
+  @Input() audence;
   @Input() rightOpen;
 
   close = new EventEmitter<boolean>()
   addNewScene = new EventEmitter<Scene>()
   addNewChapter = new EventEmitter<Chapter>()
   addNewCharacter = new EventEmitter<Character>()
+  addNewAudence = new EventEmitter<Audence>();
 
   newModelScene = new Scene(0,0,0, '');
   private rightPanelForm: FormGroup;
   private rightPanelCreateChapter: FormGroup;
   private rightPanelCreateCharacter: FormGroup;
+  private rightPanelCreateAudence: FormGroup;
 
   private panelTitle: string = 'New Scene';
 
@@ -63,6 +68,16 @@ export class RightSideComponent implements OnInit {
       conflict:[this.character ? this.character.conflict : ''],
       epiphany:[this.character ? this.character.epiphany : ''],
       image:[this.character ? this.character.image : '']
+    })
+
+    this.rightPanelCreateAudence = fb.group({
+      audenceName: [this.audence ? this.audence.name : ''],
+      role:[this.audence ? this.audence.role : ''],
+      storyline:[this.audence ? this.audence.storyline : ''],
+      goal:[this.audence ? this.audence.goal : ''],
+      conflict:[this.audence ? this.audence.conflict : ''],
+      epiphany:[this.audence ? this.audence.epiphany : ''],
+      image:[this.audence ? this.audence.image : '']
     })
   }
 
@@ -129,4 +144,17 @@ export class RightSideComponent implements OnInit {
     this.addNewCharacter.emit(this.character);
   }
 
+  saveAudence(){
+    
+      let formData = this.rightPanelCreateAudence.getRawValue();
+  
+      this.audence.name = formData.audenceName;
+      this.audence.storyline=formData.storyline;
+      this.audence.goal = formData.goal;
+      this.audence.conflict = formData.conflict;
+      this.audence.epiphany = formData.epiphany;
+  
+      this.audence.role = formData.role;
+      this.addNewAudence.emit(this.audence);
+  }
 }

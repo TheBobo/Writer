@@ -45,27 +45,31 @@
 
       <app-audence-list *ngIf="menubarItem == 'discover' && activeComponent =='audence'"
                         [audences]="appAudences"
-                        (newAudence)="appAudence">
+                        (newAudence)="createNewAudence()">
       </app-audence-list>
 
       <app-character-list *ngIf="menubarItem == 'discover' && activeComponent =='characterList'"
                           (newCharacter)="createNewCharacter()"
-                          [characters]="appCharacters"></app-character-list>
+                          [characters]="appCharacters">
+      </app-character-list>
 
 
   </main>
 
 
-  <app-right-side #rightSlideView *ngIf="newScene || newChapter || newCharacter"
+  <app-right-side #rightSlideView *ngIf="newScene || newChapter || newCharacter || newAudence"
    [scene]="newScene"
    [chapter]="newChapter"
    [character]="newCharacter"
+   [audence]="newAudence"
+
    [rightOpen]="rightTab"
    (close)="this.rightTab = $event"
    (addScene)="addscene($event)"
    (addNewScene)=addNewScene($event)
    (addNewChapter)=addNewChapter($event)
-   (addNewCharacter)=addNewCharacter($event)></app-right-side>
+   (addNewCharacter)=addNewCharacter($event)
+   (addNewAudence)=addNewAudence($event)></app-right-side>
 
    <app-modal-confirm  #modalView *ngIf="newScene" [deleteScene]="newScene" (deleteSelectedScene)=deleteSelectedScene($event) ></app-modal-confirm>
 </div>
