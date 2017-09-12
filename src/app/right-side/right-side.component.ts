@@ -112,7 +112,7 @@ export class RightSideComponent implements OnInit {
   save(){
     let formData = this.rightPanelForm.getRawValue();
     this.scene.title = formData.title;
-    this.scene.description = formData.description;
+    this.scene.synopsis = formData.synopsis;
     this.scene.wordsGoal = formData.wordGoal ? parseInt(formData.wordGoal) : 0;
 
     this.addNewScene.emit(this.scene);

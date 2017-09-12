@@ -106,7 +106,7 @@ export class ActsService {
         return;
       }
 
-      chapter.scenes.splice((scene.id-1), 0, scene);
+      chapter.scenes.splice((scene.id), 0, scene);
 
       this.updateSceneId(chapter, scene.id, scene.last);
     }

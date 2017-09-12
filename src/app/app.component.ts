@@ -146,6 +146,7 @@ export class AppComponent  implements OnInit  {
   }
 
   addNewScene(event){
+    debugger
     this.shareService.addScene(event);
     this.ACTS = this.shareService.getAllActs();
   }

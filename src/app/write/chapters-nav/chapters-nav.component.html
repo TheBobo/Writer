@@ -25,7 +25,7 @@
               </span> -->
               <span class="new-element-menu">
                 <div class="add-new-wrapper">
-                    <span *ngFor="let scene of chapter.scenes" class="add-scene" (click)='addScene(scene.id, chapter.id, item.id, "create", lastItem)'>
+                    <span *ngFor="let scene of chapter.scenes" class="add-scene" (click)='addScene(scene.id-1, chapter.id, item.id, "create", lastItem)'>
                     +
                   </span>
                 </div>
@@ -38,7 +38,7 @@
             <span class="add-chapter" (click)='addChapter(chapter)'>
               +
             </span>
-            <span *ngFor="let scene of chapter.scenes" class="add-scene" (click)='addScene(scene.id, chapter.id, item.id, "create", lastItem)'>
+            <span  class="add-scene" (click)='addScene(chapter.scenes.length, chapter.id, item.id, "create", lastItem)'>
               +
             </span>
           </div>

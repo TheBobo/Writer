@@ -36,10 +36,12 @@ export class ChapterComponent implements OnInit {
 
 
   addNewChapter(chapter, actId){
-    chapter.actId = actId;
-    chapter.type ='create';
-    chapter.id = chapter.id;
-    this.outChapter.emit(chapter);
+    debugger
+    var newChapter = new Chapter('create',chapter.id-1,actId);
+    // chapter.actId = actId;
+    // chapter.type ='create';
+    // chapter.id = chapter.id;
+    this.outChapter.emit(newChapter);
   }
 
   editChapter(chapter){
