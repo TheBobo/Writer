@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Audence } from './models/Audence';
 import { Scene } from './models/Scene';
 import { Chapter } from './models/Chapter';
@@ -5,6 +6,9 @@ import { Component, OnInit, Output, ViewChild, ViewEncapsulation } from '@angula
 import { ActsService } from './acts.service';
 import { Act } from './models/Act';
 import { Character } from "app/models/Character";
+
+declare var $:any;
+declare var jQuery: any;
 
 @Component({
   selector: 'app-root',
@@ -16,6 +20,7 @@ export class AppComponent  implements OnInit  {
   title = 'app works!';
   user = { username: 'bob'};
   isRightPanelOpen = false;
+  addCharacterFromInput: false;
   newScene: Scene;
   newChapter: Chapter;
   newCharacter: Character;
@@ -158,6 +163,10 @@ export class AppComponent  implements OnInit  {
   addNewCharacter(event){
     this.appCharacters.push(event);
     this.rightTab=false;
+    if(this.addCharacterFromInput){
+      this.addCharacterFromInput = false;
+      this.select(event)
+    }
   }
 
   addNewAudence(event){
@@ -183,6 +192,23 @@ export class AppComponent  implements OnInit  {
       body.classList.remove("show-left-panel");   //remove the class
   }
 
+  select(character){
+    
+    var text = ($('.scene.focus').find('.trumbowyg-editor').text())
+    
+    var index = text.indexOf("@");
+    text = text.substr(0, index);
+    
+    text = text + "<span (click)='showCharacter("+character+")'>"+character.name+"</span>"
+    $('.scene.focus').find('.trumbowyg-editor').html(text);
+
+    $("#characters").hide();
+  }
+
+  addCharacterFromWriter(event){
+    this.addCharacterFromInput = event;
+  }
+
 
   ngOnInit() {
     this.shareService.initAllActs();
@@ -191,6 +217,7 @@ export class AppComponent  implements OnInit  {
     this.menubarItem='menubarItem'
 
     this.appCharacters = new Array<Character>();
+    
     this.appAudences = new Array<Audence>();
   }
 

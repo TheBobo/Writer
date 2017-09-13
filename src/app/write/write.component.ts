@@ -7,13 +7,15 @@ import { Scene } from './../models/Scene';
 import { Chapter } from './../models/Chapter';
 import { Character } from './../models/Character'
 
+declare var $:any;
+declare var jQuery: any;
 
 @Component({
   selector: 'app-write',
   templateUrl: './write.component.html',
   styleUrls: ['./write.component.scss'],
-  inputs:['chapter', 'ACTS', 'characters'],
-  outputs:['selectedChapter', 'createNewScene', 'createNewChapter'],
+  inputs:['chapter', 'ACTS', "characters"],
+  outputs:['selectedChapter', 'createNewScene', 'createNewChapter','newCharacter', 'hasOpenAddCharacter'],
   providers: [ActsService]
 })
 export class WriteComponent implements OnInit {
@@ -25,6 +27,8 @@ export class WriteComponent implements OnInit {
   currentChapter: Chapter;
   createNewScene =  new EventEmitter<Scene>();
   createNewChapter =  new EventEmitter<Chapter>();
+  newCharacter = new EventEmitter();
+  hasOpenAddCharacter = new EventEmitter<boolean>();
 
   public initialContentOne: string = ``
   public initialContentTwo: string = ``
@@ -77,7 +81,7 @@ export class WriteComponent implements OnInit {
     var newScene = this.shareService.getNewScene((sceneId+1), actId, chapterId, 'create');
     this.createNewScene.emit(newScene);
   }
-
+  
   editScene(scene,chapterId){
     scene.type = 'edit';
     scene.chapterId = chapterId;
@@ -104,6 +108,7 @@ export class WriteComponent implements OnInit {
     var newChapter = new Chapter("create",chapter.id,chapter.actId)
     this.createNewChapter.emit(newChapter);
   }
+ 
 
   viewChapter(chapter){
     chapter.type = 'view';
@@ -118,6 +123,19 @@ export class WriteComponent implements OnInit {
   ngOnInit() {
   }
 
+  addCharacter(){
+    $("#characters").hide();
+    this.newCharacter.emit();
+    this.hasOpenAddCharacter.emit(true);
+  }
+
+  
+  showCharacter(character) {
+    character.type="view"
+    debugger
+    this.newCharacter.emit(character);
+  }
+
   over(chapter){
     for(var i=0; i<this.ACTS.length; i++)
       for(var j=0; j<this.ACTS[i].chapters.length; j++)
@@ -125,8 +143,6 @@ export class WriteComponent implements OnInit {
                this.ACTS[i].chapters[j].isFocus = true;
                var id = 'chapter-'+this.ACTS[i].chapters[j].id;
                document.getElementById(id).classList.add('open');
-               //document.getElementById(id).className += " otherclass";
-
             }
          else{
             this.ACTS[i].chapters[j].isFocus = false;
@@ -140,6 +156,17 @@ export class WriteComponent implements OnInit {
       this.shareService.updateActs(this.ACTS);
   }
 
+  select(character){
 
+    var text = ($('.scene.focus').find('.trumbowyg-editor').text())
+    
+    var index = text.indexOf("@");
+    text = text.substr(0, index);
+    
+    text = text + "<span (click)='showCharacter("+character+")'>"+character.name+"</span>"
+    $('.scene.focus').find('.trumbowyg-editor').html(text);
+
+    $("#characters").hide();
+  }
 
 }

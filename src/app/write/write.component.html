@@ -1,12 +1,12 @@
 
 <ul id="characters">
-    <li  *ngFor='let character of characters'>
-      {{character.name}}
-    </li>
-    <li>
-      add new
-    </li>
-  </ul>
+  <li  *ngFor='let character of characters' (click)="select(character)">
+    {{character.name}}
+  </li>
+  <li (click)="addCharacter()">
+    add new
+  </li>
+</ul>
 
 
 <div class="editor-wrapper" id='editor-wrapper' (onScroll)="handleScroll($event)">

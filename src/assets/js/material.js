@@ -68,26 +68,64 @@ function doneTyping () {
   //do something
 }
 
+
 $(document).on("keyup", ".trumbowyg-editor", function(e) {
 
   if (this.textContent.indexOf("@") == this.textContent.length - 1 && this.textContent.length != 0) {
+    var postion = getCaretPosition();
+    $("#characters").css({top: postion.y-28, left: postion.x, display:'block'});
+    $("#characters > li").each(function() {
+       $(this).show();   
+    });
   }
   else if (this.textContent.indexOf("@") != -1 ){
     var index = this.textContent.indexOf("@")+1;
     var filter =  this.textContent.substr(index);
     
-    var textBefore = this.textContent.substring(0,index-1);
-    this.innerHTML = textBefore + "<span class='charecter-holder'>@"+filter+"</span>"
+    $(this).find('.char').text(filter)
+
+    var posStart  = $(".trumbowyg-editor").prop('selectionStart')
+    console.log(posStart)
+
       $("#characters > li").each(function() {
-          if ($(this).text().search(filter) > -1) {
+          if(filter == ''){
+            $(this).show();
+          }
+          else if ($(this).text().search(filter) > -1) {
               $(this).show();
           }
           else {
               $(this).hide();
+              
           }
       });
+  }
+  else  if (this.textContent.indexOf("@") == -1 ){
+    $("#characters").css({ display:'none'});
   }
   
 });
 
 })
+
+function getCaretPosition() {
+  var x = 0;
+  var y = 0;
+  var sel = window.getSelection();
+  if(sel.rangeCount) {
+      var range = sel.getRangeAt(0).cloneRange();
+      if(range.getClientRects()) {
+      range.collapse(true);
+      var rect = range.getClientRects()[0];
+      if(rect) {
+          y = rect.top;
+          x = rect.left;
+      }
+      }
+  }
+
+  return {
+      x: x,
+      y: y
+  };
+}
