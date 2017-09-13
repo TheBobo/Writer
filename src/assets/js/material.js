@@ -76,7 +76,8 @@ $(document).on("keyup", ".trumbowyg-editor", function(e) {
     var index = this.textContent.indexOf("@")+1;
     var filter =  this.textContent.substr(index);
     
-
+    var textBefore = this.textContent.substring(0,index-1);
+    this.innerHTML = textBefore + "<span class='charecter-holder'>@"+filter+"</span>"
       $("#characters > li").each(function() {
           if ($(this).text().search(filter) > -1) {
               $(this).show();
