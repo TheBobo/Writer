@@ -142,3 +142,27 @@
     }
   }
 }
+#characters {
+  position: absolute;
+  min-width: 150px;
+  min-height: 45px;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: #ffffff;
+  border: solid thin #DDD;
+  z-index: 100;
+  top: 110px;
+  right: 40px;
+  li {
+    line-height: 45px;
+    padding-left: 40px;
+    background-image: url(/assets/images/avatar.svg);
+    background-size: 20px 20px;
+    background-position: 10px 13px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    &:hover {
+      color: $yellow;
+    }
+  }
+}
