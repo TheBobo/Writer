@@ -1,6 +1,29 @@
 {{audence}}
 <aside class="right-side-panel" *ngIf="scene || chapter || character || audence" [ngClass]="{'show': rightOpen}">
   <div class="subheader">
+    <span class="edit-btn dropdown">
+      <svg class="icon-more">
+        <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-more"></use>
+      </svg>
+      <ul class="dropdown-menu">
+        <li>
+          <span>
+            <svg class="icon-more">
+              <use xlink:href="../../assets//fonts/swiftpad-icons.svg#icon-edit"></use>
+            </svg>
+          </span>
+          Edit
+        </li>
+        <li>
+          <span>
+            <svg class="icon-more">
+              <use xlink:href="../../assets//fonts/swiftpad-icons.svg#icon-trash"></use>
+            </svg>
+          </span>
+          Trash
+        </li>
+      </ul>
+    </span>
     <span class="close"  (click)="cancel()">
       <svg class="icon-close">
         <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-close"></use>

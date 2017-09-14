@@ -87,6 +87,7 @@
               opacity: .6;
               font-style: italic;
               margin-bottom: 7px;
+              height: 56px;
             }
 
             .characters-holder {
@@ -173,6 +174,12 @@
               font-size: 13px;
               letter-spacing: 1px;
               margin-bottom: 0;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              -webkit-line-clamp: 2;
+              height: 28px;
+
             }
 
             .synopsis {
@@ -182,6 +189,7 @@
               opacity: .6;
               font-style: italic;
               margin-bottom: 7px;
+              height: 56px;
             }
 
             .characters-holder {
