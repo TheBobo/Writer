@@ -6,7 +6,7 @@
         <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-more"></use>
       </svg>
       <ul class="dropdown-menu">
-        <li>
+        <li (click)='switchMode("edit")'>
           <span>
             <svg class="icon-more">
               <use xlink:href="../../assets//fonts/swiftpad-icons.svg#icon-edit"></use>
@@ -14,7 +14,7 @@
           </span>
           Edit
         </li>
-        <li>
+        <li (click)='switchMode("delete")'>
           <span>
             <svg class="icon-more">
               <use xlink:href="../../assets//fonts/swiftpad-icons.svg#icon-trash"></use>

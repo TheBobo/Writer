@@ -3,6 +3,7 @@
 <div [hidden]='user.username == undefined'>
   <app-header></app-header>
   <app-left-side
+    *ngIf='menubarItem != "dashboard"'
     (activeMenu)='activeMenuItem($event)'
     [menubarItem]='menubarItem'
     (selectedChapter)='selectedChapter($event)'
@@ -10,15 +11,21 @@
     (createNewChapter)="emitNewChapter($event)"
     ></app-left-side>
 
-  <!-- <app-dashboard  *ngIf='menubarItem == "write"'></app-dashboard> -->
-  <main class="main-content" >
+  <app-dashboard  *ngIf='menubarItem == "dashboard"'
+      [stories]="Stories"
+      (newStory)="createNewStory($event)"
+      (selectStory)="selectedStory($event)"
+  ></app-dashboard>
+
+  <main class="main-content"
+  *ngIf='menubarItem != "dashboard"'>
     <div class="subheader">
       <div class="hide-menu" (click)="openMenu($event)">
         <svg class="icon-menu">
           <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-menu"></use>
         </svg>
       </div>
-      <div class="story-name">The Time Truck</div>
+      <div class="story-name">{{selectedStoryItem.title}}</div>
       <nav class="main-nav"><ul>
         <li (click)='gotoMenu("discover")' [ngClass]="{'active':menubarItem=='discover'}">Discover</li>
         <li (click)='gotoMenu("write")' [ngClass]="{'active':menubarItem=='write'}">Write</li>
@@ -85,7 +92,11 @@
 
    (deleteSelectedScene)=deleteSelectedScene($event)
    (deleteSelectedChapter)=deleteSelectedChapter($event)
-   (deleteSelectedCharacter)=deleteSelectedCharacter($event)></app-modal-confirm>
+   (deleteSelectedCharacter)=deleteSelectedCharacter($event)>
+  </app-modal-confirm>
 
-</div>
+
+
+
+  </div>
 

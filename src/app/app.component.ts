@@ -6,6 +6,7 @@ import { Component, OnInit, Output, ViewChild, ViewEncapsulation } from '@angula
 import { ActsService } from './acts.service';
 import { Act } from './models/Act';
 import { Character } from "app/models/Character";
+import { Story } from "app/models/Story";
 
 declare var $:any;
 declare var jQuery: any;
@@ -27,6 +28,7 @@ export class AppComponent  implements OnInit  {
   newAudence: Character;
   activeComponent: string;
   selectChapter:Chapter;
+  selectedStoryItem:Story;
 
   deleteScene: Scene;
 
@@ -35,7 +37,7 @@ export class AppComponent  implements OnInit  {
   menubarItem:string;
   showLeftPanel: boolean;
 
-
+  Stories: Story[];
   ACTS: Act[];
   appCharacters: Character[];
   appAudences: Audence[];
@@ -52,6 +54,15 @@ export class AppComponent  implements OnInit  {
 
   constructor(private shareService: ActsService) { }
 
+  selectedStory(event){
+    this.selectedStoryItem = event;
+    this.menubarItem = 'discover';
+    this.activeComponent = 'storyMap';
+    this.showLeftPanel = true;
+    let body = document.getElementsByTagName('body')[0];
+    if(this.showLeftPanel)
+      body.classList.add("show-left-panel");   //add the class
+  }
 
   createNewAudence(){
     this.clearState();
@@ -64,8 +75,7 @@ export class AppComponent  implements OnInit  {
   createNewCharacter(){
     this.clearState();
     this.newCharacter = new Character(1);
-    this.newCharacter.type="create";
-debugger
+    this.newCharacter.type="create"
     this.emitRight(true);
   }
 
@@ -191,11 +201,13 @@ debugger
   }
 
   addNewCharacter(event){
+
     if(event.type == 'create'){
       if(event.name==null)
         return;
 
       this.appCharacters.push(event);
+      debugger
       if(this.addCharacterFromInput){
         this.select(event)
       }
@@ -272,7 +284,16 @@ debugger
 
 
   addCharacterFromWriter(event){
+    debugger
     this.addCharacterFromInput = event;
+  }
+
+
+  createNewStory(event){
+    debugger
+    if(this.Stories==null)
+      this.Stories = new Array<Story>();
+    this.Stories.push(event);
   }
 
 
@@ -280,7 +301,7 @@ debugger
     this.shareService.initAllActs();
     this.ACTS = this.shareService.getAllActs();
     this.selectChapter = this.ACTS[0].chapters[0];
-    this.menubarItem='menubarItem'
+    this.menubarItem='dashboard'
 
     this.appCharacters = new Array<Character>();
 

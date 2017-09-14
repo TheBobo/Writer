@@ -30,6 +30,7 @@ import { ChaptersNavComponent } from './write/chapters-nav/chapters-nav.componen
 import { SynopsisComponent } from './discover/synopsis/synopsis.component';
 import { StoryMapComponent } from './story-map/story-map.component';
 import { ImgUploadComponent } from './img-upload/img-upload.component';
+import { ModalNewStoryComponent } from './modal-new-story/modal-new-story.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ImgUploadComponent } from './img-upload/img-upload.component';
     AudenceComponent,
     StoryMapComponent,
     ImgUploadComponent,
-    AudenceListComponent
+    AudenceListComponent,
+    ModalNewStoryComponent
   ],
   imports: [
     BrowserModule,

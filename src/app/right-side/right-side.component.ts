@@ -127,6 +127,16 @@ export class RightSideComponent implements OnInit {
     this.close.emit(false);
   }
 
+  switchMode(mode){
+    if(this.scene)
+      this.scene.type = mode;
+    else if(this.chapter)
+      this.chapter.type = mode;
+    else if(this.character)
+      this.character = mode;
+  }
+
+
 
   saveChapter(){
     let formData = this.rightPanelCreateChapter.getRawValue();

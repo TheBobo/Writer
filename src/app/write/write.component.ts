@@ -135,8 +135,9 @@ export class WriteComponent implements OnInit {
   addCharacter(){
     $("#characters").hide();
     this.newCharacter.emit();
-    this.hasOpenAddCharacter.emit(true);
     debugger
+    this.hasOpenAddCharacter.emit(true);
+
   }
 
 
