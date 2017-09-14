@@ -142,6 +142,11 @@
       }
     }
   }
+  .character-name {
+    color: $yellow;
+    cursor: pointer;
+    display: inline-block;
+  }
 }
 
 #characters {

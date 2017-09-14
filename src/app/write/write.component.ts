@@ -10,12 +10,15 @@ import { Character } from './../models/Character'
 declare var $:any;
 declare var jQuery: any;
 
+declare var TrumbowEdit: any;
+
 @Component({
   selector: 'app-write',
   templateUrl: './write.component.html',
   styleUrls: ['./write.component.scss'],
   inputs:['chapter', 'ACTS', "characters"],
-  outputs:['selectedChapter', 'createNewScene', 'createNewChapter','newCharacter', 'hasOpenAddCharacter'],
+  outputs:['selectedChapter', 'createNewScene', 'createNewChapter','newCharacter', 'hasOpenAddCharacter',
+'deleteChapter'],
   providers: [ActsService]
 })
 export class WriteComponent implements OnInit {
@@ -28,6 +31,7 @@ export class WriteComponent implements OnInit {
   createNewScene =  new EventEmitter<Scene>();
   createNewChapter =  new EventEmitter<Chapter>();
   newCharacter = new EventEmitter();
+  deleteChapter  = new EventEmitter<Chapter>();
   hasOpenAddCharacter = new EventEmitter<boolean>();
 
   public initialContentOne: string = ``
@@ -81,7 +85,7 @@ export class WriteComponent implements OnInit {
     var newScene = this.shareService.getNewScene((sceneId+1), actId, chapterId, 'create');
     this.createNewScene.emit(newScene);
   }
-  
+
   editScene(scene,chapterId){
     scene.type = 'edit';
     scene.chapterId = chapterId;
@@ -102,13 +106,18 @@ export class WriteComponent implements OnInit {
     this.createNewScene.emit(scene);
   }
 
+  deleteChapterFn(chapter){
+    chapter.type = 'delete';
+    this.deleteChapter.emit(chapter);
+  }
+
   addChapter(chapter ) {
     chapter.type="create"
 
     var newChapter = new Chapter("create",chapter.id,chapter.actId)
     this.createNewChapter.emit(newChapter);
   }
- 
+
 
   viewChapter(chapter){
     chapter.type = 'view';
@@ -127,12 +136,13 @@ export class WriteComponent implements OnInit {
     $("#characters").hide();
     this.newCharacter.emit();
     this.hasOpenAddCharacter.emit(true);
+    debugger
   }
 
-  
+
   showCharacter(character) {
     character.type="view"
-    debugger
+
     this.newCharacter.emit(character);
   }
 
@@ -158,12 +168,12 @@ export class WriteComponent implements OnInit {
 
   select(character){
 
-    var text = ($('.scene.focus').find('.trumbowyg-editor').text())
-    
+    var text = ($('.scene.focus').find('.trumbowyg-editor').html())
+
     var index = text.indexOf("@");
     text = text.substr(0, index);
-    
-    text = text + "<span (click)='showCharacter("+character+")'>"+character.name+"</span>"
+
+    text = text + "<span readonly class='character-name' (click)='showCharacter("+character+")'>"+character.name+"</span>&#8203;"
     $('.scene.focus').find('.trumbowyg-editor').html(text);
 
     $("#characters").hide();

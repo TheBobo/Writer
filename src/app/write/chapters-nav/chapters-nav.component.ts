@@ -29,7 +29,7 @@ export class ChaptersNavComponent implements OnInit {
 
     console.log('current top of chapter is ' + $(id).offset().top)
     var scroll =  $('#editor-wrapper').scrollTop();
-    debugger
+
     scroll=scroll + $(id).offset().top-60;
 
     $('#editor-wrapper').animate({

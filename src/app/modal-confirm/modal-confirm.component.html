@@ -1,4 +1,7 @@
-<div [ngClass]="{'open': deleteScene.type == 'delete'}" class="modal confirm-modal open">
+<div [ngClass]="{'open': (deleteScene && deleteScene.type == 'delete') ||
+                         (deleteChapter && deleteChapter.type == 'delete') ||
+                          (deleteCharacter &&deleteCharacter.type == 'delete')}"
+      class="modal confirm-modal open">
   <div class="modal-body">
     <div class="modal-header">
       <svg class="icon-alert">
@@ -6,11 +9,15 @@
       </svg>
     </div>
     <div class="modal-content">
-      <p>Are you sure you want to delete Scene</p>
+        <p *ngIf="deleteScene && deleteScene.type == 'delete'">Are you sure you want to delete Scene</p>
+        <p *ngIf="deleteChapter && deleteChapter.type == 'delete'">Are you sure you want to delete Chapter</p>
+        <p *ngIf="deleteCharacter && deleteCharacter.type == 'delete'">Are you sure you want to delete Character</p>
     </div>
     <div class="buttons">
       <button class="btn-cancel" (click)="cancel()">Cancel</button>
-      <button class="btn-yellow" (click)='delete()'>Yes</button>
+      <button class="btn-yellow" *ngIf="deleteScene && deleteScene.type == 'delete'" (click)='deleteSceneFN()'>Yes</button>
+      <button class="btn-yellow" *ngIf="deleteChapter && deleteChapter.type == 'delete'" (click)='deleteChapterFN()'>Yes</button>
+      <button class="btn-yellow" *ngIf="deleteCharacter && deleteCharacter.type == 'delete'" (click)='deleteCharacterFN()'>Yes</button>
     </div>
   </div>
 </div>

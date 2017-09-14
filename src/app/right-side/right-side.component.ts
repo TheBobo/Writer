@@ -23,7 +23,7 @@ export class RightSideComponent implements OnInit {
   @Input() scene;
   @Input() chapter;
   @Input() character;
-  
+
   @Input() audence;
   @Input() rightOpen;
 
@@ -95,6 +95,14 @@ export class RightSideComponent implements OnInit {
         this.clearForm();
       }
     }
+
+    if(changes.character){
+      this.rightPanelCreateCharacter.reset()
+    }
+  }
+
+  characterClear(){
+    this.character.name = '';
   }
 
   private clearForm() {
@@ -145,15 +153,15 @@ export class RightSideComponent implements OnInit {
   }
 
   saveAudence(){
-    
+
       let formData = this.rightPanelCreateAudence.getRawValue();
-  
+
       this.audence.name = formData.audenceName;
       this.audence.storyline=formData.storyline;
       this.audence.goal = formData.goal;
       this.audence.conflict = formData.conflict;
       this.audence.epiphany = formData.epiphany;
-  
+
       this.audence.role = formData.role;
       this.addNewAudence.emit(this.audence);
   }

@@ -36,9 +36,9 @@ $(document).on("click", '.chapter.has-sub a' ,function(evt){
 //   console.log('windows was scrool')
 // })
 $(document).ready(function(){
-//   debugger
+//
 // $().scroll(function(){
-//   debugger
+//
 //   console.log('windows was scrool')
 // });
 
@@ -68,20 +68,19 @@ function doneTyping () {
   //do something
 }
 
-
 $(document).on("keyup", ".trumbowyg-editor", function(e) {
 
   if (this.textContent.indexOf("@") == this.textContent.length - 1 && this.textContent.length != 0) {
     var postion = getCaretPosition();
-    $("#characters").css({top: postion.y-28, left: postion.x, display:'block'});
+    $("#characters").css({top: postion.y-28, left: postion.x-300, display:'block'});
     $("#characters > li").each(function() {
-       $(this).show();   
+       $(this).show();
     });
   }
   else if (this.textContent.indexOf("@") != -1 ){
     var index = this.textContent.indexOf("@")+1;
     var filter =  this.textContent.substr(index);
-    
+
     $(this).find('.char').text(filter)
 
     var posStart  = $(".trumbowyg-editor").prop('selectionStart')
@@ -96,14 +95,14 @@ $(document).on("keyup", ".trumbowyg-editor", function(e) {
           }
           else {
               $(this).hide();
-              
+
           }
       });
   }
   else  if (this.textContent.indexOf("@") == -1 ){
     $("#characters").css({ display:'none'});
   }
-  
+
 });
 
 })
@@ -129,3 +128,9 @@ function getCaretPosition() {
       y: y
   };
 }
+
+
+$('.trumbowyg-editor').keyup(function(evt){
+  debugger
+  alert(evt)
+})

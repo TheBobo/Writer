@@ -65,12 +65,37 @@ export class AppComponent  implements OnInit  {
     this.clearState();
     this.newCharacter = new Character(1);
     this.newCharacter.type="create";
-
+debugger
     this.emitRight(true);
   }
 
+  editCharacter(event){
+
+    this.clearState();
+    this.newCharacter = this.appCharacters.find(x=>x.id == event)
+    this.newCharacter.type ='edit'
+    this.emitRight(true)
+  }
+
+
+  deleteCharacter(event){
+    this.clearState();
+    var index = -1;
+
+    this.appCharacters.forEach((element,i) => {
+      if(element.id == event){
+        index=i;
+        this.newCharacter = element;
+      }
+    });
+
+    this.newCharacter.type = 'delete';
+
+  }
+
   createScene(event){
-    this.emitRight(true);
+    if(event.type != 'delete')
+      this.emitRight(true);
     this.clearState();
     this.newScene = event;
   }
@@ -81,8 +106,13 @@ export class AppComponent  implements OnInit  {
 
   gotoMenu(option){
     this.menubarItem = option;
-    if (option == 'discover')
-      this.openMenu();
+
+    this.showLeftPanel = true;
+    let body = document.getElementsByTagName('body')[0];
+    if(this.showLeftPanel)
+      body.classList.add("show-left-panel");   //add the class
+
+      //this.openMenu();
   }
 
   emitGotoMenu(event){
@@ -161,12 +191,25 @@ export class AppComponent  implements OnInit  {
   }
 
   addNewCharacter(event){
-    this.appCharacters.push(event);
-    this.rightTab=false;
-    if(this.addCharacterFromInput){
-      this.addCharacterFromInput = false;
-      this.select(event)
+    if(event.type == 'create'){
+      if(event.name==null)
+        return;
+
+      this.appCharacters.push(event);
+      if(this.addCharacterFromInput){
+        this.select(event)
+      }
     }
+    else if(event.type == 'edit'){
+      var character = this.appCharacters.find(x=>x.id == event.id);
+      character=event;
+    }
+
+
+    this.rightTab=false;
+    this.addCharacterFromInput = false;
+    $('.form-group').removeClass('active')
+    this.newCharacter = new Character(1);
   }
 
   addNewAudence(event){
@@ -178,9 +221,30 @@ export class AppComponent  implements OnInit  {
     this.shareService.deleteScene(event);
   }
 
-  deleteChapter(event){
-    debugger
+  deleteSelectedChapter(event){
     this.shareService.deleteChapter(event);
+    this.newChapter=undefined;
+  }
+
+  deleteSelectedCharacter(event){
+    var index = -1;
+
+        this.appCharacters.forEach((element,i) => {
+          if(element.id == event.id){
+            index=i;
+            this.newCharacter = element;
+          }
+        });
+
+        this.appCharacters.splice(index,1);
+        this.newCharacter = undefined;
+  }
+
+  deleteChapter(event){
+
+    this.newChapter = event;
+    this.showModal=false;
+
   }
 
   openMenu(){
@@ -193,17 +257,19 @@ export class AppComponent  implements OnInit  {
   }
 
   select(character){
-    
-    var text = ($('.scene.focus').find('.trumbowyg-editor').text())
-    
-    var index = text.indexOf("@");
-    text = text.substr(0, index);
-    
-    text = text + "<span (click)='showCharacter("+character+")'>"+character.name+"</span>"
-    $('.scene.focus').find('.trumbowyg-editor').html(text);
 
-    $("#characters").hide();
-  }
+        var text = ($('.scene.focus').find('.trumbowyg-editor').html())
+
+        var index = text.indexOf("@");
+        text = text.substr(0, index);
+
+        text = text + "<span readonly class='character-name' (click)='showCharacter("+character+")'>"+character.name+"</span>&#8203;"
+        $('.scene.focus').find('.trumbowyg-editor').html(text);
+
+        $("#characters").hide();
+      }
+
+
 
   addCharacterFromWriter(event){
     this.addCharacterFromInput = event;
@@ -217,7 +283,7 @@ export class AppComponent  implements OnInit  {
     this.menubarItem='menubarItem'
 
     this.appCharacters = new Array<Character>();
-    
+
     this.appAudences = new Array<Audence>();
   }
 

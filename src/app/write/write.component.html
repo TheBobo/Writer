@@ -29,7 +29,7 @@
               <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
             </svg>
           </span>
-          <span data-balloon="Delete" data-balloon-pos="up-right"  (click)='deleteChapter(chapter.id)'>
+          <span data-balloon="Delete" data-balloon-pos="up-right"  (click)='deleteChapterFn(chapter)'>
             <svg class="icon-trash">
               <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
             </svg>
@@ -63,15 +63,15 @@
             </div>
 
             <div style="position:relative">
-              <span class="placeholder"  style="position:absolute" *ngIf='scene.isFocus == false && scene.description.length == 0'>
+              <!-- <span class="placeholder"  style="position:absolute" *ngIf='scene.isFocus == false && scene.description.length == 0'>
                   Start writing your story here
-              </span>
+              </span> -->
+
 
               <trumbowyg
-                         [initialContent]="scene.description" [options]="options1"
-                         (savedContent)="scene.description=$event">
-
-              </trumbowyg>
+              [initialContent]="scene.description"
+              [options]="options1"
+              (savedContent)="scene.description=$event">            </trumbowyg>
 
             </div>
 

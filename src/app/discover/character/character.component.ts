@@ -5,15 +5,24 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
   selector: 'app-character',
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.scss'],
-  inputs: ['character']
+  inputs: ['character'],
+  outputs: ['emitDeleteCharacter','emitEditCharacter']
 })
 export class CharacterComponent implements OnInit {
 
 
   Characters: Character[];
+  emitDeleteCharacter = new EventEmitter<number>()
+  emitEditCharacter = new EventEmitter<number>()
 
-  deleteChapter(characterId){
-    alert(characterId)
+
+
+  deleteCharacter(characterId){
+    this.emitDeleteCharacter.emit(characterId);
+  }
+
+  editCharacter(characterId){
+    this.emitEditCharacter.emit(characterId);
   }
 
 

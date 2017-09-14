@@ -39,6 +39,9 @@
       <app-write *ngIf="menubarItem == 'write'"
                 (createNewScene)="createScene($event)"
                 (createNewChapter)="emitNewChapter($event)"
+                (deleteChapter)="deleteChapter($event)"
+                (newCharacter)="createNewCharacter()"
+                 (hasOpenAddCharacter)="addCharacterFromWriter($event)"
                 [chapter]="selectChapter"
                 [ACTS] = "ACTS"
                 [characters]=appCharacters></app-write>
@@ -52,6 +55,8 @@
 
       <app-character-list *ngIf="menubarItem == 'discover' && activeComponent =='characterList'"
                           (newCharacter)="createNewCharacter()"
+                          (emitEditCharacter)='editCharacter($event)'
+                          (emitDeleteCharacter)='deleteCharacter($event)'
                           [characters]="appCharacters">
       </app-character-list>
 
@@ -73,6 +78,14 @@
    (addNewCharacter)=addNewCharacter($event)
    (addNewAudence)=addNewAudence($event)></app-right-side>
 
-   <app-modal-confirm  #modalView *ngIf="newScene" [deleteScene]="newScene" (deleteSelectedScene)=deleteSelectedScene($event) ></app-modal-confirm>
+   <app-modal-confirm  #modalView *ngIf="newScene || newChapter || newCharacter"
+   [deleteScene]="newScene"
+   [deleteChapter]="newChapter"
+   [deleteCharacter]="newCharacter"
+
+   (deleteSelectedScene)=deleteSelectedScene($event)
+   (deleteSelectedChapter)=deleteSelectedChapter($event)
+   (deleteSelectedCharacter)=deleteSelectedCharacter($event)></app-modal-confirm>
+
 </div>
 

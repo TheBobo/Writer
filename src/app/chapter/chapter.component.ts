@@ -55,6 +55,7 @@ export class ChapterComponent implements OnInit {
   }
 
   deleteChapterFomAct(chapter){
+    chapter.type='delete'
     this.deleteChapter.emit(chapter)
   }
 
