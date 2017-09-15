@@ -1,3 +1,38 @@
-<p>
-  synopsis works!
-</p>
+
+<div class="sub-subheader">
+  <span class="title-inner">Synopsis</span>
+</div>
+<form class="inner-wrapper material">
+  <div class="synopsis-block">
+      <div class="form-group">
+        <label>One Line Synopsis</label>
+        <textarea formControlName="description" #sceneDescription class="autoExpand form-control" rows="2" value="{{scene.description}}"
+          data-min-rows='2' maxlength=116></textarea>
+        <span class="text-inline">{{ 116 - sceneDescription.value.length}}</span>
+      </div>
+  </div>
+  <form class="synopsis-block material">
+    <div class="form-group">
+      <label>One Paragraph Synopsis</label>
+      <textarea formControlName="description" #sceneDescription class="autoExpand form-control" rows="2" value="{{scene.description}}"
+        data-min-rows='2' maxlength=116></textarea>
+      <span class="text-inline">{{ 116 - sceneDescription.value.length}}</span>
+    </div>
+  </form>
+  <form class="synopsis-block material">
+    <div class="form-group">
+      <label>Four Paragraph Synopsis</label>
+      <textarea formControlName="description" #sceneDescription class="autoExpand form-control" rows="4" value="{{scene.description}}"
+        data-min-rows='4' maxlength=116></textarea>
+      <span class="text-inline">{{ 116 - sceneDescription.value.length}}</span>
+    </div>
+  </form>
+  <form class="synopsis-block material">
+    <div class="form-group">
+      <label>Four Page Synopsis</label>
+      <textarea formControlName="description" #sceneDescription class="autoExpand form-control" rows="4" value="{{scene.description}}"
+        data-min-rows='4' maxlength=116></textarea>
+      <span class="text-inline">{{ 116 - sceneDescription.value.length}}</span>
+    </div>
+  </form>
+</form>
