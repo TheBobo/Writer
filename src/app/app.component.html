@@ -1,9 +1,11 @@
 <app-login [hidden]="user.username != undefibned"></app-login>
 
 <div [hidden]='user.username == undefined'>
-  <app-header></app-header>
+  <app-header
+  (redirectDashboard)='toDashboard()'
+  (redirectSettings)='toSettings()'></app-header>
   <app-left-side
-    *ngIf='menubarItem != "dashboard"'
+    *ngIf='menubarItem != "dashboard" && menubarItem != "settings"'
     (activeMenu)='activeMenuItem($event)'
     [menubarItem]='menubarItem'
     (selectedChapter)='selectedChapter($event)'
@@ -18,7 +20,7 @@
   ></app-dashboard>
 
   <main class="main-content"
-  *ngIf='menubarItem != "dashboard"'>
+  *ngIf='menubarItem != "dashboard" && menubarItem != "settings"'>
     <div class="subheader">
       <div class="hide-menu" (click)="openMenu($event)">
         <svg class="icon-menu">
@@ -95,6 +97,7 @@
    (deleteSelectedCharacter)=deleteSelectedCharacter($event)>
   </app-modal-confirm>
 
+  <app-settings *ngIf="menubarItem == 'settings'"></app-settings>
 
 
 

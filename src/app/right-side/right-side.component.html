@@ -1,4 +1,3 @@
-{{audence}}
 <aside class="right-side-panel" *ngIf="scene || chapter || character || audence" [ngClass]="{'show': rightOpen}">
   <div class="subheader">
     <span class="edit-btn dropdown">
@@ -42,7 +41,7 @@
       <label >act {{scene.actId}}</label>
     </div>
     <div class="form-group">
-      <label >chapter {{scene.chapterId}}</label>
+      <label *ngIf='scene.type == "view"' >chapter {{scene.chapterId}}</label>
       <select class="lite-select" *ngIf='scene.type == "edit"' name="chapter" data-placeholder="Chapter" formControlName="chapterId">
         <option value="">Chapter 1</option>
         <option value="">Chapter 2</option>
@@ -51,7 +50,7 @@
       </select>
     </div>
     <div class="form-group">
-      <label >scene {{scene.id + 1}}</label>
+      <label *ngIf='scene.type == "view"'>scene {{scene.id + 1}}</label>
       <select class="lite-select"  *ngIf='scene.type == "edit"' name="" data-placeholder="Scene" formControlName="id">
         <option value="">Scene 1</option>
         <option value="">Scene 2</option>
@@ -61,7 +60,7 @@
     </div>
     <div class="form-group">
       <label>One Line Synopsis</label>
-      <textarea formControlName="description" #sceneDescription class="autoExpand form-control" rows="2" value ="{{scene.description}}" data-min-rows='1'></textarea>
+      <textarea formControlName="description" #sceneDescription class="autoExpand form-control" rows="2" value ="{{scene.description}}" data-min-rows='1' maxlength=116></textarea>
       <span class="text-inline">{{ 116 - sceneDescription.value.length}}</span>
     </div>
     <div class="form-group">
@@ -76,9 +75,9 @@
 
 
     <h4 class="title-item" *ngIf="character">{{panelTitle}}</h4>
-    <form  class="material" *ngIf="character" [formGroup]="rightPanelCreateCharacter">
+    <form  class="material characterForm" *ngIf="character" [formGroup]="rightPanelCreateCharacter">
       <div>
-        <app-img-upload></app-img-upload>
+        <app-img-upload [ngModel]="character.img"></app-img-upload>
       </div>
       <!-- <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
 
@@ -179,7 +178,7 @@
       <label >act {{chapter.actId}}</label>
     </div>
     <div class="form-group">
-      <label >chapter {{chapter.id + 1}}</label>
+      <label  *ngIf='chapter.type == "view"' >chapter {{chapter.id + 1}}</label>
       <select class="lite-select" *ngIf='chapter.type == "edit"' name="chapter" data-placeholder="Chapter" formControlName="chapterId">
         <option value="">Chapter 1</option>
         <option value="">Chapter 2</option>
@@ -190,7 +189,7 @@
 
     <div class="form-group">
       <label>One Line Synopsis</label>
-      <textarea formControlName="description" #chapterDescription class="autoExpand form-control" rows="1" value ="{{chapter.synopsis}}" data-min-rows='1'>
+      <textarea formControlName="description" #chapterDescription class="autoExpand form-control" rows="1" value ="{{chapter.synopsis}}" data-min-rows='1' maxlength=116>
       </textarea>
       <span class="text-inline">{{ 116 - chapterDescription.value.length}}</span>
     </div>

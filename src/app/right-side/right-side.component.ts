@@ -79,6 +79,8 @@ export class RightSideComponent implements OnInit {
       epiphany:[this.audence ? this.audence.epiphany : ''],
       image:[this.audence ? this.audence.image : '']
     })
+
+    debugger
   }
 
   ngOnInit() {
@@ -111,6 +113,10 @@ export class RightSideComponent implements OnInit {
 
   cancel(){
     this.close.emit(false);
+    this.rightPanelForm.reset();
+    this.rightPanelCreateChapter.reset();
+    this.rightPanelCreateCharacter.reset();
+    $('.form-group').removeClass('active')
   }
 
   public setRightSideTitle(title) {
@@ -125,6 +131,8 @@ export class RightSideComponent implements OnInit {
 
     this.addNewScene.emit(this.scene);
     this.close.emit(false);
+    this.rightPanelForm.reset();
+    $('.form-group').removeClass('active')
   }
 
   switchMode(mode){
@@ -142,24 +150,38 @@ export class RightSideComponent implements OnInit {
     let formData = this.rightPanelCreateChapter.getRawValue();
     this.chapter.title = formData.chaptertitle;
 
+
     this.chapter.description = formData.description;
 
     this.addNewChapter.emit(this.chapter)
     this.close.emit(false);
+    this.rightPanelCreateChapter.reset();
+    $('.form-group').removeClass('active')
   }
 
   saveCharapter(){
 
     let formData = this.rightPanelCreateCharacter.getRawValue();
 
+
+    var imgSrc = $('.characterForm .image');
+    var image = imgSrc.css("background-image")
+
+
     this.character.name = formData.characterName;
     this.character.storyline=formData.storyline;
     this.character.goal = formData.goal;
     this.character.conflict = formData.conflict;
     this.character.epiphany = formData.epiphany;
+    this.character.img = image;
 
     this.character.role = formData.role;
     this.addNewCharacter.emit(this.character);
+    this.rightPanelCreateCharacter.reset();
+    $('.form-group').removeClass('active')
+    debugger
+    $('.characterForm .clear').click();
+    $(imgSrc).css("background-image","")
   }
 
   saveAudence(){

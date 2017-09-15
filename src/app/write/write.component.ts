@@ -80,7 +80,6 @@ export class WriteComponent implements OnInit {
   }
 
 
-
   addNewScene(actId, chapterId, sceneId ) {
     var newScene = this.shareService.getNewScene((sceneId+1), actId, chapterId, 'create');
     this.createNewScene.emit(newScene);
@@ -178,6 +177,14 @@ export class WriteComponent implements OnInit {
     $('.scene.focus').find('.trumbowyg-editor').html(text);
 
     $("#characters").hide();
+  }
+
+  blur(){
+    alert('element was blur')
+  }
+
+  focus(){
+    alert("element is focus")
   }
 
 }

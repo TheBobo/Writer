@@ -16,7 +16,9 @@
           </div>
           <div class="form-group">
             <label>One Line Synopsis</label>
-            <textarea formControlName="synopsis" (focus) ="focusElem($event)" class="autoExpand form-control" rows="2" data-min-rows='1'></textarea>
+            <textarea formControlName="synopsis" #synopsis (focus) ="focusElem($event)" class="autoExpand form-control" rows="2" data-min-rows='1' maxlength=160></textarea>
+            <span class="text-inline">{{ 160 - synopsis.value.length}}</span>
+
           </div>
             <div class="form-group">
               <label>Story Description</label>

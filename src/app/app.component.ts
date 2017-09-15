@@ -57,11 +57,30 @@ export class AppComponent  implements OnInit  {
   selectedStory(event){
     this.selectedStoryItem = event;
     this.menubarItem = 'discover';
-    this.activeComponent = 'storyMap';
+    this.activeComponent = 'synopsis';
     this.showLeftPanel = true;
     let body = document.getElementsByTagName('body')[0];
     if(this.showLeftPanel)
       body.classList.add("show-left-panel");   //add the class
+  }
+
+
+
+  createNewStory(event){
+    if(this.Stories==null)
+      this.Stories = new Array<Story>();
+    this.Stories.push(event);
+
+    this.selectedStory(event)
+  }
+
+
+  toDashboard(){
+    this.menubarItem='dashboard'
+  }
+
+  toSettings(){
+    this.menubarItem='settings'
   }
 
   createNewAudence(){
@@ -284,16 +303,7 @@ export class AppComponent  implements OnInit  {
 
 
   addCharacterFromWriter(event){
-    debugger
     this.addCharacterFromInput = event;
-  }
-
-
-  createNewStory(event){
-    debugger
-    if(this.Stories==null)
-      this.Stories = new Array<Story>();
-    this.Stories.push(event);
   }
 
 

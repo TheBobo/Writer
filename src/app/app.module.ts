@@ -31,6 +31,7 @@ import { SynopsisComponent } from './discover/synopsis/synopsis.component';
 import { StoryMapComponent } from './story-map/story-map.component';
 import { ImgUploadComponent } from './img-upload/img-upload.component';
 import { ModalNewStoryComponent } from './modal-new-story/modal-new-story.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ModalNewStoryComponent } from './modal-new-story/modal-new-story.compon
     StoryMapComponent,
     ImgUploadComponent,
     AudenceListComponent,
-    ModalNewStoryComponent
+    ModalNewStoryComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

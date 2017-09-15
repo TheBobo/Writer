@@ -1,5 +1,5 @@
 <div class="header">
-  <div class="logo-container">
+  <div class="logo-container" (click)='gotoDashboard()'>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       viewBox="0 0 358 85" style="enable-background:new 0 0 358 85;" xml:space="preserve">
     <style type="text/css">
@@ -94,7 +94,7 @@
   <div class="user-menu">
     <div class="avatar dropdown right">
       <ul class="dropdown-menu">
-        <li>
+        <li (click)='gotoSettings()'>
           <span>
             <svg class="icon-settings">
               <use xlink:href="../../assets//fonts/swiftpad-icons.svg#icon-settings"></use>
