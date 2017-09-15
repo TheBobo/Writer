@@ -20,6 +20,8 @@ declare var jQuery: any;
 export class AppComponent  implements OnInit  {
   title = 'app works!';
   user = { username: 'bob'};
+
+  openSettings = false;
   isRightPanelOpen = false;
   addCharacterFromInput: false;
   newScene: Scene;
@@ -80,7 +82,7 @@ export class AppComponent  implements OnInit  {
   }
 
   toSettings(){
-    this.menubarItem='settings'
+    this.openSettings=true;
   }
 
   createNewAudence(){

@@ -5,7 +5,7 @@
   (redirectDashboard)='toDashboard()'
   (redirectSettings)='toSettings()'></app-header>
   <app-left-side
-    *ngIf='menubarItem != "dashboard" && menubarItem != "settings"'
+    *ngIf='menubarItem != "dashboard"'
     (activeMenu)='activeMenuItem($event)'
     [menubarItem]='menubarItem'
     (selectedChapter)='selectedChapter($event)'
@@ -20,7 +20,7 @@
   ></app-dashboard>
 
   <main class="main-content"
-  *ngIf='menubarItem != "dashboard" && menubarItem != "settings"'>
+  *ngIf='menubarItem != "dashboard"'>
     <div class="subheader">
       <div class="hide-menu" (click)="openMenu($event)">
         <svg class="icon-menu">
@@ -97,9 +97,6 @@
    (deleteSelectedCharacter)=deleteSelectedCharacter($event)>
   </app-modal-confirm>
 
-  <app-settings *ngIf="menubarItem == 'settings'"></app-settings>
-
-
+  <app-settings *ngIf="openSettings == true"></app-settings>
 
   </div>
-
