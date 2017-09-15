@@ -97,6 +97,11 @@
    (deleteSelectedCharacter)=deleteSelectedCharacter($event)>
   </app-modal-confirm>
 
-  <app-settings *ngIf="openSettings == true"></app-settings>
+  <app-settings *ngIf="openSettings == true"
+                [isOpen]="openSettings"
+                (close)="closeSettings()"
+
+                [user]="user"
+                (userSave)="userSave($event)"></app-settings>
 
   </div>

@@ -19,6 +19,16 @@
   });
 }, 400);
 
+$(document).on('focus','.form-control input', function(evt){
+  $(evt.target).closest('.form-control').addClass('active')
+})
+
+
+$(document).on('blur','.form-control input', function(evt){
+
+  if($(evt.target).val().length == 0 )
+    $(evt.target).closest('.form-control').removeClass('active')
+})
 
 //open acordion
 $(document).on("click", '.chapter.has-sub a' ,function(evt){
@@ -129,8 +139,16 @@ function getCaretPosition() {
   };
 }
 
+$(DocumentType).keyup(function(evt){
+  var currentScroll = $('#editor-wrapper').scrollTop();
+  if(evt.keyCode == 38){
+    currentScroll -= 100;
+  }
+  else if(evt.keyCode == 40){
+    currentScroll += 100;
+  }
 
-$('.trumbowyg-editor').keyup(function(evt){
-  debugger
-  alert(evt)
+  $('#editor-wrapper').animate({
+    scrollTop: (currentScroll)
+  }, 400);
 })

@@ -7,6 +7,7 @@ import { ActsService } from './acts.service';
 import { Act } from './models/Act';
 import { Character } from "app/models/Character";
 import { Story } from "app/models/Story";
+import { User } from "app/models/User"
 
 declare var $:any;
 declare var jQuery: any;
@@ -19,7 +20,7 @@ declare var jQuery: any;
 })
 export class AppComponent  implements OnInit  {
   title = 'app works!';
-  user = { username: 'bob'};
+  user: User;
 
   openSettings = false;
   isRightPanelOpen = false;
@@ -83,6 +84,10 @@ export class AppComponent  implements OnInit  {
 
   toSettings(){
     this.openSettings=true;
+  }
+
+  closeSettings(){
+    this.openSettings = false;
   }
 
   createNewAudence(){
@@ -308,6 +313,12 @@ export class AppComponent  implements OnInit  {
     this.addCharacterFromInput = event;
   }
 
+  userSave(event){
+    debugger
+    this.user = event;
+    debugger
+  }
+
 
   ngOnInit() {
     this.shareService.initAllActs();
@@ -318,6 +329,8 @@ export class AppComponent  implements OnInit  {
     this.appCharacters = new Array<Character>();
 
     this.appAudences = new Array<Audence>();
+    this.user = new User();
+    this.user.username = 'lusso';
   }
 
 }

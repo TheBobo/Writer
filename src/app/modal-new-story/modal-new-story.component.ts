@@ -37,6 +37,11 @@ export class ModalNewStoryComponent implements OnInit {
     $(elem.target).parent().addClass("active")
   }
 
+  blur(elem){
+    if($(elem.target).val().length == 0)
+        $(elem.target).parent().removeClass("active")
+  }
+
   createAStory(){
 
     let formData = this.createAStoryForm.getRawValue();
