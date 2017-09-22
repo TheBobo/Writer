@@ -1,7 +1,9 @@
 <nav class="side-nav test">
   <div class="chapter has-sub" *ngFor="let item of menuItems; let i = index ">
     <ul class="collapsible-menu">
-      <li class="chapter has-sub" [id]="'chapter-'+chapter.id" *ngFor="let chapter of item.chapters; let i = index "
+      <li class="chapter has-sub"
+         [id]="'chapter-'+chapter.id"
+          *ngFor="let chapter of item.chapters; let i = index "
         (click)='selectChapter(chapter)'>
         <div class="wrapper-nav-item">
           <a href="javascript:void(0)"  class="arrow">
@@ -11,28 +13,39 @@
               : {{chapter.title}}
             </span>
           </a>
-
           <ul>
-            <li *ngFor="let scene of chapter.scenes" class='sc' [id]="'scene-'+chapter.id+'-'+scene.id" [ngClass]="{'open':chapter.isFocus == true}">
+            <li *ngFor="let scene of chapter.scenes"
+                class='scene' [id]="'scene-'+chapter.id+'-'+scene.id"
+                [ngClass]="{'open':chapter.isFocus == true}"
+                (click)="scroolToScene(scene.id, chapter.id)">
               Scene {{scene.id}}
               {{scene.title}}
-              <span *ngFor="let scene of chapter.scenes" class="new-element-menu add-scene"
-              (click)='addScene(scene.id, chapter.id, item.id, "create", lastItem)'>
+              <!-- <span *ngFor="let scene of chapter.scenes" class="new-element-menu add-scene"
+              >
                 <div class="add-new-wrapper">
                   <svg class="icon-plus">
                     <use xlink:href="../../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
                   </svg>
                 </div>
+              </span> -->
+              <span class="new-element-menu">
+                <div class="add-new-wrapper">
+                    <span *ngFor="let scene of chapter.scenes" class="add-scene" (click)='addScene(scene.id-1, chapter.id, item.id, "create", lastItem)'>
+                    +
+                  </span>
+                </div>
               </span>
             </li>
           </ul>
         </div>
-        <span class="new-element-menu add-chapter"
-        (click)='addChapter(chapter)'>
+        <span class="new-element-menu">
           <div class="add-new-wrapper">
-            <svg class="icon-plus">
-              <use xlink:href="../../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
-            </svg>
+            <span class="add-chapter" (click)='addChapter(chapter)'>
+              +
+            </span>
+            <span  class="add-scene" (click)='addScene(chapter.scenes.length, chapter.id, item.id, "create", lastItem)'>
+              +
+            </span>
           </div>
         </span>
       </li>

@@ -20,13 +20,18 @@ module.exports = {
             type: 'string'
         },
         email: {
-            type: 'string',
+            type: 'email',
             unique: true
         },
 
         stories: {
             collection: 'stories',
             via: 'user'
+        },
+
+        role: {
+            type: 'string',
+            defaultsTo: 'user'
         },
 
         // We don't wan't to send back encrypted password either

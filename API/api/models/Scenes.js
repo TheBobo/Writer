@@ -18,8 +18,28 @@ module.exports = {
             type: 'int'
         },
 
+        setting: {
+            type: 'string'
+        },
+        modeTone: {
+            type: 'string'
+        },
+        objective: {
+            type: 'string'
+        },
+
+        characters: {
+            collection: 'characters',
+            via: 'scenes'
+        },
+
+
         chapter: {
             model: 'chapters'
+        },
+
+        label: {
+            model: 'labels'
         }
     }
 };

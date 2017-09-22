@@ -19,6 +19,16 @@
   });
 }, 400);
 
+$(document).on('focus','.form-control input', function(evt){
+  $(evt.target).closest('.form-control').addClass('active')
+})
+
+
+$(document).on('blur','.form-control input', function(evt){
+
+  if($(evt.target).val().length == 0 )
+    $(evt.target).closest('.form-control').removeClass('active')
+})
 
 //open acordion
 $(document).on("click", '.chapter.has-sub a' ,function(evt){
@@ -36,39 +46,123 @@ $(document).on("click", '.chapter.has-sub a' ,function(evt){
 //   console.log('windows was scrool')
 // })
 $(document).ready(function(){
-//   debugger
+//
 // $().scroll(function(){
-//   debugger
+//
 //   console.log('windows was scrool')
 // });
 
 
-var typingTimer;                //timer identifier
-var doneTypingInterval = 2000;  //time in ms, 2 second for example
+// var typingTimer;                //timer identifier
+// var doneTypingInterval = 5000;  //time in ms, 5 second for example
 
-//on keydown, clear the countdown
-$(document).on('keydown', '.trumbowyg-editor', function () {
-  clearTimeout(typingTimer);
-  typingTimer = setTimeout(doneTyping, doneTypingInterval);
+// //on keydown, clear the countdown
+// $(document).on('keydown', '.trumbowyg-editor', function () {
+//   clearTimeout(typingTimer);
+//   typingTimer = setTimeout(doneTyping, doneTypingInterval);
+// });
+
+// //user is "finished typing," do something
+// function doneTyping () {
+//   var text = $('.scene.focus .trumbowyg-editor').html();
+//   var scene = $('.scene.focus')
+//   if(text.length != 0){
+//     $('.scene.focus').find('.placeholder').addClass('hidden')
+//   }
+//   else{
+//     $('.scene.focus').find('.placeholder').removeClass('hidden')
+//   }
+
+//   $('.scene.focus').find('.text-description').val(text)
+//   console.log(text)
+//   //do something
+// }
+
+$(document).on("keyup", ".trumbowyg-editor", function(e) {
+
+  if (this.textContent.indexOf("@") == this.textContent.length - 1 && this.textContent.length != 0) {
+    var postion = getCaretPosition();
+    $("#characters").css({top: postion.y-28, left: postion.x-300, display:'block'});
+    $("#characters > li").each(function() {
+       $(this).show();
+    });
+  }
+  else if (this.textContent.indexOf("@") != -1 ){
+    var index = this.textContent.indexOf("@")+1;
+    var filter =  this.textContent.substr(index);
+
+    $(this).find('.char').text(filter)
+
+    var posStart  = $(".trumbowyg-editor").prop('selectionStart')
+    console.log(posStart)
+
+      $("#characters > li").each(function() {
+          if(filter == ''){
+            $(this).show();
+          }
+          else if ($(this).text().search(filter) > -1) {
+              $(this).show();
+          }
+          else {
+              $(this).hide();
+
+          }
+      });
+  }
+  else  if (this.textContent.indexOf("@") == -1 ){
+    $("#characters").css({ display:'none'});
+  }
+
 });
 
-//user is "finished typing," do something
-function doneTyping () {
-  var text = $('.scene.focus .trumbowyg-editor').html();
-  var scene = $('.scene.focus')
-  debugger
-  if(text.length != 0){
-    $('.scene.focus').find('.placeholder').addClass('hidden')
-  }
-  else{
-    $('.scene.focus').find('.placeholder').removeClass('hidden')
+})
+
+function getCaretPosition() {
+  var x = 0;
+  var y = 0;
+  var sel = window.getSelection();
+  if(sel.rangeCount) {
+      var range = sel.getRangeAt(0).cloneRange();
+      if(range.getClientRects()) {
+      range.collapse(true);
+      var rect = range.getClientRects()[0];
+      if(rect) {
+          y = rect.top;
+          x = rect.left;
+      }
+      }
   }
 
-  $('.scene.focus').find('.text-description').val(text)
-  $('.scene.focus').find('.text-description').trigger('input')
-  $('.scene.focus').find('.text-description').trigger('change')
-  console.log(text)
-  //do something
+  return {
+      x: x,
+      y: y
+  };
 }
 
+$(document).keyup(function(evt){
+  var currentScroll = $('#editor-wrapper').scrollTop();
+  if(evt.keyCode == 38){
+    currentScroll -= 100;
+  }
+  else if(evt.keyCode == 40){
+    currentScroll += 100;
+  }
+
+  $('#editor-wrapper').animate({
+    scrollTop: (currentScroll)
+  }, 400);
 })
+
+// $(document).on("keyup",".trumbowyg-editor",function(evt){
+//   var textWithFormat = $(evt.target).html();
+//   var text = $(evt.target).text();
+//   var words = text.split(' ').length;
+  
+//   $(evt.target).closest('.description-holder').find('.description').val(textWithFormat);
+  
+//   var wordCountInput = $(evt.target).closest('.description-holder').find('.wordCount');
+//   wordCountInput.val(words);
+//   wordCountInput.trigger('input'); 
+//   wordCountInput.trigger('change');
+
+// })

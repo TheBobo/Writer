@@ -38,6 +38,10 @@ module.exports = {
 
         story: {
             model: 'stories'
+        },
+        scenes: {
+            collection: 'scenes',
+            via: 'characters'
         }
     }
 };

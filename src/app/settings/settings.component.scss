@@ -1,0 +1,55 @@
+@import "../../assets/styles/helpers/_var.scss";
+
+.settings-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba($light-gray-lighter, .9);
+  transform: scale(0);
+  transition: all .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    &:hover {
+      svg {
+        fill: $yellow;
+      }
+    }
+  }
+  .settings-body {
+     background-color: #fff;
+     width: 540px;
+      opacity: 0;
+      transition: all .3s;
+      transition-delay: .3s;
+      position: relative;
+    .settings-content {
+      padding: 30px;
+      h2 {
+        text-align: center
+      }
+
+    }
+    .settings-footer {
+      text-align: center;
+      padding: 30px
+    }
+  }
+  &.open {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+    .settings-body {
+      opacity: 1;
+    }
+  }
+}

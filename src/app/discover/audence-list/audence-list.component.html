@@ -1,0 +1,7 @@
+<div class="sub-subheader">
+  <span class="title-inner">Audences</span>
+  <button class="btn btn-yellow btn-sm" (click)="addAudence()">Add New Audence</button>
+</div>
+<div class="inner-wrapper">
+  <app-audence *ngFor='let audence of audences' [audence]="audence"></app-audence>
+</div>

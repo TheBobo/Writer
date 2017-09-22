@@ -51,6 +51,7 @@
     .form-control {
       border: none;
       height: 100%;
+      width: 100%;
       position: relative;
       padding-top: 30px;
       padding-left: 0;
@@ -59,10 +60,26 @@
         min-height: 60px;
       }
     }
+    .text-inline {
+      position: absolute;
+      top: 5px;
+      right: 0px;
+      font-size: 10px;
+      color: lighten($dark-purple, 25%);
+      opacity: 0;
+      transition: all .3s;
+    }
+
     textarea {
       display:block;
       box-sizing: padding-box;
       overflow:hidden;
+      &:focus {
+        +.text-inline {
+          opacity: 1
+        }
+      }
+
     }
     &.active {
 

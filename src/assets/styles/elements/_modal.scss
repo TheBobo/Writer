@@ -54,6 +54,42 @@
       }
     }
   }
+  &.new-story {
+    .modal-body {
+      width: 480px;
+
+      background-color: #fff;
+      transform: scale(0);
+      display: inline-block;
+      transition: all .3s;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      .modal-header {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        padding: 20px 30px;
+        position: relative;
+        .close {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+      }
+      .modal-content {
+        padding: 30px;
+        p {
+          margin: 0;
+          font-size: 18px;
+          text-align: center;
+          line-height: 28px;
+        }
+      }
+      .modal-footer {
+        padding: 30px;
+        text-align: center;
+      }
+    }
+  }
   &.open {
     visibility: visible;
     opacity: 1;
@@ -61,6 +97,11 @@
     &.confirm-modal {
       .modal-body {
         transform: translateY(0);
+      }
+    }
+    &.new-story {
+      .modal-body {
+        transform: scale(1);
       }
     }
   }

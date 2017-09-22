@@ -1,32 +1,47 @@
 <div class="character-item">
-  <div class="character-picture">
-    <img src="" alt="" class="">
-  </div>
-  <div class="character-details">
-    <div class="character-role">
-      Protagonist
+  <div class="picture-wrapper">
+    <div [ngStyle]="{'background-image': character.img }" class="character-picture">
+      <img [src]="character.img" alt="" class="">
+      <div [ngStyle]="{'background-image': 'url(' + character.img + ')'}"></div>
     </div>
-    <h2 class="character-name">Ludmil Dimitrov</h2>
+    <span class="character-role">
+      {{character.role}}
+    </span>
+  </div>
+
+  <div class="character-details">
+    <div class="tool-bar">
+      <span data-balloon="Edit Details" data-balloon-pos="up" (click)='editCharacter(character.id)'>
+        <svg class="icon-edit">
+          <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
+        </svg>
+      </span>
+      <span data-balloon="Delete" data-balloon-pos="up-right" (click)='deleteCharacter(character.id)'>
+        <svg class="icon-trash">
+          <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
+        </svg>
+      </span>
+    </div>
+    <h2 class="character-name">{{character.name}}</h2>
       <hr>
       <p class="info-label" for="story-line">Storyline</p>
       <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+          {{character.storyline}}
       </p>
       <hr>
       <p class="info-label" for="story-line">Goal</p>
       <p>
-        Lorem Ipsum
+        {{character.goal}}
       </p>
       <hr>
       <p class="info-label" for="story-line">Conflict</p>
       <p>
-        Lorem Ipsum
+        {{character.conflict}}
       </p>
       <hr>
       <p class="info-label" for="story-line">Epiphany</p>
       <p>
-        Lorem Ipsum
+        {{character.epiphany}}
       </p>
   </div>
 </div>

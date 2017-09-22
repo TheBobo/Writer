@@ -1,0 +1,8 @@
+@import "../../../assets/styles/helpers/var";
+
+.synopsis-block {
+  background-color: #fff;
+  border: solid thin darken($light-gray, 7%);
+  padding: 20px;
+  margin-bottom: 20px;
+}

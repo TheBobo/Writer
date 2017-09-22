@@ -1,5 +1,6 @@
 .right-side-panel {
   border-left: solid thin darken($light-gray, 7%);
+  overflow: hidden;
   .subheader {
     .dropdown {
       position: absolute;
@@ -28,21 +29,29 @@
         }
       }
     }
+    .title-item {
+      margin-top: 25px;
+      margin-left: 40px;
+      font-size: 20px;
+    }
   }
   .panel-wrapper {
+    height: calc(100vh - 190px);
     padding: 20px;
-    .title-item {
-      margin-top: -55px;
-      margin-left: 20px;
-      font-size: 22px;
-    }
-    .panel-footer {
-      margin-top: 30px;
-      display: flex;
-      justify-content: space-between;
-    }
+    overflow-y: auto;
   }
-  .scene-edit {
-    display: none;
+  .panel-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $light-gray;
+    border-top: solid thin darken($light-gray, 7%);
   }
+  // .scene-edit {
+  //   display: none;
+  // }
 }

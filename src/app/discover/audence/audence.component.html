@@ -1,3 +1,32 @@
-<p>
-  audence works!
-</p>
+<div class="audence-item">
+    <div class="audence-picture">
+      <img [src]="audence.img" alt="" class="">
+    </div>
+    <div class="audence-details">
+      <div class="audence-role">
+        {{audence.role}}
+      </div>
+      <h2 class="audence-name">{{audence.name}}</h2>
+        <hr>
+        <p class="info-label" for="story-line">Storyline</p>
+        <p>
+            {{audence.storyline}}
+        </p>
+        <hr>
+        <p class="info-label" for="story-line">Goal</p>
+        <p>
+          {{audence.goal}}
+        </p>
+        <hr>
+        <p class="info-label" for="story-line">Conflict</p>
+        <p>
+          {{audence.conflict}}
+        </p>
+        <hr>
+        <p class="info-label" for="story-line">Epiphany</p>
+        <p>
+          {{audence.epiphany}}
+        </p>
+    </div>
+  </div>
+  

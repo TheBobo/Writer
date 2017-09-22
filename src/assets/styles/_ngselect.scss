@@ -1,0 +1,84 @@
+
+  .ui-select-choices {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+    margin-top: 1px !important;
+  }
+
+
+  .ui-select-choices-row>a {
+      padding: 12px 20px !important;
+  }
+
+ .ui-select-choices-row.active>a {
+      color: $yellow !important;
+      text-decoration: none;
+      outline: 0;
+      background-color: $light-gray !important;
+
+  }
+
+  .ui-select-choices-row.disabled>a,
+  .ui-select-choices-row.active.disabled>a {
+      color: #777;
+      cursor: not-allowed;
+      background-color: #fff;
+  }
+
+  /* fix hide/show angular animation */
+  .ui-select-match.ng-hide-add,
+  .ui-select-search.ng-hide-add {
+      display: none !important;
+  }
+
+  /* Mark invalid Bootstrap */
+  .ng-dirty.ng-invalid > button.btn.ui-select-match {
+      border-color: #D44950;
+  }
+
+  /* Handle up direction Bootstrap */
+  .ui-select-container[theme="bootstrap"].direction-up .ui-select-dropdown {
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+  }
+  .ui-select-container.dropdown {
+    padding: 0;
+    height: 60px;
+
+    .ui-select-match {
+      width: 100%;
+      height: 100%;
+      span {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        padding-top: 30px;
+        text-transform: inherit;
+        letter-spacing: inherit;
+        font-size: 16px;
+      }
+    }
+     .dropdown-menu {
+       opacity: 1;
+       visibility: visible;
+       transform: translateY(0);
+     }
+
+    > .form-control {
+      padding-top: 12px !important;
+    }
+
+  }
+
+  :focus {
+    outline: none;
+  }
+
+.ui-select-choices-row .active a {
+  color: $yellow;
+  background-color: $light-gray;
+}
+

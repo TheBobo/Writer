@@ -22,6 +22,7 @@ export class ActsService {
 
     }
 
+
     getNewScene(sceneId:number, actId:number, chapterId:number, type: string, last?: boolean){
       this.NewScene = new Scene(0,0,0,'')
       this.NewScene.id = sceneId;
@@ -90,7 +91,6 @@ export class ActsService {
 
     addScene(scene: Scene){
       var act = this.ACTS.find(x=>x.id == scene.actId);
-      debugger
       var chapter = act.chapters.find(x=>x.id == scene.chapterId);
 
       if ( !chapter )
@@ -107,7 +107,7 @@ export class ActsService {
         return;
       }
 
-      chapter.scenes.splice((scene.id-1), 0, scene);
+      chapter.scenes.splice((scene.id), 0, scene);
 
       this.updateSceneId(chapter, scene.id, scene.last);
     }
@@ -125,7 +125,6 @@ export class ActsService {
         })
         return;
       }
-      debugger;
       act.chapters.splice((chapter.id ), 0, chapter);
       this.updateChapterId(this.ACTS);
     }
@@ -158,6 +157,62 @@ export class ActsService {
       })
     }
 
+
+  changeSceneChapter(scene){
+    for(var i=0; i<this.ACTS.length; i++){
+      for(var j=0; j<this.ACTS[i].chapters.length;j++){
+        if(this.ACTS[i].chapters[j].id == scene.chapterId){
+          this.ACTS[i].chapters[j].scenes.splice(scene.id-1,1);
+          this.updateSceneId(this.ACTS[i].chapters[j], scene.id);
+        }
+      }
+    }
+
+
+    for(var i=0; i<this.ACTS.length; i++){
+      for(var j=0; j<this.ACTS[i].chapters.length;j++){
+        if(this.ACTS[i].chapters[j].id == scene.newChapterId){
+          this.ACTS[i].chapters[j].scenes.push(scene);
+          this.updateSceneId(this.ACTS[i].chapters[j], scene.id);
+          scene.chapterId = scene.newChapterId;
+        }
+
+      }
+    }
+  }
+
+  changeSceneOrder(scene){
+    for(var i=0; i<this.ACTS.length; i++){
+      for(var j=0; j<this.ACTS[i].chapters.length;j++){
+
+        if(scene.chapterId == this.ACTS[i].chapters[j].id){
+          for(var k=0; k<this.ACTS[i].chapters[j].scenes.length;k++){
+            if(this.ACTS[i].chapters[j].scenes[k].id == scene.id){
+              this.ACTS[i].chapters[j].scenes.splice(k,1)
+
+            }
+          }
+        }
+      }
+    }
+
+
+    for(var i=0; i<this.ACTS.length; i++){
+      for(var j=0; j<this.ACTS[i].chapters.length;j++){
+        if(scene.chapterId == this.ACTS[i].chapters[j].id){
+          for(var k=0; k<this.ACTS[i].chapters[j].scenes.length;k++){
+            if(this.ACTS[i].chapters[j].scenes[k].id == scene.newId){
+              scene.id = scene.newId;
+              this.ACTS[i].chapters[j].scenes.splice(k,0, scene);
+              this.updateSceneId(this.ACTS[i].chapters[j], 0);
+              ;
+            }
+          }
+        }
+      }
+    }
+  }
+
     deleteScene(scene: Scene){
       var act = this.ACTS.find(x=>x.id == scene.actId);
       var chapter = act.chapters.find(x=>x.id == scene.chapterId);
@@ -170,17 +225,26 @@ export class ActsService {
       this.updateSceneId(chapter, scene.id);
     }
 
+    deleteChapter(chapter: Chapter){
+      var act = this.ACTS.find(x=>x.id == chapter.actId);
+      act.chapters.splice(chapter.id-1, 1)
+      this.updateChapterId(this.ACTS);
+    }
+
     labelPosition() {
        setTimeout(function() {
         var input  = $(".form-control");
-        input.on('focus blur', function (e) {
-          $(this).parents('.form-group').toggleClass('active', (e.type === 'focus' || this.value.length > 0));
-        });
+          // input.on('focus blur', function (e) {
+          //   if(this != undefined)
+          //     $(this).parents('.form-group').toggleClass('active', (e.type === 'focus' || this.value.length > 0));
+          // });
           $(input).on('focus', function() {
-            $(this).parents('.form-group').addClass('focus')
+            if(this != undefined)
+              $(this).parents('.form-group').addClass('focus')
           })
           $(input).on('blur', function() {
-            $(this).parents('.form-group').removeClass('focus')
+            if(this != undefined)
+              $(this).parents('.form-group').removeClass('focus')
           })
             .trigger('blur');
 

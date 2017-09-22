@@ -1,7 +1,7 @@
 <div class="scene-item">
     <div class="scene-wrapper">
       <div class="scene-content">
-        <span class="tag-label violet">Resolution</span>
+        <span class="tag-label" *ngIf="scene.selectLabel!=''"  [ngClass]="{'primary':scene.lblClass=='primary', 'secondary':scene.lblClass=='secondary'}">{{scene.selectLabel}}</span>
         <h5 class="scene-count">Scene <span>{{scene.id}}</span></h5>
         <h4 class="title-scene">{{scene.title}}</h4>
         <p class="synopsis"> {{scene.synopsis}}.</p>
@@ -13,7 +13,7 @@
         <div class="story-info">
           <div class="info-cell">
             <p class="label">words</p>
-            <p class="content">{{scene.wordCount}} of {{scene.wordsGoal}}</p>
+            <p class="content">{{scene.description.split(' ').length}} of {{scene.wordsGoal}}</p>
           </div>
         </div>
         <div class="tool-bar">

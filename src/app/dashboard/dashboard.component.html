@@ -1,11 +1,14 @@
 <div class="subheader">
     <div class="story-name">My Stories</div>
-    <div class="button-holder">
+    <div class="button-holder" (click)="openCreateNewStory()">
       <button class="btn btn-yellow">Add New Story</button>
     </div>
   </div>
 <div class="main-wrapper">
-    <app-story></app-story>
-    <app-story></app-story>
-    <app-story></app-story>
+    <app-story *ngFor='let story of stories'
+    [story]="story"
+    (click)="selectAStory(story)"></app-story>
+    <app-modal-new-story [modalOpen]="modalOpen" [story] ="story"
+    (closeModal)="closeModal($event)"
+    (newStory)="createNewStory($event)"> </app-modal-new-story>
 </div>

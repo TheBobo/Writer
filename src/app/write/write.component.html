@@ -1,23 +1,36 @@
 
-<div class="editor-wrapper" (onScroll)="handleScroll($event)">
+<ul id="characters">
+  <li  *ngFor='let character of characters' (click)="select(character)">
+      <span *ngIf="character.img != ''" [ngStyle]="{'background-image': 'url(' + character.img + ')'}"></span>
+    {{character.name}}
+  </li>
+  <li (click)="addCharacter()">
+    add new
+  </li>
+</ul>
+
+
+<div class="editor-wrapper" id='editor-wrapper' (onScroll)="handleScroll($event)">
   <span *ngFor='let act of ACTS'>
-    <div *ngFor='let chapter of act.chapters' class="chapter" on-mouseover="over(chapter)"  [ngClass]="{'selected':chapter.isFocus == true}">
+    <div *ngFor='let chapter of act.chapters' class="chapter"
+      [attr.id]="'chapterItem-'+chapter.id"
+      on-mouseover="over(chapter)"  [ngClass]="{'selected':chapter.isFocus == true}">
       <div class="chapter-head">
         <p class="chapter-count edit">Chapter  {{chapter.id}}</p>
         <p class="chapter-title edit" *ngIf='chapter.title == ""'>Add Chapter Title</p>
         <p class="chapter-title edit" *ngIf='chapter.title != ""'>{{chapter.title}}</p>
         <div class="tool-bar">
-          <span data-balloon="View Details" data-balloon-pos="up" (click)='viewChapter(chapter.id)'>
+          <span data-balloon="View Details" data-balloon-pos="up" (click)='viewChapter(chapter)'>
             <svg class="icon-view">
               <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
             </svg>
           </span>
-          <span data-balloon="Edit Details" data-balloon-pos="up"  (click)='editChapter(chapter.id)'>
+          <span data-balloon="Edit Details" data-balloon-pos="up"  (click)='editChapter(chapter)'>
             <svg class="icon-edit">
               <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
             </svg>
           </span>
-          <span data-balloon="Delete" data-balloon-pos="up-right"  (click)='deleteChapter(chapter.id)'>
+          <span data-balloon="Delete" data-balloon-pos="up-right"  (click)='deleteChapterFn(chapter)'>
             <svg class="icon-trash">
               <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
             </svg>
@@ -26,7 +39,7 @@
       </div>
 
       <div  *ngIf="chapter.scenes != undefined && chapter.scenes.length > 0">
-        <div class="scene" [ngClass]="{'focus':scene.isFocus == true}" *ngFor='let scene of chapter.scenes' (click)='focusMe(scene)'>
+        <div class="scene" [attr.id]="'sw-'+chapter.id+'-'+scene.id" [ngClass]="{'focus':scene.isFocus == true}" *ngFor='let scene of chapter.scenes' (click)='focusMe(scene)'>
 
             <div class="scene-head">
                 <div class="scene-title">
@@ -37,12 +50,12 @@
                   <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
                 </svg>
               </span>
-                <span data-balloon="Edit Details" data-balloon-pos="up" (click)='editScene(scene)'>
+                <span data-balloon="Edit Details" data-balloon-pos="up" (click)='editScene(scene, chapter.id)'>
                 <svg class="icon-edit">
                   <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
                 </svg>
               </span>
-                <span data-balloon="Delete" data-balloon-pos="up-right"  (click)='deleteScene(scene)'>
+                <span data-balloon="Delete" data-balloon-pos="up-right"  (click)='deleteScene(scene, act.id)'>
                 <svg class="icon-trash">
                   <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
                 </svg>
@@ -50,18 +63,18 @@
               </div>
             </div>
 
-            <input [(ngModel)]='scene.description' class="text-description" />
-
             <div style="position:relative">
-              <span class="placeholder"  style="position:absolute" *ngIf='scene.isFocus == false && scene.description.length == 0'>
+              <!-- <span class="placeholder"  style="position:absolute" *ngIf='scene.isFocus == false && scene.description.length == 0'>
                   Start writing your story here
-              </span>
+              </span> -->
 
-              <trumbowyg 
-                         [(initialContent)]="scene.description" [options]="options1" 
-                         (savedContent)="scene.description=$event">
-              </trumbowyg>
-
+              <div class='description-holder'>
+                <trumbowyg liveUpdate="true" 
+                  [initialContent]="scene.description"
+                  [options]="options1"
+                  (savedContent)="scene.description=$event">
+                </trumbowyg>
+              </div>
             </div>
 
             <div class="add-new">
@@ -78,5 +91,3 @@
     </div>
   </span>
 </div>
-
-

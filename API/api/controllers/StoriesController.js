@@ -158,6 +158,118 @@ module.exports = {
                 return res.json(400, {err: 'invalid email'});
             }
         });
-    }
+    },
+    getSynopsis: function (req, res) {
+        var email = req.param('email');
+        var token = req.param('token');
+        var storyId = req.param('storyId');
+
+        if (!email || !token || !storyId) {
+            return res.json(400, {err: 'not all parameters was set'});
+        }
+
+        Users.findOne({email: email}).exec(function (err, user) {
+            var  id  = user.id;
+            if(err){
+                return res.json(400, {err: err});
+            }
+            if(user) {
+                jwToken.verify(token, function (err, token) {
+                    if (err) {
+                        return res.json(400, {err: 'invalid token'});
+                    }else{
+                        Stories.findOne(storyId).exec(function (err, story) {
+                            if(err){
+                                return res.json(500, {err: err});
+                            }
+                            if(story){
+                                synopsys = {
+                                    oneParagraphSynopsis: story.oneParagraphSynopsis,
+                                    fourParagraphSynopsis: story.fourParagraphSynopsis,
+                                    fourPageSynopsis: story.fourPageSynopsis
+                                }
+                                return res.json({synopsis: synopsys, token: jwToken.issue({id: user.id})});
+                            }else{
+                                return res.json(400, {err : 'storyId not found!'});
+                            }
+                        });
+                    }
+                });
+            }else{
+                return res.json(400, {err: 'invalid email'});
+            }
+        });
+    },
+
+    getWordsCount: function (req, res) {
+        var email = req.param('email');
+        var token = req.param('token');
+        var storyId = req.param('storyId');
+
+        if (!email || !token || !storyId) {
+            return res.json(400, {err: 'not all parameters was set'});
+        }
+
+        Users.findOne({email: email}).exec(function (err, user) {
+            var  id  = user.id;
+            if(err){
+                return res.json(400, {err: err});
+            }
+            if(user) {
+                jwToken.verify(token, function (err, token) {
+                    if (err) {
+                        return res.json(400, {err: 'invalid token'});
+                    }else{
+                        Stories.findOne(storyId).populate('acts').exec(function (err, story) {
+                            if(err){
+                                return res.json(500, {err: err});
+                            }if(story){
+                                console.log('it\'s work !!!');
+
+                                var nActs = story.acts.length;
+                                var wordsCount = 0;
+
+                                story.acts.forEach(function (el, i, mass) {
+                                    Acts.findOne(el.id).populate('chapters').exec(function (err, acts) {
+                                        if(err){
+                                            return res.json(500, {err: err});
+                                        }
+                                        if(acts){
+                                            var nChapters = acts.chapters.length;
+                                            nActs--;
+                                            acts.chapters.forEach(function (elC, iC, massC) {
+                                                Chapters.findOne(elC.id).populate('scenes').exec(function (err, chapters) {
+                                                    if(err){
+                                                        return res.json(500, {err: err});
+                                                    }
+                                                    if(chapters){
+                                                        nChapters--;
+                                                        chapters.scenes.forEach(function (elS, iS, massS) {
+                                                            wordsCount += Number(elS.wordCount);
+                                                        });
+                                                        if(nActs == 0 && nChapters == 0){
+                                                            return res.json({wordsCount: wordsCount, token: jwToken.issue({id: user.id})});
+                                                        }
+                                                    }else {
+                                                        return res.json(400, {err : 'chapters not found!'});
+                                                    }
+                                                });
+                                            })
+                                        }else {
+                                            return res.json(400, {err : 'acts not found!'});
+                                        }
+                                    });
+                                });
+                            }else{
+                                return res.json(400, {err : 'storyId not found!'});
+                            }
+                        });
+                    }
+                });
+            }else{
+                return res.json(400, {err: 'invalid email'});
+            }
+        });
+    },
 };
 

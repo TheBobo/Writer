@@ -21,7 +21,7 @@ export class SceneComponent implements OnInit {
   isSceneOpen = false;
   isDeleteOpen = false;
   newScene : Scene;
-  
+
   constructor(public shareService: ActsService) { }
   outScene = new EventEmitter<Scene>();
 
@@ -29,7 +29,6 @@ export class SceneComponent implements OnInit {
     if ( type === 'edit') {
       this.newScene = this.scene
       this.newScene.type = 'edit';
-      debugger
     } else if ( type === 'create') {
       this.newScene = this.shareService.getNewScene(sceneId, actId, chapterId, type, last);
       this.scenes.forEach((item, i) => {
@@ -41,7 +40,7 @@ export class SceneComponent implements OnInit {
       this.newScene = this.scene
       this.newScene.type = 'view';
     }
-    
+
      this.isSceneOpen = !this.isSceneOpen;
      this.outScene.emit(this.newScene);
   }
@@ -50,6 +49,7 @@ export class SceneComponent implements OnInit {
     this.newScene = this.scene
     this.newScene.isDelete = true;
     this.newScene.type = 'delete';
+    this.newScene.actId = actId;
 
     this.isDeleteOpen = !this.isDeleteOpen;
     this.outScene.emit(this.newScene);

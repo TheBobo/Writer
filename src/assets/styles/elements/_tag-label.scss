@@ -3,8 +3,12 @@
   border: solid thin;
   border-radius: 20px;
   font-size: 10px;
-  &.violet {
-    color: #ff5086;
-    border-color: #ff5086;
+  &.primary{
+    color: $violet;
+    border-color:$violet;
+  }
+  &.secondary{
+    color: $blue;
+    border-color: $blue;
   }
 }

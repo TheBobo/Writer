@@ -118,7 +118,7 @@ function buildLiteSelectComponent() {
       if($(elements[i]).is('optgroup') ){
         categoryLvl++;
         var cat = "nested-"+categoryLvl;
-        var categoryTxt = "Category: "+$(elements[i]).attr('label');
+        var categoryTxt = $(elements[i]).attr('label');
         appendCategory(categoryTxt)
         appendItems($(elements[i]).children(), cat);
         categoryLvl--;
@@ -239,7 +239,8 @@ function buildLiteSelectComponent() {
       }
 
       $(this).addClass('active');
-      $wrapperList.addClass("active");
+      $wrapperList.addClass("active")
+
       var elementsUL = $wrapperList.find("ul li");
       elementsUL.addClass("ls-hidden")
       var timeOut = 450;
@@ -452,8 +453,51 @@ function buildLiteSelectComponent() {
     buildLiteSelectComponent();
   }
 
+  function initLiteItems() {
+    setTimeout(function() {
+
+    var items = $('.lite-select')
+    for(var i=0; i<items.length; i++){
+      var lSelectObj = {
+        placeholder: "",
+        maxSelectOptionHeight:300,
+        hasSearch: false,
+        multiselect:false
+      };
+
+      var attr = $(items[i]).attr("data-placeholder");
+      if(attr){
+        lSelectObj.placeholder=attr;
+      }
+
+      attr = $(items[i]).attr("data-width");
+      if(attr){
+        lSelectObj.width=attr;
+      }
+
+      attr = $(items[i]).attr("data-max-height");
+      if(attr){
+        lSelectObj.maxSelectOptionHeight=attr;
+      }
+
+      attr = $(items[i]).attr("data-searchbox");
+      if(attr == "true" || attr == true){
+        lSelectObj.hasSearch=true;
+      }
+
+      attr = $(items[i]).attr("data-multiselect");
+      if(attr == "true" || attr == true){
+        lSelectObj.multiselect=true;
+      }
+      $(items[i]).liteSelect(lSelectObj);
+    }
+
+  }, 600);
+  }
+
   return {
-    init: init
+    init: init,
+    initLiteItems:initLiteItems
   }
 })();
 
@@ -476,46 +520,6 @@ $(document).ready(function(){
 
           })
 
-      function initLiteItems() {
-        var items = $('select')
-        debugger
-        for(var i=0; i<items.length; i++){
-          var lSelectObj = {
-            placeholder: "",
-            maxSelectOptionHeight:300,
-            hasSearch: false,
-            multiselect:false
-          };
 
-          var attr = $(items[i]).attr("data-placeholder");
-          if(attr){
-            lSelectObj.placeholder=attr;
-          }
+    });
 
-          attr = $(items[i]).attr("data-width");
-          if(attr){
-            lSelectObj.width=attr;
-          }
-
-          attr = $(items[i]).attr("data-max-height");
-          if(attr){
-            lSelectObj.maxSelectOptionHeight=attr;
-          }
-
-          attr = $(items[i]).attr("data-searchbox");
-          if(attr == "true" || attr == true){
-            lSelectObj.hasSearch=true;
-          }
-
-          attr = $(items[i]).attr("data-multiselect");
-          if(attr == "true" || attr == true){
-            lSelectObj.multiselect=true;
-          }
-
-          $(items[i]).liteSelect(lSelectObj);
-        }
-
-      }
-
-      setTimeout(initLiteItems, 1000);
-});

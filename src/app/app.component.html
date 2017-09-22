@@ -1,8 +1,11 @@
 <app-login [hidden]="user.username != undefibned"></app-login>
 
 <div [hidden]='user.username == undefined'>
-  <app-header></app-header>
+  <app-header
+  (redirectDashboard)='toDashboard()'
+  (redirectSettings)='toSettings()'></app-header>
   <app-left-side
+    *ngIf='menubarItem != "dashboard"'
     (activeMenu)='activeMenuItem($event)'
     [menubarItem]='menubarItem'
     (selectedChapter)='selectedChapter($event)'
@@ -10,15 +13,21 @@
     (createNewChapter)="emitNewChapter($event)"
     ></app-left-side>
 
-  <!-- <app-dashboard  *ngIf='menubarItem == "write"'></app-dashboard> -->
-  <main class="main-content" >
+  <app-dashboard  *ngIf='menubarItem == "dashboard"'
+      [stories]="Stories"
+      (newStory)="createNewStory($event)"
+      (selectStory)="selectedStory($event)"
+  ></app-dashboard>
+
+  <main class="main-content"
+  *ngIf='menubarItem != "dashboard"'>
     <div class="subheader">
       <div class="hide-menu" (click)="openMenu($event)">
         <svg class="icon-menu">
           <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-menu"></use>
         </svg>
       </div>
-      <div class="story-name">The Time Truck</div>
+      <div class="story-name">{{selectedStoryItem.title}}</div>
       <nav class="main-nav"><ul>
         <li (click)='gotoMenu("discover")' [ngClass]="{'active':menubarItem=='discover'}">Discover</li>
         <li (click)='gotoMenu("write")' [ngClass]="{'active':menubarItem=='write'}">Write</li>
@@ -27,40 +36,76 @@
     </div>
 
 
-       <app-story-map *ngIf="menubarItem == 'discover'  && activeComponent =='storyMap'" 
+       <app-story-map *ngIf="menubarItem == 'discover'  && activeComponent =='storyMap'"
             [ACTS] = "ACTS"
             (outScene)="emitScene($event)"
             (outChapter)="emitNewChapter($event)"
             (showright)=emitRight($event)
             (showmodal)=showmodal($event)
-            (menubar)=emitGotoMenu($event)></app-story-map>
+            (menubar)=emitGotoMenu($event)
+            (deletechapter)='deleteChapter($event)'></app-story-map>
 
-      <app-write *ngIf="menubarItem == 'write'"
+      <app-write [hidden]="menubarItem != 'write'"
                 (createNewScene)="createScene($event)"
                 (createNewChapter)="emitNewChapter($event)"
+                (deleteChapter)="deleteChapter($event)"
+                (newCharacter)="createNewCharacter()"
+                 (hasOpenAddCharacter)="addCharacterFromWriter($event)"
                 [chapter]="selectChapter"
-                [ACTS] = "ACTS"></app-write>
+                [ACTS] = "ACTS"
+                [characters]=appCharacters></app-write>
 
       <app-synopsis *ngIf="menubarItem == 'discover' && activeComponent =='synopsis'"></app-synopsis>
 
-      <app-audence *ngIf="menubarItem == 'discover' && activeComponent =='audence'">
-      </app-audence>
+      <app-audence-list *ngIf="menubarItem == 'discover' && activeComponent =='audence'"
+                        [audences]="appAudences"
+                        (newAudence)="createNewAudence()">
+      </app-audence-list>
 
-      <app-character-list *ngIf="menubarItem == 'discover' && activeComponent =='characterList'"></app-character-list>
+      <app-character-list *ngIf="menubarItem == 'discover' && activeComponent =='characterList'"
+                          (newCharacter)="createNewCharacter()"
+                          (emitEditCharacter)='editCharacter($event)'
+                          (emitDeleteCharacter)='deleteCharacter($event)'
+                          [characters]="appCharacters">
+      </app-character-list>
 
 
   </main>
 
 
-  <app-right-side #rightSlideView *ngIf="newScene || newChapter"
+  <app-right-side #rightSlideView *ngIf="newScene || newChapter || newCharacter || newAudence"
    [scene]="newScene"
    [chapter]="newChapter"
+   [character]="newCharacter"
+   [audence]="newAudence"
+   [acts]="ACTS"
+   [title]="title"
+
    [rightOpen]="rightTab"
    (close)="this.rightTab = $event"
    (addScene)="addscene($event)"
    (addNewScene)=addNewScene($event)
-   (addNewChapter)=addNewChapter($event)></app-right-side>
+   (addNewChapter)=addNewChapter($event)
+   (addNewCharacter)=addNewCharacter($event)
+   (addNewAudence)=addNewAudence($event)
+   (changeSceneChapter)=changeSceneChapter($event)
+   (changeSceneOrder)=changeSceneOrder($event)></app-right-side>
+   
+   <app-modal-confirm  #modalView *ngIf="newScene || newChapter || newCharacter"
+   [deleteScene]="newScene"
+   [deleteChapter]="newChapter"
+   [deleteCharacter]="newCharacter"
 
-   <app-modal-confirm  #modalView *ngIf="newScene" [deleteScene]="newScene" (deleteSelectedScene)=deleteSelectedScene($event) ></app-modal-confirm>
-</div>
+   (deleteSelectedScene)=deleteSelectedScene($event)
+   (deleteSelectedChapter)=deleteSelectedChapter($event)
+   (deleteSelectedCharacter)=deleteSelectedCharacter($event)>
+  </app-modal-confirm>
 
+  <app-settings *ngIf="openSettings == true"
+                [isOpen]="openSettings"
+                (close)="closeSettings()"
+
+                [user]="user"
+                (userSave)="userSave($event)"></app-settings>
+
+  </div>

@@ -1,0 +1,35 @@
+<div class="modal new-story open" *ngIf='modalOpen'>
+    <div class="modal-body">
+      <div class="modal-header">
+        <h4>Add New Story</h4>
+        <span class="close"  (click)="closeModalFn()">
+            <svg class="icon-close">
+              <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-close"></use>
+            </svg>
+          </span>
+      </div>
+      <div class="modal-content">
+        <form action="" class="material" [formGroup]="createAStoryForm">
+          <div class="form-group">
+            <label>Add title for your story</label>
+            <input type="text" (focus) ="focusElem($event)"  (blur)="blur($event)" formControlName="title"  class="form-control" >
+          </div>
+          <div class="form-group">
+            <label>One Line Synopsis</label>
+            <textarea formControlName="synopsis" #synopsis (focus) ="focusElem($event)"  (blur)="blur($event)"  class="autoExpand form-control" rows="2" data-min-rows='1' maxlength=160></textarea>
+            <span class="text-inline">{{ 160 - synopsis.value.length}}</span>
+
+          </div>
+            <div class="form-group">
+              <label>Story Description</label>
+              <textarea formControlName="description" (focus) ="focusElem($event)"  (blur)="blur($event)"  class="autoExpand form-control" rows="4" data-min-rows='4'></textarea>
+            </div>
+        </form>
+
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-yellow" (click)='createAStory()' >Get Started</button>
+      </div>
+    </div>
+  </div>

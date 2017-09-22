@@ -14,9 +14,9 @@ module.exports = {
         description: {
             type: 'string'
         },
-        wordCount: {
-            type: 'int'
-        },
+        // wordCount: {
+        //     type: 'int'
+        // },
 
         scenes: {
             collection: 'scenes',

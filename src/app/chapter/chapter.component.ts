@@ -8,7 +8,7 @@ import { ActsService } from './../acts.service';
   templateUrl: './chapter.component.html',
   styleUrls: ['./chapter.component.scss'],
   inputs:['chapter', 'scenes', 'actId'],
-  outputs:['outScene','outChapter'],
+  outputs:['outScene','outChapter', 'deleteChapter'],
   providers: [ActsService]
 })
 
@@ -18,7 +18,8 @@ export class ChapterComponent implements OnInit {
 
   newScene : Scene;
   outScene = new EventEmitter<Scene>();
-  outChapter = new EventEmitter<Chapter>()
+  outChapter = new EventEmitter<Chapter>();
+  deleteChapter = new EventEmitter<Chapter>();
   constructor(private shareService: ActsService) { }
 
   sceneEmit:Scene;
@@ -36,10 +37,11 @@ export class ChapterComponent implements OnInit {
 
 
   addNewChapter(chapter, actId){
-    chapter.actId = actId;
-    chapter.type ='create';
-    chapter.id = chapter.id;
-    this.outChapter.emit(chapter);
+    var newChapter = new Chapter('create',chapter.id-1,actId);
+    // chapter.actId = actId;
+    // chapter.type ='create';
+    // chapter.id = chapter.id;
+    this.outChapter.emit(newChapter);
   }
 
   editChapter(chapter){
@@ -50,6 +52,11 @@ export class ChapterComponent implements OnInit {
   viewChapter(chapter){
     chapter.type='view'
     this.outChapter.emit(chapter);
+  }
+
+  deleteChapterFomAct(chapter){
+    chapter.type='delete'
+    this.deleteChapter.emit(chapter)
   }
 
   ngOnInit() {

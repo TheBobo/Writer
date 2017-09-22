@@ -8,9 +8,9 @@
 	},
 	"item": [
 		{
-			"name": "http://writer.tfx.tf:1111/users/registration",
+			"name": "localhost:1337/users/registration",
 			"request": {
-				"url": "http://writer.tfx.tf:1111/users/registration",
+				"url": "localhost:1337/users/registration",
 				"method": "POST",
 				"header": [
 					{
@@ -74,9 +74,9 @@
 			"response": []
 		},
 		{
-			"name": "http://writer.tfx.tf:1111/users/signIn",
+			"name": "localhost:1337/users/signIn",
 			"request": {
-				"url": "http://writer.tfx.tf:1111/users/signIn",
+				"url": "localhost:1337/users/signIn",
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -101,9 +101,9 @@
 			"response": []
 		},
 		{
-			"name": "http://writer.tfx.tf:1111/users/changePassword",
+			"name": "localhost:1337/users/changePassword",
 			"request": {
-				"url": "http://writer.tfx.tf:1111/users/changePassword",
+				"url": "localhost:1337/users/changePassword",
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -140,10 +140,10 @@
 			"response": []
 		},
 		{
-			"name": "http://writer.tfx.tf:1111/stories/getAll",
+			"name": "localhost:1337/stories/getAll",
 			"request": {
 				"url": {
-					"raw": "http://writer.tfx.tf:1111/stories/getAll",
+					"raw": "localhost:1337/stories/getAll",
 					"host": [
 						"localhost"
 					],
@@ -185,9 +185,9 @@
 			"response": []
 		},
 		{
-			"name": "http://writer.tfx.tf:1111/stories/add",
+			"name": "localhost:1337/stories/add",
 			"request": {
-				"url": "http://writer.tfx.tf:1111/stories/add",
+				"url": "localhost:1337/stories/add",
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -254,9 +254,9 @@
 			"response": []
 		},
 		{
-			"name": "http://writer.tfx.tf:1111/stories/update",
+			"name": "localhost:1337/stories/update",
 			"request": {
-				"url": "http://writer.tfx.tf:1111/stories/update",
+				"url": "localhost:1337/stories/update",
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -320,9 +320,9 @@
 			"response": []
 		},
 		{
-			"name": "http://writer.tfx.tf:1111/stories/remove",
+			"name": "localhost:1337/stories/remove",
 			"request": {
-				"url": "http://writer.tfx.tf:1111/stories/remove",
+				"url": "localhost:1337/stories/remove",
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -350,9 +350,9 @@
 			"response": []
 		},
 		{
-			"name": "http://writer.tfx.tf:1111/characters/getAll",
+			"name": "localhost:1337/characters/getAll",
 			"request": {
-				"url": "http://writer.tfx.tf:1111/characters/getAll",
+				"url": "localhost:1337/characters/getAll",
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -378,9 +378,9 @@
 			"response": []
 		},
 		{
-			"name": "http://writer.tfx.tf:1111/characters/add",
+			"name": "localhost:1337/characters/add",
 			"request": {
-				"url": "http://writer.tfx.tf:1111/characters/add",
+				"url": "localhost:1337/characters/add",
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -424,9 +424,9 @@
 			"response": []
 		},
 		{
-			"name": "http://writer.tfx.tf:1111/characters/remove",
+			"name": "localhost:1337/characters/remove",
 			"request": {
-				"url": "http://writer.tfx.tf:1111/characters/remove",
+				"url": "localhost:1337/characters/remove",
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -443,6 +443,809 @@
 						{
 							"key": "characterId",
 							"value": "1",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/stories/getSynopsis",
+			"request": {
+				"url": "localhost:1337/stories/getSynopsis",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDcyNjk4LCJleHAiOjE1MDM0NzYyOTh9.RXxapD0H-I7lw5cKVCydup9yxPPinrgUNwQPKIydTiM"
+						},
+						{
+							"key": "storyId",
+							"value": "3",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/characters/update",
+			"request": {
+				"url": "localhost:1337/characters/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDcyNjk4LCJleHAiOjE1MDM0NzYyOTh9.RXxapD0H-I7lw5cKVCydup9yxPPinrgUNwQPKIydTiM"
+						},
+						{
+							"key": "characterId",
+							"value": "2",
+							"description": ""
+						},
+						{
+							"key": "age",
+							"value": "40",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "gender",
+							"value": "string varchar(255)        ",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "string varchar(255)",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "storyLine",
+							"value": "text",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "goal",
+							"value": "string varchar(255)",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "conflict",
+							"value": "string varchar(255)",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "epiphany",
+							"value": "string varchar(255)",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/acts/getAll",
+			"request": {
+				"url": "localhost:1337/acts/getAll",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDc2NDc5LCJleHAiOjE1MDM0ODAwNzl9.QN64j0xXaWIMYuFUpncstkHO-jVmwxVGB7LF6eHDUBQ"
+						},
+						{
+							"key": "storyId",
+							"value": "3",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/acts/add",
+			"request": {
+				"url": "localhost:1337/acts/add",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDc2NDc5LCJleHAiOjE1MDM0ODAwNzl9.QN64j0xXaWIMYuFUpncstkHO-jVmwxVGB7LF6eHDUBQ"
+						},
+						{
+							"key": "storyId",
+							"value": "3",
+							"description": ""
+						},
+						{
+							"key": "title",
+							"value": "title",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "description",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/acts/update",
+			"request": {
+				"url": "localhost:1337/acts/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDc2NDc5LCJleHAiOjE1MDM0ODAwNzl9.QN64j0xXaWIMYuFUpncstkHO-jVmwxVGB7LF6eHDUBQ"
+						},
+						{
+							"key": "actId",
+							"value": "3",
+							"description": ""
+						},
+						{
+							"key": "title",
+							"value": "new title",
+							"description": ""
+						},
+						{
+							"key": "description",
+							"value": "new description",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/acts/remove",
+			"request": {
+				"url": "localhost:1337/acts/remove",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDc2NDc5LCJleHAiOjE1MDM0ODAwNzl9.QN64j0xXaWIMYuFUpncstkHO-jVmwxVGB7LF6eHDUBQ"
+						},
+						{
+							"key": "actId",
+							"value": "4",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/chapters/getAll",
+			"request": {
+				"url": "localhost:1337/chapters/getAll",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDgzMTM4LCJleHAiOjE1MDM0ODY3Mzh9.juskpoO_U1iMHSJp7707Rd4n0rHvVeokMToojAWzcjA"
+						},
+						{
+							"key": "actId",
+							"value": "3",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/chapters/add",
+			"request": {
+				"url": "localhost:1337/chapters/add",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDgzMTM4LCJleHAiOjE1MDM0ODY3Mzh9.juskpoO_U1iMHSJp7707Rd4n0rHvVeokMToojAWzcjA"
+						},
+						{
+							"key": "actId",
+							"value": "3",
+							"description": ""
+						},
+						{
+							"key": "title",
+							"value": "title chapter 3   ",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "description chapter 3 ",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/chapters/update",
+			"request": {
+				"url": "localhost:1337/chapters/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDgzMTM4LCJleHAiOjE1MDM0ODY3Mzh9.juskpoO_U1iMHSJp7707Rd4n0rHvVeokMToojAWzcjA"
+						},
+						{
+							"key": "chapterId",
+							"value": "3",
+							"description": ""
+						},
+						{
+							"key": "title",
+							"value": "new title chapter 3   ",
+							"description": ""
+						},
+						{
+							"key": "description",
+							"value": "new description chapter 3 ",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/chapters/remove",
+			"request": {
+				"url": "localhost:1337/chapters/remove",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDgzMTM4LCJleHAiOjE1MDM0ODY3Mzh9.juskpoO_U1iMHSJp7707Rd4n0rHvVeokMToojAWzcjA"
+						},
+						{
+							"key": "chapterId",
+							"value": "2",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/scenes/getAll",
+			"request": {
+				"url": "localhost:1337/scenes/getAll",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDgzMTM4LCJleHAiOjE1MDM0ODY3Mzh9.juskpoO_U1iMHSJp7707Rd4n0rHvVeokMToojAWzcjA"
+						},
+						{
+							"key": "chapterId",
+							"value": "3",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/scenes/add",
+			"request": {
+				"url": "localhost:1337/scenes/add",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDk0OTkzLCJleHAiOjE1MDM0OTg1OTN9.e3jZhfwWr3LKp1hkxZhMmzDYOFyO4JOK4KZ9vVbEOWM"
+						},
+						{
+							"key": "chapterId",
+							"value": "3",
+							"description": ""
+						},
+						{
+							"key": "title",
+							"value": "scene with label   ",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "description scene3",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "wordCount",
+							"value": "0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "setting",
+							"value": "setting scene3 ",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "modeTone",
+							"value": "modeTone scene3 ",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "objective",
+							"value": "objective scene3 ",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "label",
+							"value": "2",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/scenes/update",
+			"request": {
+				"url": "localhost:1337/scenes/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDk2NjUzLCJleHAiOjE1MDM1MDAyNTN9.A172NZHCuNNzqLzUlaRxjYqyMNCg9fhzFxsvg5Y6crk"
+						},
+						{
+							"key": "sceneId",
+							"value": "5",
+							"description": ""
+						},
+						{
+							"key": "title",
+							"value": "new title scene3 ",
+							"description": ""
+						},
+						{
+							"key": "description",
+							"value": "new description scene3",
+							"description": ""
+						},
+						{
+							"key": "wordCount",
+							"value": "0",
+							"description": ""
+						},
+						{
+							"key": "setting",
+							"value": "new setting scene3 ",
+							"description": ""
+						},
+						{
+							"key": "modeTone",
+							"value": "new modeTone scene3 ",
+							"description": ""
+						},
+						{
+							"key": "objective",
+							"value": "new objective scene3 ",
+							"description": ""
+						},
+						{
+							"key": "label",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/scenes/remove",
+			"request": {
+				"url": "localhost:1337/scenes/remove",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDgzMTM4LCJleHAiOjE1MDM0ODY3Mzh9.juskpoO_U1iMHSJp7707Rd4n0rHvVeokMToojAWzcjA"
+						},
+						{
+							"key": "sceneId",
+							"value": "2",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/scenes/addCharacter",
+			"request": {
+				"url": "localhost:1337/scenes/addCharacter",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDkxNjgzLCJleHAiOjE1MDM0OTUyODN9.i7Jpuha_euvoHNq_wPfA88zRyj6S6C7vSu8lnYIdi_E"
+						},
+						{
+							"key": "sceneId",
+							"value": "3",
+							"description": ""
+						},
+						{
+							"key": "characterId",
+							"value": "2",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/scenes/getAllCharacters",
+			"request": {
+				"url": "localhost:1337/scenes/getAllCharacters",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDkxNjgzLCJleHAiOjE1MDM0OTUyODN9.i7Jpuha_euvoHNq_wPfA88zRyj6S6C7vSu8lnYIdi_E"
+						},
+						{
+							"key": "sceneId",
+							"value": "3",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/labels/getAll",
+			"request": {
+				"url": "localhost:1337/labels/getAll",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDkxNjgzLCJleHAiOjE1MDM0OTUyODN9.i7Jpuha_euvoHNq_wPfA88zRyj6S6C7vSu8lnYIdi_E"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/labels/add",
+			"request": {
+				"url": "localhost:1337/labels/add",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDkxNjgzLCJleHAiOjE1MDM0OTUyODN9.i7Jpuha_euvoHNq_wPfA88zRyj6S6C7vSu8lnYIdi_E"
+						},
+						{
+							"key": "type",
+							"value": "Primary",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Catalyst",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/labels/update",
+			"request": {
+				"url": "localhost:1337/labels/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDk2Mjc1LCJleHAiOjE1MDM0OTk4NzV9.c2YYnJJ_KefHSxaWnPz6v-FH_C6lMrI4s7u3v4kMyvE"
+						},
+						{
+							"key": "labelId",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "Primary",
+							"description": ""
+						},
+						{
+							"key": "name",
+							"value": "Resolution",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/labels/remove",
+			"request": {
+				"url": "localhost:1337/labels/remove",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDk2Mjc1LCJleHAiOjE1MDM0OTk4NzV9.c2YYnJJ_KefHSxaWnPz6v-FH_C6lMrI4s7u3v4kMyvE"
+						},
+						{
+							"key": "labelId",
+							"value": "2",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/scenes/getLabel",
+			"request": {
+				"url": "localhost:1337/scenes/getLabel",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "name@mail.ru"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTAzNDk2NjUzLCJleHAiOjE1MDM1MDAyNTN9.A172NZHCuNNzqLzUlaRxjYqyMNCg9fhzFxsvg5Y6crk"
+						},
+						{
+							"key": "sceneId",
+							"value": "4",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:1337/users/getStatistics",
+			"request": {
+				"url": "localhost:1337/users/getStatistics",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "admin@mail.ru",
+							"description": ""
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"description": ""
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNTAzNTg0ODMxLCJleHAiOjE1MDM1ODg0MzF9.AWxyc2J6k6bxOLKE7blyok2iWRJNZM0aVKogE2i230Y",
 							"description": "",
 							"type": "text"
 						}

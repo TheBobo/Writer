@@ -14,10 +14,10 @@ module.exports = {
         description: {
             type: 'string'
         },
-        wordCount: {
-            type: 'int',
-            defaultsTo: 0
-        },
+        // wordCount: {
+        //     type: 'int',
+        //     defaultsTo: 0
+        // },
         targetWords: {
             type: 'int'
         },

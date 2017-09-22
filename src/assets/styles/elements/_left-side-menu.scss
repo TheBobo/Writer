@@ -1,8 +1,6 @@
 .side-nav {
  ul {
    .has-sub {
-
-
       line-height: 45px;
       font-size: 15px;
       border-bottom: solid thin darken($light-gray, 7%);
@@ -77,6 +75,11 @@
             }
           }
         }
+        .new-element-menu {
+          .add-scene {
+            right: 5px;
+          }
+        }
       }
       &.open {
         ul {
@@ -100,7 +103,6 @@
       }
        ul {
         .scene {
-          padding-left: 15px;
           font-size: 14px;
           cursor: pointer;
         }
@@ -111,7 +113,6 @@
       height: 11px;
       padding: 5px 0;
       position: absolute;
-      cursor: pointer;
       left: 0;
       right: 0;
       z-index: 2;
@@ -121,50 +122,37 @@
         height: 100%;
         position: relative;
         opacity: 0;
-        svg {
-          width: 20px;
-          height: 20px;
+        > span {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          cursor: pointer;
           position: absolute;
-          right: 5px;
-          top: -5px;
+          top: -3px;
           margin: 0;
-          fill: $purple;
+          font-size: 14px;
+          font-weight: 200;
+          text-align: center;
+          line-height: 15px;
+          color: #fff;
         }
+        .add-chapter {
+          background-color: $violet;
+          right: 5px;
+        }
+        .add-scene {
+          background-color: $purple;
+          right: 25px;
+        }
+
         &:before {
           content: '';
           height: 1px;
           display: block;
           width: 100%;
-          transform: translateX(-85px);
           background-color: $purple;
           position: absolute;
           top: 5px;
-        }
-      }
-      &.add-scene {
-        .add-new-wrapper {
-          &:after {
-            content: 'Add Scene';
-            color: $purple;
-            font-size: 9px;
-            position: absolute;
-            top: -18px;
-            right: 30px;
-          }
-        }
-      }
-      &.add-chapter {
-        .add-new-wrapper {
-           &:after {
-             content: 'Add Chapter';
-             color: $purple;
-             font-size: 9px;
-             position: absolute;
-             top: -1px;
-             right: 30px;
-             background-color: $light-gray;
-             line-height: 11px;
-           }
         }
       }
 
@@ -175,22 +163,24 @@
             &:before {
               width: 100%;
               opacity: 1;
-              transform: translateX(-85px);
-            }
-          }
-
-          &.add-chapter {
-            &:before {
-              width: calc(100% - 78px)
             }
           }
         }
       }
     }
   }
-  //  &.assets-nav {
-  //   .has-sub {
-  //     padding-left: 45px;
-  //   }
-  //  }
-}
+  &.assets-nav {
+    li {
+      line-height: 45px;
+      font-size: 15px;
+      border-bottom: solid thin darken($light-gray, 7%);
+      position: relative;
+      cursor: pointer;
+      padding-left: 45px;
+        &:hover,
+        &.active {
+          color: $yellow;
+        }
+      }
+    }
+  }

@@ -8,7 +8,7 @@ import { ActsService } from './../acts.service';
   selector: 'app-story-map',
   templateUrl: './story-map.component.html',
   inputs: ['ACTS'],
-  outputs:['outScene', 'outChapter', 'showright', 'menuBar'],
+  outputs:['outScene', 'outChapter', 'showright', 'menuBar', 'deletechapter'],
   providers: [ActsService]
 })
 
@@ -22,6 +22,7 @@ export class StoryMapComponent implements OnInit {
   showmodal = new EventEmitter<true>()
   menubar = new EventEmitter<string>()
   outChapter = new EventEmitter<Chapter>()
+  deletechapter = new EventEmitter<Chapter>()
 
   newScene: Scene
   newChapter: Chapter
@@ -52,7 +53,6 @@ export class StoryMapComponent implements OnInit {
     else if(event.type == 'edit')
       this.newChapter=event;
 
-    debugger
     this.newScene = undefined;
     console.log('this.newChapter ', this.newChapter)
 
@@ -64,7 +64,9 @@ export class StoryMapComponent implements OnInit {
       }
     }
 
-
+    emitDeleteChapter(chapter){
+      this.deletechapter.emit(chapter);
+    }
 
   ngOnInit() {
   }

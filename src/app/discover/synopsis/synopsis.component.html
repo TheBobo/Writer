@@ -1,3 +1,30 @@
-<p>
-  synopsis works!
-</p>
+
+<div class="sub-subheader">
+  <span class="title-inner">Synopsis</span>
+</div>
+<form class="inner-wrapper material">
+      <div class="form-group">
+        <label>One Line Synopsis</label>
+        <textarea (focus) ="focusElem($event)" (blur)="blur($event)"   class="autoExpand #synopsisOne form-control" rows="2"
+          data-min-rows='2' maxlength=116></textarea>
+        <!-- <span class="text-inline">{{ 116 - synopsisOne.value.length}}</span> -->
+      </div>
+  <div class="form-group">
+    <label>One Paragraph Synopsis</label>
+    <textarea  (focus) ="focusElem($event)" (blur)="blur($event)"  class="autoExpand form-control" #synopsisTwo rows="2"
+      data-min-rows='2' maxlength=116></textarea>
+    <!-- <span class="text-inline">{{ 116 - synopsisTwo.value.length}}</span> -->
+  </div>
+  <div class="form-group">
+    <label>Four Paragraph Synopsis</label>
+    <textarea (focus) ="focusElem($event)" (blur)="blur($event)"   #synopsisThree class="autoExpand form-control" rows="4"
+      data-min-rows='4' maxlength=116></textarea>
+    <!-- <span class="text-inline">{{ 116 - synopsisThree.value.length}}</span> -->
+  </div>
+  <div class="form-group">
+    <label>Four Page Synopsis</label>
+    <textarea (focus) ="focusElem($event)"  (blur)="blur($event)" #synopsisFour class="autoExpand form-control" rows="4"
+      data-min-rows='4' maxlength=116></textarea>
+    <!-- <span class="text-inline">{{ 116 - synopsisFour.value.length}}</span> -->
+  </div>
+</form>

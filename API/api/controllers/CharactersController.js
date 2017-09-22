@@ -87,9 +87,9 @@ module.exports = {
     update: function (req, res) {
         var email = req.param('email');
         var token = req.param('token');
-        var storyId = req.param('storyId');
+        var characterId = req.param('characterId');
 
-        if (!email || !token || !storyId) {
+        if (!email || !token || !characterId) {
             return res.json(400, {err: 'not all parameters was set'});
         }
 
@@ -103,7 +103,19 @@ module.exports = {
                     if (err) {
                         return res.json(400, {err: 'invalid token'});
                     }else{
+                        var newCharacter= req.body;
+                        delete newCharacter.email;
+                        delete newCharacter.token;
+                        delete newCharacter.characterId;
+                        // newStory.user = user.id;
 
+                        Characters.update({id: characterId}, newCharacter).exec(function (err, character) {
+                            if(err){
+                                return res.json(500, {err: err});
+                            }else{
+                                return res.json({status: 'character updated', character: character, token: jwToken.issue({id: user.id})});
+                            }
+                        });
                     }
                 });
             }else{
@@ -134,7 +146,7 @@ module.exports = {
                             if(err){
                                 return res.json(500, {err: err});
                             }else{
-                                return res.json({status: 'Characters deleted', token: jwToken.issue({id: user.id})});
+                                return res.json({status: 'Character deleted', token: jwToken.issue({id: user.id})});
                             }
                         });
                     }

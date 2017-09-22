@@ -100,6 +100,80 @@ module.exports = {
         });
     },
 
+    getStatistics: function (req, res) {
+        var email = req.param('email');
+        var token = req.param('token');
+        var password = req.param('password');
+
+        if (!email || !token || !password) {
+            return res.json(400, {err: 'not all parameters was set'});
+        }
+
+        Users.findOne({email: email}).exec(function (err, user) {
+            var  id  = user.id;
+            if(err){
+                return res.json(400, {err: err});
+            }
+            if(user) {
+                jwToken.verify(token, function (err, token) {
+                    if (err) {
+                        return res.json(400, {err: 'invalid token'});
+                    }else{
+                        Users.comparePassword(password, user, function (err, valid) {
+                            if (err) {
+                                return res.json(400, {err: 'forbidden'});
+                            }
+                            if (!valid) {
+                                return res.json(400, {err: 'invalid email or password'});
+                            } else {
+                                if(user.role == 'admin') {
+                                    Users.find().exec(function afterwards(err, statistic) {
+                                        if (err) {
+                                            return res.json(500, {err: err});
+                                        }
+                                        if (statistic) {
+
+                                            var newUsers = [];
+                                            var today = new Date();
+                                            var yesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                                            console.log('today : ', today, " , yesterday : ", yesterday);
+
+                                            for (var i in statistic) {
+                                                if (statistic[i].createdAt > yesterday) {
+                                                    newUsers.push({
+                                                        firstName: statistic[i].firstName,
+                                                        lastName: statistic[i].lastName,
+                                                        email: statistic[i].email,
+                                                        role: statistic[i].role,
+                                                        // email: statistic[i].email,
+                                                    })
+                                                }
+                                            }
+
+                                            return res.json(
+                                                {
+                                                    usersCount: statistic.length,
+                                                    newUsers: newUsers,
+                                                    token: jwToken.issue({id: user.id})
+                                                }
+                                            );
+                                        } else {
+                                            return res.json(400, {err: 'nothing was find!'});
+                                        }
+                                    });
+                                }else{
+                                    return res.json(400, {err: 'you are not admin!'});
+                                }
+                            }
+                        });
+                    }
+                });
+            }else{
+                return res.json(400, {err: 'invalid email'});
+            }
+        });
+    },
+
     index: function (req, res) {
         res.send('Sorry, we don\'t have nothing for you!');
     }
