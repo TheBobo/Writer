@@ -129,6 +129,10 @@ export class ActsService {
       this.updateChapterId(this.ACTS);
     }
 
+    getChapterByIndex(id:number){
+      
+    }
+
     getChapter(chapterId: number):Chapter{
 
       for(var i=0; i< this.ACTS.length; i++){

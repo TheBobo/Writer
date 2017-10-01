@@ -101,8 +101,8 @@
       <div class="form-group">
         <label >act {{scene.actId}}</label>
       </div>
-      <div class="form-group active">
-        <label *ngIf='scene.type == "view"' >chapter {{scene.chapterId}}</label>
+      <div class="form-group" [ngClass]="{'active':scene.type == 'view' || scene.type == 'edit' }">
+        <label *ngIf='scene.type == "view" || scene.type == "create"' >chapter {{scene.chapterId}}</label>
         <div *ngIf='scene.type == "edit"'>
           <label for="">chapter</label>
           <ng-select [allowClear]="true" [items]="chapters" (selected)="chageSceneChapter($event)"
@@ -110,16 +110,15 @@
           </ng-select>
         </div>
       </div>
-      <div class="form-group active">
-
-        <label *ngIf='scene.type == "view"'>scene {{scene.id + 1}}</label>
+      <div class="form-group" [ngClass]="{'active':scene.type == 'view' || scene.type == 'edit' }">
+        <label *ngIf='scene.type == "view" || scene.type == "create"'>scene {{scene.id + 1}}</label>
         <div *ngIf='scene.type == "edit"'>
           <label>scene</label>
           <ng-select [allowClear]="true" [items]="availableScene" (selected)="chageScenePostion($event)" placeholder="scene {{scene.id }}">
           </ng-select>
         </div>
       </div>
-      <div class="form-group active" *ngIf='scene && scene.type == "edit"'[ngClass]="{'active':scene.selectLabel != ''}">
+      <div class="form-group active" *ngIf='scene && (scene.type == "edit" || scene.type == "create")'[ngClass]="{'active':scene.selectLabel != ''}">
 
           <label *ngIf="scene.selectLabel != ''">Scene Label</label>
           <ng-select [allowClear]="true" [items]="labels" (selected)="selectedLabel($event)"
@@ -142,13 +141,7 @@
       </div>
 
       <div class="form-group">
-        <label>Setting</label>
-        <textarea  (focus) ="focusElem($event)"  (blur)="blur($event)" formControlName="objective" #sceneObjective class="autoExpand form-control" rows="2" value ="{{scene.objective}}" data-min-rows='2'></textarea>
-        <!-- <span class="text-inline">{{ 116 - sceneDescription.value.length}}</span> -->
-      </div>
-
-      <div class="form-group">
-        <label> Word taget </label>
+        <label> Word target count </label>
         <input class="autoExpand form-control"  (focus) ="focusElem($event)"  (blur)="blur($event)"  formControlName="wordGoal" type="number" value="{{scene.wordGoal}}" class="form-control">
       </div>
 
@@ -181,8 +174,6 @@
             <label>Role</label>
             <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="role" #role class="form-control" value="{{audence.role}}">
           </div>
-
-
 
           <div class="form-group">
             <label>Story Line</label>
@@ -275,15 +266,25 @@
       </form>
 
     <form *ngIf="chapter" class="material" [formGroup]="rightPanelCreateChapter">
+        <div *ngIf="chapter.type == 'edit'">
+          Chapter {{chapter.id}}
+        </div>
         <div class="form-group">
           <label>Chapter Name </label>
           <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="chaptertitle" #chaptertitle class="form-control" value="{{chapter.title}}">
         </div>
 
+        <div *ngIf='chapter.type == "edit"'>
+            <label for="">chapter</label>
+            <ng-select [allowClear]="true" [items]="chapters" (selected)="chageChapterLocation($event)"
+               placeholder="select new location">
+            </ng-select>
+        </div>
+
       <div class="form-group">
         <label >act {{chapter.actId}}</label>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label  *ngIf='chapter.type == "view"' >chapter {{chapter.id + 1}}</label>
         <select class="lite-select" *ngIf='chapter.type == "edit"' name="chapter" data-placeholder="Chapter" formControlName="chapterId">
           <option value="">Chapter 1</option>
@@ -291,7 +292,7 @@
           <option value="">Chapter 3</option>
           <option value="">Chapter 4</option>
         </select>
-      </div>
+      </div> -->
 
       <div class="form-group">
         <label>One Line Synopsis</label>
@@ -301,10 +302,11 @@
       </div>
 
 
-      <!-- <div class="form-group">
-        <label> Word taget </label>
-        <input class="autoExpand form-control" formControlName="wordGoal" type="number" value="{{scene.wordGoal}}" class="form-control">
-      </div> -->
+      <div class="form-group">
+        <label> Word target count </label>
+        <input class="autoExpand form-control" type="number" min=0  (focus) ="focusElem($event)"  (blur)="blur($event)"  formControlName="wordGoal" type="number" value="{{chapter.wordGoal}}" class="form-control">
+      </div>
+
       <div class="panel-footer" *ngIf="chapter.type!='view'">
           <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
           <button class="btn btn-yellow" (click)="saveChapter()">Save</button>

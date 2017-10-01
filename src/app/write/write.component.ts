@@ -39,7 +39,17 @@ export class WriteComponent implements OnInit {
   public contentOne: string;
   public contentTwo: string;
   public options1: any = {
-    'placeholder':'placeholder is here'
+    btns: [
+      ['undo', 'redo'], // Only supported in Blink browsers
+      ['formatting'],
+      ['strong', 'em', 'del'],
+      ['link'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+      ['unorderedList', 'orderedList'],
+      ['horizontalRule'],
+      ['removeformat'],
+      ['fullscreen']
+    ]
   };
   constructor(private shareService: ActsService) {
    }

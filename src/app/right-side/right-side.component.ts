@@ -58,7 +58,7 @@ const GENDER_LABELS = [
   selector: 'app-right-side',
   templateUrl: './right-side.component.html',
   inputs: [ 'scene', 'chapter', 'character','audence', 'rightOpen', 'acts', 'title'],
-  outputs: ['close', 'addNewScene', 'addNewChapter', 'addNewCharacter', 'addNewAudence', 'changeSceneChapter', 'changeSceneOrder'],
+  outputs: ['close', 'addNewScene', 'addNewChapter', 'addNewCharacter', 'addNewAudence', 'changeSceneChapter', 'changeSceneOrder','changeLocation'],
   providers: [ActsService]
 })
 export class RightSideComponent implements OnInit {
@@ -84,6 +84,7 @@ export class RightSideComponent implements OnInit {
   addNewAudence = new EventEmitter<Audence>();
   changeSceneChapter = new EventEmitter<Scene>();
   changeSceneOrder = new EventEmitter<Scene>();
+  changeLocation = new EventEmitter<number>();
 
   public labels:Array<any> = [];
 
@@ -210,7 +211,6 @@ export class RightSideComponent implements OnInit {
   }
 
   chageSceneChapter(event){
-    ;
     if(this.scene.chapterId != event.id){
       //this.shareService.changeSceneChapter(this.scene, event.id)
       this.scene.newChapterId = event.id;
@@ -219,6 +219,12 @@ export class RightSideComponent implements OnInit {
     }
     else{
       this.setAvailableScene()
+    }
+  }
+
+  chageChapterLocation(event){
+    if(this.chapter.id != event.id){
+      this.changeLocation.emit(event.id)
     }
   }
 

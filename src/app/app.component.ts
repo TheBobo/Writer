@@ -1,3 +1,4 @@
+import { ServerDataResponseService } from './server-data-response.service';
 import { element } from 'protractor';
 import { Audence } from './models/Audence';
 import { Scene } from './models/Scene';
@@ -7,7 +8,12 @@ import { ActsService } from './acts.service';
 import { Act } from './models/Act';
 import { Character } from "app/models/Character";
 import { Story } from "app/models/Story";
-import { User } from "app/models/User"
+import { User } from "app/models/User";
+
+import {Injectable} from '@angular/core';
+import {Http, Response} from '@angular/http';
+import {Headers, RequestOptions} from '@angular/http';
+ 
 
 declare var $:any;
 declare var jQuery: any;
@@ -16,7 +22,7 @@ declare var jQuery: any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   outputs:['createNewScene'],
-  providers: [ActsService]
+  providers: [ActsService, ServerDataResponseService]
 })
 export class AppComponent  implements OnInit  {
   title = '';
@@ -47,7 +53,10 @@ export class AppComponent  implements OnInit  {
 
   @ViewChild('rightSlideView') rightSlideView;
   @ViewChild('confirmModalView') confirmModalView;
-
+  upadateStory(story){
+    debugger
+    this.selectedStoryItem = story;
+  }
   clearState(){
     this.newChapter = undefined;
     this.newScene = undefined;
@@ -56,7 +65,7 @@ export class AppComponent  implements OnInit  {
   }
 
 
-  constructor(private shareService: ActsService) { }
+  constructor(private shareService: ActsService, private serverDataResponseService: ServerDataResponseService) { } 
 
   changeSceneChapter(scene){
     this.shareService.changeSceneChapter(scene);
@@ -83,7 +92,7 @@ export class AppComponent  implements OnInit  {
     if(this.Stories==null)
       this.Stories = new Array<Story>();
     this.Stories.push(event);
-
+debugger
     this.selectedStory(event)
   }
 
@@ -123,7 +132,7 @@ export class AppComponent  implements OnInit  {
   }
 
   editCharacter(event){
-
+    debugger
     this.clearState();
     this.newCharacter = this.appCharacters.find(x=>x.id == event)
     this.newCharacter.type ='edit'
@@ -175,12 +184,17 @@ export class AppComponent  implements OnInit  {
   }
 
   emitScene(event){
+    debugger
     this.clearState();
     this.newScene = event;
     this.emitRight(true);
   }
 
   emitNewChapter(event){
+    if(event.type == 'edit'){
+      event = this.getChapterByIndex(event.id);
+    }
+    
     this.clearState();
     this.newChapter = event;
     this.emitRight(true);
@@ -192,7 +206,7 @@ export class AppComponent  implements OnInit  {
 
   emitRight(event){
     this.rightTab = event;
-
+    debugger;
     setTimeout(() => {
       if(this.newScene){
         if ( this.newScene.type === 'edit') {
@@ -211,20 +225,21 @@ export class AppComponent  implements OnInit  {
           this.title='Edit Chapter';
         } else if ( this.newChapter.type === 'create' ) {
           //this.rightSlideView.setRightSideTitle('New Chapter')
-          this.title='Edit Chapter';
+          this.title='Create Chapter';
         } else if ( this.newChapter.type === 'view' ) {
           this.title='Chapter';
           //this.rightSlideView.setRightSideTitle('View Chapter')
         }
       }
       else if ( this.newCharacter ) {
-        ;
         if ( this.newCharacter.type === 'edit') {
           //this.rightSlideView.setRightSideTitle('Edit Character')
           this.title='Edit Character';
+          debugger
         } else if ( this.newCharacter.type === 'create' ) {
           //this.rightSlideView.setRightSideTitle('New Character')
           this.title='New Character';
+          debugger
         } else if ( this.newCharacter.type === 'view' ) {
           this.title='View Character';
           //this.rightSlideView.setRightSideTitle('View Character')
@@ -253,6 +268,7 @@ export class AppComponent  implements OnInit  {
   }
 
   addNewScene(event){
+    debugger
     if(event.type == 'create' && event.id != 0){
       event.id--;
     }
@@ -262,6 +278,7 @@ export class AppComponent  implements OnInit  {
 
 
   addNewChapter(event){
+    debugger
     this.shareService.addChapter(event);
   }
 
@@ -355,6 +372,27 @@ export class AppComponent  implements OnInit  {
     this.user = event;
   }
 
+  getChapterByIndex(id){
+    for(var i=0; i<this.ACTS.length; i++)
+      for(var j=0; j<this.ACTS[i].chapters.length; j++)
+        if(this.ACTS[i].chapters[j].id == id){
+          return this.ACTS[i].chapters[j];
+        }
+  }
+
+  changeLocation(id){
+    debugger
+    for(var i = 0; i < this.ACTS.length; i++)
+      for(var j = 0; j < this.ACTS[i].chapters.length; j++)  
+        if(this.newChapter.id == this.ACTS[i].chapters[j].id)
+          this.ACTS[i].chapters.splice(j,1);
+
+    for(var i = 0; i < this.ACTS.length; i++)
+      for(var j = 0; j < this.ACTS[i].chapters.length; j++)  
+        if(id == this.ACTS[i].chapters[j].id)
+          this.ACTS[i].chapters.splice(j,0, this.newChapter);
+  }
+
 
   ngOnInit() {
     this.shareService.initAllActs();
@@ -370,6 +408,12 @@ export class AppComponent  implements OnInit  {
 
     this.emitRight(true);
     this.closeSettings()
+
+    var values;
+     this.serverDataResponseService.getValues().subscribe(
+       res => values = res.json()
+     );
+    debugger
   }
 
 }
