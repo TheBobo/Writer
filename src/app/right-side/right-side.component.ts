@@ -16,7 +16,7 @@ declare var jQuery: any;
 // declare var LiteSelectFunctionality: any;
 
 const LABELS = [
-  {'name': '', 'class': 'primary'},
+  {'name': 'No label', 'class': 'primary'},
   {'name': 'Setup', 'class': 'primary'},
   {'name': 'Backstory',  'class': 'primary'},
   {'name': 'Catalyst', 'class': 'secondary'},
@@ -181,14 +181,14 @@ export class RightSideComponent implements OnInit {
      LABELS.forEach((label:{name:string, class:string}) => {
        this.labels.push({
          id: label.name,
-         text: `<span class="'${label.class}'">${label.name}</span>`
+         text: `<span class="${label.class}">${label.name}</span>`
        });
      });
 
      GENDER_LABELS.forEach((label:{name:string, class:string}) => {
       this.genders.push({
         id: label.name,
-        text: `<span (click)="addCustomGender()" class="'${label.class}'">${label.name}</span>`
+        text: `<span (click)="addCustomGender()" class="${label.class}">${label.name}</span>`
       });
     });
 
