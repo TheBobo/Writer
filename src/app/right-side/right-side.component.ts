@@ -16,6 +16,7 @@ declare var jQuery: any;
 // declare var LiteSelectFunctionality: any;
 
 const LABELS = [
+  {'name': '', 'class': 'primary'},
   {'name': 'Setup', 'class': 'primary'},
   {'name': 'Backstory',  'class': 'primary'},
   {'name': 'Catalyst', 'class': 'secondary'},
@@ -71,6 +72,7 @@ export class RightSideComponent implements OnInit {
   @Input() rightOpen;
   @Input() String;
 
+  isCustomGender: boolean;
   chapters:Array<any>;
   availableScene:Array<any>;
   genders:Array<any>;
@@ -163,11 +165,8 @@ export class RightSideComponent implements OnInit {
     })
   }
 
-  open(){
-    alert(10)
-  }
-
    public ngOnInit():any {
+     this.isCustomGender = false;
 
     this.shareService.RightSlide = this;
     this.chapters = Array<any>();
@@ -189,7 +188,7 @@ export class RightSideComponent implements OnInit {
      GENDER_LABELS.forEach((label:{name:string, class:string}) => {
       this.genders.push({
         id: label.name,
-        text: `<span class="'${label.class}'">${label.name}</span>`
+        text: `<span (click)="addCustomGender()" class="'${label.class}'">${label.name}</span>`
       });
     });
 
@@ -234,6 +233,10 @@ export class RightSideComponent implements OnInit {
 
 
   selectCharacterGender(event){
+    if(event.id == 'Custom'){
+      this.character.isCustomGender = true;
+      return;
+    }
     this.character.gender = event.id;
   }
 

@@ -206,7 +206,6 @@ debugger
 
   emitRight(event){
     this.rightTab = event;
-    debugger;
     setTimeout(() => {
       if(this.newScene){
         if ( this.newScene.type === 'edit') {

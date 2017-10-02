@@ -20,11 +20,9 @@ export class ServerDataResponseService {
     getValues () {
       var endPointUrl =this.baseUrl + '/values';
       var values;
-      debugger
       this.http.get(endPointUrl).subscribe(
         result => values = result
       );
-      debugger
       return values;
     }
 

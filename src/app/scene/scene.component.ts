@@ -26,7 +26,6 @@ export class SceneComponent implements OnInit {
   outScene = new EventEmitter<Scene>();
 
   addScene(sceneId:number, chapterId:number, actId:number, type: string, event, last: boolean){
-    debugger
     event.stopPropagation();
     if ( type === 'edit') {
       this.newScene = this.scene

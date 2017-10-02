@@ -60,7 +60,6 @@ export class ChapterComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger
     for(var i=0; i < this.chapter.scenes.length; i++){
       this.chapter.wordCount = this.chapter.scenes[i].wordCount;
       this.chapter.wordTarget = this.chapter.scenes[i].wordsGoal;

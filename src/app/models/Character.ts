@@ -8,6 +8,7 @@ export class Character{
   role:string;
   epiphany:string;
   type: string;
+  isCustomGender: boolean;
 
     age: number;
     gender: string;
@@ -31,6 +32,7 @@ export class Character{
     this.location='';
     this.employment='';
     this.custom='';
+    this.isCustomGender=false;
   }
 
 

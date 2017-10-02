@@ -90,7 +90,6 @@ export class WriteComponent implements OnInit {
   }
 
   saveSceneContent(event, sceneId){
-   debugger
     // this.scene
   }
 
