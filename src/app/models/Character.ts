@@ -8,6 +8,7 @@ export class Character{
   role:string;
   epiphany:string;
   type: string;
+  profession:string;
   isCustomGender: boolean;
 
     age: number;
@@ -26,6 +27,7 @@ export class Character{
     this.role='';
     this.epiphany='';
     this.type='';
+    this.profession='';
     
     this.age = 0;
     this.gender='';
@@ -33,6 +35,7 @@ export class Character{
     this.employment='';
     this.custom='';
     this.isCustomGender=false;
+
   }
 
 
