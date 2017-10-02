@@ -5,15 +5,63 @@
   border: solid thin darken($light-gray, 7%);
   padding: 30px;
   display: inline-block;
+  overflow: hidden;
+  .story-wrapper {
+    width: 100%;
+    height: auto;
+    position: relative;
+    transition: all .3s;
+    transform: translateY(0);
+    .tool-bar {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      padding-top: 30px;
+      display: flex;
+      justify-content: flex-end;
+      span {
+        width: 30px;
+        height: 30px;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        svg {
+          width: 18px;
+          height: 18px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          margin: 0;
+        }
+        &:hover {
+          svg {
+            fill: $yellow;
+          }
+        }
+        &:last-child {
+          margin-right: -5px;
+        }
+      }
+    }
+  }
+  &:hover {
+    .story-wrapper {
+      transform: translateY(-50px)
+    }
+  }
   .story-title {
     font-family: Baskerville;
   }
+
   .synopsis {
     font-family: Baskerville;
     font-size: 14px;
     line-height: 26px;
     opacity: .8;
   }
+
   .characters-holder {
     .character-image {
       width: 25px !important;
@@ -35,6 +83,7 @@
       font-size: 12px;
       margin: 3px;
     }
+
   }
 }
 .story-info {

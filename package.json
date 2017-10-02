@@ -22,6 +22,7 @@
     "@angular/router": "^4.0.0",
     "@baumi/angular2-select": "^2.2.1",
     "angular2-image-upload": "^0.6.6",
+    "angular2-select": "^1.0.0-beta.3",
     "core-js": "^2.4.1",
     "ng2-lazy-trumbowyg": "^2.3.3",
     "ng2-select": "^1.2.0",
