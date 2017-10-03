@@ -56,22 +56,19 @@
                 <label>Location</label>
                 <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="location" #location class="form-control" value="{{character.location}}">
           </div>
+        <div class="form-group " (click)="open()" [ngClass]="{'active':character.gender != ''}">
+            <label *ngIf="character.gender != ''">Gender</label>
+            <ng-select [allowClear]="true" [items]="genders"  (selected)="selectCharacterGender($event)" placeholder="Gender">
+            </ng-select>
+            <input class="form-control" *ngIf="character.isCustomGender" formControlName="gender" #gender value="{{character.gender}}">
+            
+              <!-- <input type="text" formControlName="role" #role class="form-control" value="{{character.role}}"> -->
+          </div>
+          
           <div class="form-group">
               <label>profession</label>
-              <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="profession" #profession class="form-control" value="{{character.profession}}">
+              <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="aprofession" #aprofession class="form-control" value="{{character.aprofession}}">
         </div>
-          <div class="form-group " (click)="open()" [ngClass]="{'active':character.gender != ''}">
-
-              <label *ngIf="character.gender != ''">Gender</label>
-              <ng-select [allowClear]="false" [items]="genders" (selected)="selectCharacterGender($event)" placeholder="Gender">
-              </ng-select>
-              <!-- <input type="text" formControlName="role" #role class="form-control" value="{{character.role}}"> -->
-              <input class="form-control" *ngIf="character.isCustomGender" formControlName="gender" #gender value="{{character.gender}}">
-            </div>
-            <!-- <div class="form-group">
-              <label>Custom </label>
-              <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="custom" #custom class="form-control" value="{{character.custom}}">
-            </div> -->
             <div class="form-group textArea">
               <label>Story Line</label>
               <!-- <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="storyline" #storyline class="form-control" value="{{character.storyline}}"> -->
@@ -202,6 +199,8 @@
             <label *ngIf="audence.gender != ''">Gender</label>
             <ng-select [allowClear]="true" [items]="genders"  (selected)="selectAudenceGender($event)" placeholder="Gender">
             </ng-select>
+            <input class="form-control" *ngIf="audence.isCustomGender" formControlName="gender" #gender value="{{audence.gender}}">
+            
               <!-- <input type="text" formControlName="role" #role class="form-control" value="{{character.role}}"> -->
           </div>
           <div class="form-group">

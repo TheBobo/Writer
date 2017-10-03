@@ -296,7 +296,7 @@ debugger
     if(event.type == 'create'){
       if(event.name==null)
         return;
-
+      debugger
       this.appCharacters.push(event);
       if(this.addCharacterFromInput){
         this.select(event)

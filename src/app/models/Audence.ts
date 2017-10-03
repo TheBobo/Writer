@@ -8,6 +8,8 @@ export class Audence{
     role:string;
     epiphany:string;
     type: string;
+    
+    isCustomGender: boolean;
 
     
     age: number;
@@ -36,6 +38,7 @@ export class Audence{
       this.role='';
       this.epiphany='';
       this.type='';
+      this.isCustomGender=false;
       
       this.bio = '';
       this.age=0;

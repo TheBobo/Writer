@@ -188,7 +188,7 @@ export class RightSideComponent implements OnInit {
      GENDER_LABELS.forEach((label:{name:string, class:string}) => {
       this.genders.push({
         id: label.name,
-        text: `<span (click)="addCustomGender()" class="${label.class}">${label.name}</span>`
+        text: `${label.name}`
       });
     });
 
@@ -242,6 +242,10 @@ export class RightSideComponent implements OnInit {
 
 
   selectAudenceGender(event){
+    if(event.id == 'Custom'){
+      this.audence.isCustomGender = true;
+      return;
+    }
     this.audence.gender = event.id;
   }
 
