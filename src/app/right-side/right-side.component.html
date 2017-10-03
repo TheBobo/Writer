@@ -52,35 +52,79 @@
               <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="employment" #employment class="form-control" value="{{character.employment}}">
             </div>
 
+            <div class="form-group">
+                <label>Location</label>
+                <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="location" #location class="form-control" value="{{character.location}}">
+          </div>
+          <div class="form-group">
+              <label>profession</label>
+              <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="profession" #profession class="form-control" value="{{character.profession}}">
+        </div>
           <div class="form-group " (click)="open()" [ngClass]="{'active':character.gender != ''}">
 
               <label *ngIf="character.gender != ''">Gender</label>
               <ng-select [allowClear]="false" [items]="genders" (selected)="selectCharacterGender($event)" placeholder="Gender">
               </ng-select>
               <!-- <input type="text" formControlName="role" #role class="form-control" value="{{character.role}}"> -->
+              <input class="form-control" *ngIf="character.isCustomGender" formControlName="gender" #gender value="{{character.gender}}">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>Custom </label>
               <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="custom" #custom class="form-control" value="{{character.custom}}">
-            </div>
+            </div> -->
             <div class="form-group">
               <label>Story Line</label>
-              <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="storyline" #storyline class="form-control" value="{{character.storyline}}">
+              <!-- <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="storyline" #storyline class="form-control" value="{{character.storyline}}"> -->
+              <textarea
+                  formControlName="storyline"
+                  #storyline
+                  (focus)="focusElem($event)"
+                  (blur)="blur($event)"
+                  class="autoExpand form-control"
+                  rows="4"
+                  data-min-rows='4'></textarea>
             </div>
 
             <div class="form-group">
               <label>Goal</label>
-              <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="goal" #goal class="form-control" value="{{character.goal}}">
+              <!-- <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="goal" #goal class="form-control" value="{{character.goal}}"> -->
+              <textarea
+              formControlName="goal"
+              #goal
+              (focus)="focusElem($event)"
+              (blur)="blur($event)"
+              class="autoExpand form-control"
+              rows="4"
+              data-min-rows='4'></textarea>
+
             </div>
 
             <div class="form-group">
               <label>Conflict</label>
-              <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="conflict" #conflict class="form-control" value="{{character.conflict}}">
+              <!-- <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="conflict" #conflict class="form-control" value="{{character.conflict}}"> -->
+              <textarea
+              formControlName="conflict"
+              #conflict
+              (focus)="focusElem($event)"
+              (blur)="blur($event)"
+              class="autoExpand form-control"
+              rows="4"
+              data-min-rows='4'></textarea>
+
             </div>
 
             <div class="form-group">
               <label>Epiphany </label>
-              <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="epiphany" #epiphany class="form-control" value="{{character.epiphany}}">
+              <!-- <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="epiphany" #epiphany class="form-control" value="{{character.epiphany}}"> -->
+              <textarea
+              formControlName="epiphany"
+              #epiphany
+              (focus)="focusElem($event)"
+              (blur)="blur($event)"
+              class="autoExpand form-control"
+              rows="4"
+              data-min-rows='4'></textarea>
+
             </div>
 
             <div class="panel-footer" *ngIf="character.type!='view'">
@@ -101,8 +145,8 @@
       <div class="form-group">
         <label >act {{scene.actId}}</label>
       </div>
-      <div class="form-group active">
-        <label *ngIf='scene.type == "view"' >chapter {{scene.chapterId}}</label>
+      <div class="form-group" [ngClass]="{'active':scene.type == 'view' || scene.type == 'edit' }">
+        <label *ngIf='scene.type == "view" || scene.type == "create"' >chapter {{scene.chapterId}}</label>
         <div *ngIf='scene.type == "edit"'>
           <label for="">chapter</label>
           <ng-select [allowClear]="true" [items]="chapters" (selected)="chageSceneChapter($event)"
@@ -110,16 +154,15 @@
           </ng-select>
         </div>
       </div>
-      <div class="form-group active">
-
-        <label *ngIf='scene.type == "view"'>scene {{scene.id + 1}}</label>
+      <div class="form-group" [ngClass]="{'active':scene.type == 'view' || scene.type == 'edit' }">
+        <label *ngIf='scene.type == "view" || scene.type == "create"'>scene {{scene.id + 1}}</label>
         <div *ngIf='scene.type == "edit"'>
           <label>scene</label>
           <ng-select [allowClear]="true" [items]="availableScene" (selected)="chageScenePostion($event)" placeholder="scene {{scene.id }}">
           </ng-select>
         </div>
       </div>
-      <div class="form-group active" *ngIf='scene && scene.type == "edit"'[ngClass]="{'active':scene.selectLabel != ''}">
+      <div class="form-group active" *ngIf='scene && (scene.type == "edit" || scene.type == "create")'[ngClass]="{'active':scene.selectLabel != ''}">
 
           <label *ngIf="scene.selectLabel != ''">Scene Label</label>
           <ng-select [allowClear]="true" [items]="labels" (selected)="selectedLabel($event)"
@@ -128,38 +171,26 @@
       </div>
 
 
-      <div class="form-group">
+      <div class="form-group textArea">
         <label>Setting</label>
         <textarea  (focus) ="focusElem($event)"  (blur)="blur($event)" formControlName="settings" #sceneSetting class="autoExpand form-control" rows="2" value ="{{scene.settings}}" data-min-rows='2'></textarea>
         <!-- <span class="text-inline">{{ 116 - sceneDescription.value.length}}</span> -->
       </div>
-
-
-      <div class="form-group">
+      <div class="form-group textArea">
         <label>Mood/Tone</label>
         <textarea  (focus) ="focusElem($event)"  (blur)="blur($event)" formControlName="mood" #sceneMood class="autoExpand form-control" rows="2" value ="{{scene.mood}}" data-min-rows='2'></textarea>
         <!-- <span class="text-inline">{{ 116 - sceneDescription.value.length}}</span> -->
       </div>
-
       <div class="form-group">
-        <label>Setting</label>
-        <textarea  (focus) ="focusElem($event)"  (blur)="blur($event)" formControlName="objective" #sceneObjective class="autoExpand form-control" rows="2" value ="{{scene.objective}}" data-min-rows='2'></textarea>
-        <!-- <span class="text-inline">{{ 116 - sceneDescription.value.length}}</span> -->
-      </div>
-
-      <div class="form-group">
-        <label> Word taget </label>
+        <label> Word target count </label>
         <input class="autoExpand form-control"  (focus) ="focusElem($event)"  (blur)="blur($event)"  formControlName="wordGoal" type="number" value="{{scene.wordGoal}}" class="form-control">
       </div>
-
       <div class="panel-footer" *ngIf="scene.type!='view'">
         <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
         <button class="btn btn-yellow" [disabled]="scene.type ==='view'" (click)="save()">Save</button>
       </div>
     </form>
-
       <form  class="material" *ngIf="audence" [formGroup]="rightPanelCreateAudence">
-
         <div>
           <app-img-upload></app-img-upload>
         </div>
@@ -167,106 +198,86 @@
             <label>Audence Name</label>
             <input  (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="audenceName" #audencename class="form-control" value="{{audence.name}}">
           </div>
-
-
           <div class="form-group " (click)="open()" [ngClass]="{'active':audence.gender != ''}">
-
-              <label *ngIf="audence.gender != ''">Gender</label>
-              <ng-select [allowClear]="true" [items]="genders"  (selected)="selectAudenceGender($event)" placeholder="Gender">
-              </ng-select>
-                <!-- <input type="text" formControlName="role" #role class="form-control" value="{{character.role}}"> -->
+            <label *ngIf="audence.gender != ''">Gender</label>
+            <ng-select [allowClear]="true" [items]="genders"  (selected)="selectAudenceGender($event)" placeholder="Gender">
+            </ng-select>
+              <!-- <input type="text" formControlName="role" #role class="form-control" value="{{character.role}}"> -->
           </div>
-
           <div class="form-group">
             <label>Role</label>
             <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="role" #role class="form-control" value="{{audence.role}}">
           </div>
-
-
-
           <div class="form-group">
             <label>Story Line</label>
             <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="storyline" #storyline class="form-control" value="{{audence.storyline}}">
           </div>
-
           <div class="form-group">
             <label>Goal</label>
             <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="goal" #goal class="form-control" value="{{audence.goal}}">
           </div>
-
           <div class="form-group">
             <label>Conflict</label>
             <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="conflict" #conflict class="form-control" value="{{audence.conflict}}">
           </div>
+          <div class="form-group">
+            <label>Epiphany </label>
+            <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="epiphany" #storyline class="form-control" value="{{audence.epiphany}}">
+          </div>
+          <div class="form-group active">
+            <label>Age</label>
+            <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="age" #age class="form-control" value="{{audence.age}}" max=99>
+          </div>
+          <div class="form-group textArea">
+            <label>Bio </label>
+            <textarea  (focus) ="focusElem($event)"  (blur)="blur($event)" formControlName="bio" #bio class="autoExpand form-control" rows="4" value ="{{audence.bio}}" data-min-rows='4' maxlength=116>
+            </textarea>
+          </div>
+          <div class="form-group">
+            <label>location </label>
+            <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="location" #location class="form-control" value="{{audence.location}}">
+          </div>
+          <div class="form-group">
+            <label>Education </label>
+            <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="education" #education class="form-control" value="{{audence.education}}">
+          </div>
+          <div class="form-group">
+            <label>Professional </label>
+            <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="profession" #profession class="form-control" value="{{audence.profession}}">
+          </div>
+          <div class="form-group active">
+            <label>income </label>
+            <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="income" #education class="form-control" value="{{audence.income}}">
+          </div>
+          <div class="form-group">
+            <label>preferred reading device </label>
+            <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="preferred_reading_device" #preferredReadingDevice class="form-control" value="{{audence.preferred_reading_device}}">
+          </div>
 
           <div class="form-group">
-              <label>Epiphany </label>
-              <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="epiphany" #storyline class="form-control" value="{{audence.epiphany}}">
-            </div>
+            <label>secondary reading device </label>
+            <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="secondary_reading_device" #secondaryReadingDevice class="form-control" value="{{audence.secondary_reading_device}}">
+          </div>
 
-                <div class="form-group active">
-                    <label>Age </label>
-                    <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="age" #age class="form-control" value="{{audence.age}}" max=99>
-                </div>
+          <div class="form-group">
+            <label>how often do they read </label>
+            <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="how_often_do_they_read" #howOftenDoTheyRead class="form-control" value="{{audence.how_often_do_they_read}}">
+          </div>
 
-                <div class="form-group">
-                    <label>Bio </label>
-                    <textarea  (focus) ="focusElem($event)"  (blur)="blur($event)" formControlName="bio" #bio class="autoExpand form-control" rows="4" value ="{{audence.bio}}" data-min-rows='4' maxlength=116>
-                    </textarea>
-                </div>
+          <div class="form-group">
+            <label>where do they read </label>
+            <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="where_do_they_read" #whereDoTheyRead class="form-control" value="{{audence.where_do_they_read}}">
+          </div>
 
-                <div class="form-group">
-                  <label>location </label>
-                  <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="location" #location class="form-control" value="{{audence.location}}">
-                </div>
+          <div class="form-group">
+            <label>what story length do they prefer </label>
+            <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="what_story_length_do_they_prefer" #whatStoryLengthDoThePprefer class="form-control" value="{{audence.what_story_length_do_they_prefer}}">
+          </div>
 
-                <div class="form-group">
-                    <label>Education </label>
-                    <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="education" #education class="form-control" value="{{audence.education}}">
-                  </div>
-
-                <div class="form-group">
-                    <label>Professional </label>
-                    <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="profession" #profession class="form-control" value="{{audence.profession}}">
-                  </div>
-
-                <div class="form-group active">
-                    <label>income </label>
-                    <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="income" #education class="form-control" value="{{audence.income}}">
-                  </div>
-
-
-                <div class="form-group">
-                    <label>preferred reading device </label>
-                    <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="preferred_reading_device" #preferredReadingDevice class="form-control" value="{{audence.preferred_reading_device}}">
-                  </div>
-
-                <div class="form-group">
-                    <label>secondary reading device </label>
-                    <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="secondary_reading_device" #secondaryReadingDevice class="form-control" value="{{audence.secondary_reading_device}}">
-                  </div>
-
-                <div class="form-group">
-                    <label>how often do they read </label>
-                    <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="how_often_do_they_read" #howOftenDoTheyRead class="form-control" value="{{audence.how_often_do_they_read}}">
-                  </div>
-
-                <div class="form-group">
-                    <label>where do they read </label>
-                    <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="where_do_they_read" #whereDoTheyRead class="form-control" value="{{audence.where_do_they_read}}">
-                  </div>
-
-                <div class="form-group">
-                    <label>what story length do they prefer </label>
-                    <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="what_story_length_do_they_prefer" #whatStoryLengthDoThePprefer class="form-control" value="{{audence.what_story_length_do_they_prefer}}">
-                  </div>
-
-                <div class="form-group">
-                    <label>average words read per day </label>
-                    <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="average_words_read_per_day" #averageWordsReadPerDay class="form-control" value="{{audence.average_words_read_per_day}}">
-                  </div>
-
-
+          <div class="form-group">
+            <label>average words read per day </label>
+            <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="average_words_read_per_day" #averageWordsReadPerDay class="form-control" value="{{audence.average_words_read_per_day}}">
+          </div>
 
           <div class="panel-footer" *ngIf="audence.type!='view'">
             <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
@@ -274,16 +285,26 @@
           </div>
       </form>
 
-    <form *ngIf="chapter" class="material" [formGroup]="rightPanelCreateChapter">
+      <form *ngIf="chapter" class="material" [formGroup]="rightPanelCreateChapter">
+        <div *ngIf="chapter.type == 'edit'">
+          Chapter {{chapter.id}}
+        </div>
         <div class="form-group">
           <label>Chapter Name </label>
           <input  (focus) ="focusElem($event)"  (blur)="blur($event)" type="text" formControlName="chaptertitle" #chaptertitle class="form-control" value="{{chapter.title}}">
         </div>
 
+        <div *ngIf='chapter.type == "edit"'>
+            <label for="">chapter</label>
+            <ng-select [allowClear]="true" [items]="chapters" (selected)="chageChapterLocation($event)"
+               placeholder="select new location">
+            </ng-select>
+        </div>
+
       <div class="form-group">
         <label >act {{chapter.actId}}</label>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label  *ngIf='chapter.type == "view"' >chapter {{chapter.id + 1}}</label>
         <select class="lite-select" *ngIf='chapter.type == "edit"' name="chapter" data-placeholder="Chapter" formControlName="chapterId">
           <option value="">Chapter 1</option>
@@ -291,9 +312,9 @@
           <option value="">Chapter 3</option>
           <option value="">Chapter 4</option>
         </select>
-      </div>
+      </div> -->
 
-      <div class="form-group">
+      <div class="form-group textArea">
         <label>One Line Synopsis</label>
         <textarea  (focus) ="focusElem($event)"  (blur)="blur($event)" formControlName="description" #chapterDescription class="autoExpand form-control" rows="1" value ="{{chapter.synopsis}}" data-min-rows='1' maxlength=116>
         </textarea>
@@ -301,10 +322,11 @@
       </div>
 
 
-      <!-- <div class="form-group">
-        <label> Word taget </label>
-        <input class="autoExpand form-control" formControlName="wordGoal" type="number" value="{{scene.wordGoal}}" class="form-control">
-      </div> -->
+      <div class="form-group">
+        <label> Word target count </label>
+        <input class="autoExpand form-control" type="number" min=0  (focus) ="focusElem($event)"  (blur)="blur($event)"  formControlName="wordGoal" type="number" value="{{chapter.wordGoal}}" class="form-control">
+      </div>
+
       <div class="panel-footer" *ngIf="chapter.type!='view'">
           <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
           <button class="btn btn-yellow" (click)="saveChapter()">Save</button>

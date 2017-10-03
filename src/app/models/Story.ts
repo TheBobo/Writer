@@ -7,6 +7,9 @@ export class Story{
   title: string;
   description: string;
   synopsis: string;
+  paragraphSynopsis: string;
+  fourParagraphSynopsis:string;
+  fourPageSynopsis:string;
   wordCount: number;
   targetWord: number;
   date: Date;
@@ -23,6 +26,10 @@ export class Story{
       this.title='';
       this.description='';
       this.synopsis = '';
+      this.paragraphSynopsis='';
+      this.fourParagraphSynopsis='';
+      this.fourPageSynopsis='';
+
       this.date = new Date();
       this.wordCount = 0;
       this.targetWord=0;

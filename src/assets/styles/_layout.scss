@@ -13,8 +13,116 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background: purple;
+  background: $dark-purple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .typing-points {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    -webkit-animation: typing 1s linear infinite alternate;
+    -moz-animation: typing 1s linear infinite alternate;
+    animation: typing 1s linear infinite alternate;
+    margin: 46px auto;
+    /* Not necessary- its only for layouting*/
+    position: relative;
+    left: -12px;
+  }
 }
+@-webkit-keyframes typing {
+  0% {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 12px 0px 0px 0px rgba(255, 255, 255, 0.2), 24px 0px 0px 0px rgba(255, 255, 255, 0.2);
+  }
+  25% {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 12px 0px 0px 0px rgba(255, 255, 255, 2), 24px 0px 0px 0px rgba(255, 255, 255, 0.2);
+  }
+  75% {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 12px 0px 0px 0px rgba(255, 255, 255, 0.2), 24px 0px 0px 0px rgba(255, 255, 255, 1);
+  }
+}
+
+@-moz-keyframes typing {
+  0% {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 12px 0px 0px 0px rgba(255, 255, 255, 0.2), 24px 0px 0px 0px rgba(255, 255, 255, 0.2);
+  }
+  25% {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 12px 0px 0px 0px rgba(255, 255, 255, 2), 24px 0px 0px 0px rgba(255, 255, 255, 0.2);
+  }
+  75% {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 12px 0px 0px 0px rgba(255, 255, 255, 0.2), 24px 0px 0px 0px rgba(255, 255, 255, 1);
+  }
+}
+
+@keyframes typing {
+  0% {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 12px 0px 0px 0px rgba(255, 255, 255, 0.2), 24px 0px 0px 0px rgba(255, 255, 255, 0.2);
+  }
+  25% {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 12px 0px 0px 0px rgba(255, 255, 255, 2), 24px 0px 0px 0px rgba(255, 255, 255, 0.2);
+  }
+  75% {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 12px 0px 0px 0px rgba(255, 255, 255, 0.2), 24px 0px 0px 0px rgba(255, 255, 255, 1);
+  }
+}
+.rotate-circle {
+  width: 30px;
+  height: 30px;
+  border: 1px #fff solid;
+  border-radius: 50%;
+  -webkit-animation: rotation 1s ease-in-out infinite;
+  -moz-animation: rotation 1s ease-in-out infinite;
+  animation: rotation 1s ease-in-out infinite;
+  position: relative;
+  &:after {
+    width: 5px;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 100%;
+    position: absolute;
+    content: "";
+    top: 10px;
+    left: 0;
+  }
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotation {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
 aside {
   position: absolute;
   top: 50px;

@@ -17,6 +17,7 @@
       [stories]="Stories"
       (newStory)="createNewStory($event)"
       (selectStory)="selectedStory($event)"
+      (dStory)='deleteStory($event)'
   ></app-dashboard>
 
   <main class="main-content"
@@ -55,7 +56,9 @@
                 [ACTS] = "ACTS"
                 [characters]=appCharacters></app-write>
 
-      <app-synopsis *ngIf="menubarItem == 'discover' && activeComponent =='synopsis'"></app-synopsis>
+      <app-synopsis *ngIf="menubarItem == 'discover' && activeComponent =='synopsis'"
+      [story]='selectedStoryItem'
+      (storyInfo)='upadateStory($event)'></app-synopsis>
 
       <app-audence-list *ngIf="menubarItem == 'discover' && activeComponent =='audence'"
                         [audences]="appAudences"
@@ -89,7 +92,8 @@
    (addNewCharacter)=addNewCharacter($event)
    (addNewAudence)=addNewAudence($event)
    (changeSceneChapter)=changeSceneChapter($event)
-   (changeSceneOrder)=changeSceneOrder($event)></app-right-side>
+   (changeSceneOrder)=changeSceneOrder($event)
+   (changeLocation)=changeLocation($event)></app-right-side>
    
    <app-modal-confirm  #modalView *ngIf="newScene || newChapter || newCharacter"
    [deleteScene]="newScene"

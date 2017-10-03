@@ -16,6 +16,7 @@ declare var jQuery: any;
 // declare var LiteSelectFunctionality: any;
 
 const LABELS = [
+  {'name': 'No label', 'class': ''},
   {'name': 'Setup', 'class': 'primary'},
   {'name': 'Backstory',  'class': 'primary'},
   {'name': 'Catalyst', 'class': 'secondary'},
@@ -58,7 +59,7 @@ const GENDER_LABELS = [
   selector: 'app-right-side',
   templateUrl: './right-side.component.html',
   inputs: [ 'scene', 'chapter', 'character','audence', 'rightOpen', 'acts', 'title'],
-  outputs: ['close', 'addNewScene', 'addNewChapter', 'addNewCharacter', 'addNewAudence', 'changeSceneChapter', 'changeSceneOrder'],
+  outputs: ['close', 'addNewScene', 'addNewChapter', 'addNewCharacter', 'addNewAudence', 'changeSceneChapter', 'changeSceneOrder','changeLocation'],
   providers: [ActsService]
 })
 export class RightSideComponent implements OnInit {
@@ -71,6 +72,7 @@ export class RightSideComponent implements OnInit {
   @Input() rightOpen;
   @Input() String;
 
+  isCustomGender: boolean;
   chapters:Array<any>;
   availableScene:Array<any>;
   genders:Array<any>;
@@ -84,6 +86,7 @@ export class RightSideComponent implements OnInit {
   addNewAudence = new EventEmitter<Audence>();
   changeSceneChapter = new EventEmitter<Scene>();
   changeSceneOrder = new EventEmitter<Scene>();
+  changeLocation = new EventEmitter<number>();
 
   public labels:Array<any> = [];
 
@@ -162,11 +165,8 @@ export class RightSideComponent implements OnInit {
     })
   }
 
-  open(){
-    alert(10)
-  }
-
    public ngOnInit():any {
+     this.isCustomGender = false;
 
     this.shareService.RightSlide = this;
     this.chapters = Array<any>();
@@ -181,14 +181,14 @@ export class RightSideComponent implements OnInit {
      LABELS.forEach((label:{name:string, class:string}) => {
        this.labels.push({
          id: label.name,
-         text: `<span class="'${label.class}'">${label.name}</span>`
+         text: `${label.name}<span class="${label.class}">${label.class}</span>`
        });
      });
 
      GENDER_LABELS.forEach((label:{name:string, class:string}) => {
       this.genders.push({
         id: label.name,
-        text: `<span class="'${label.class}'">${label.name}</span>`
+        text: `<span (click)="addCustomGender()" class="${label.class}">${label.name}</span>`
       });
     });
 
@@ -210,7 +210,6 @@ export class RightSideComponent implements OnInit {
   }
 
   chageSceneChapter(event){
-    ;
     if(this.scene.chapterId != event.id){
       //this.shareService.changeSceneChapter(this.scene, event.id)
       this.scene.newChapterId = event.id;
@@ -222,12 +221,22 @@ export class RightSideComponent implements OnInit {
     }
   }
 
+  chageChapterLocation(event){
+    if(this.chapter.id != event.id){
+      this.changeLocation.emit(event.id)
+    }
+  }
+
   selectedLabel(event){
     this.scene.selectLabel = event.id;
   }
 
 
   selectCharacterGender(event){
+    if(event.id == 'Custom'){
+      this.character.isCustomGender = true;
+      return;
+    }
     this.character.gender = event.id;
   }
 

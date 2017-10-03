@@ -6,7 +6,6 @@
         <h4 class="title-scene">{{scene.title}}</h4>
         <p class="synopsis"> {{scene.synopsis}}.</p>
         <div class="characters-holder">
-
           <span *ngIf='scene.characters.length != 0' ngFor="let character of scene.characters" class="character-image"></span>
           <span *ngIf='scene.characters.length == 0'> no characters </span>
         </div>

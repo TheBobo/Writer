@@ -6,12 +6,13 @@ import { Story } from './../models/Story'
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   inputs:['stories'],
-  outputs:['newStory', 'selectStory']
+  outputs:['newStory', 'selectStory', 'dStory']
 })
 export class DashboardComponent implements OnInit {
 
   newStory = new EventEmitter<Story>();
   selectStory = new EventEmitter<Story>();
+  dStory = new EventEmitter<Story>()
 
   modalOpen:boolean;
   story: Story;
@@ -33,6 +34,10 @@ export class DashboardComponent implements OnInit {
 
   selectAStory(story){
     this.selectStory.emit(story);
+  }
+
+  deleteStory(story){
+    this.dStory.emit(story);
   }
 
   constructor() { }

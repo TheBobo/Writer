@@ -25,7 +25,8 @@ export class ModalNewStoryComponent implements OnInit {
     this.createAStoryForm =  fb.group({
       title: '',
       description: '',
-      synopsis: ''
+      synopsis: '',
+      wordCount:0
     })
    }
 

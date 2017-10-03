@@ -8,6 +8,7 @@ export class Chapter{
   title: string;
   description: string;
   wordCount: number;
+  wordTarget: number;
   characters: Character[];
   actId: number;
   isFocus:boolean;
@@ -23,6 +24,7 @@ export class Chapter{
     this.title = '';
     this.description = 'enter you scene text';
     this.wordCount=0;
+    this.wordTarget=0;
     this.isFocus = false;
     this.characters = new Array<Character>();
     this.scenes = new Array<Scene>();

@@ -9,8 +9,41 @@
 
 
   .ui-select-choices-row>a {
-      padding: 12px 20px !important;
+    padding: 12px 20px !important;
+    position: relative;
+    span {
+      position: absolute;
+      right: 15px;
+      top: 14px;
+      border-radius: 10px;
+      color: #fff;
+      padding: 0 5px 2px;
+      font-size: 11px;
+      &.primary {
+        background-color: $blue;
+      }
+      &.secondary {
+        background-color: $green;
+      }
+    }
   }
+.ui-select-match-text {
+  span {
+    position: absolute;
+    right: 15px;
+    top: 34px;
+    border-radius: 10px;
+    color: #fff;
+    padding: 0 5px 2px;
+    font-size: 11px;
+    &.primary {
+      background-color: $blue;
+    }
+    &.secondary {
+      background-color: $green;
+    }
+  }
+}
 
  .ui-select-choices-row.active>a {
       color: $yellow !important;
@@ -49,7 +82,7 @@
     .ui-select-match {
       width: 100%;
       height: 100%;
-      span {
+     > span {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -60,6 +93,15 @@
         letter-spacing: inherit;
         font-size: 16px;
       }
+      .caret {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid $dark-purple;
+        top: 44px;
+      }
+
     }
      .dropdown-menu {
        opacity: 1;

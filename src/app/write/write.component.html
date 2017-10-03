@@ -11,6 +11,7 @@
 
 
 <div class="editor-wrapper" id='editor-wrapper' (onScroll)="handleScroll($event)">
+  <span class="autosave" style="display:none">Saved</span>
   <span *ngFor='let act of ACTS'>
     <div *ngFor='let chapter of act.chapters' class="chapter"
       [attr.id]="'chapterItem-'+chapter.id"

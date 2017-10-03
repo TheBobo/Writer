@@ -1,4 +1,4 @@
-<div class="chapter-item">
+<div class="chapter-item" (click)="viewChapter(chapter)">
     <div class="chapter-item-wrapper">
       <div class="chapter-content">
         <h5 class="chapter-count">Chapter <span>{{chapter.id}}</span></h5>
@@ -18,12 +18,12 @@
             <p class="content">{{chapter.scenes.length}} </p>
           </div>
           <div class="info-cell">
-            <p class="label">words</p>
-            <p class="content">{{chapter.wordCount}} of 50,000</p>
+            <p class="label">Words</p>
+            <p class="content">{{chapter.wordCount}} of {{chapter.wordTarget}}</p>
           </div>
         </div>
         <div class="tool-bar">
-          <span data-balloon="View Details" data-balloon-pos="up" (click)="viewChapter(chapter)">
+          <span data-balloon="Jump to Chapter" data-balloon-pos="up" (click)="viewChapter(chapter)">
             <svg class="icon-view">
               <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
             </svg>

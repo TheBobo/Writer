@@ -7,8 +7,11 @@
 <div class="main-wrapper">
     <app-story *ngFor='let story of stories'
     [story]="story"
-    (click)="selectAStory(story)"></app-story>
+    (selectStory)="selectAStory(story)"
+    (dstory)="deleteStory($event)"></app-story>
+    
     <app-modal-new-story [modalOpen]="modalOpen" [story] ="story"
     (closeModal)="closeModal($event)"
-    (newStory)="createNewStory($event)"> </app-modal-new-story>
+    (newStory)="createNewStory($event)"
+    > </app-modal-new-story>
 </div>
