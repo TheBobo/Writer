@@ -25,8 +25,8 @@ export class SceneComponent implements OnInit {
   constructor(public shareService: ActsService) { }
   outScene = new EventEmitter<Scene>();
 
-  addScene(sceneId:number, chapterId:number, actId:number, type: string, event, last: boolean){
-    event.stopPropagation();
+  addScene(sceneId:number, chapterId:number, actId:number, type: string,  last: boolean){
+    //event.stopPropagation();
     if ( type === 'edit') {
       this.newScene = this.scene
       this.newScene.type = 'edit';

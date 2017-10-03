@@ -1,4 +1,4 @@
-<div class="scene-item" (click)='addScene(scene.id, chapterId, actId, "view", $event)'>
+<div class="scene-item">
     <div class="scene-wrapper">
       <div class="scene-content">
         <span class="tag-label" *ngIf="scene.selectLabel!=''"  [ngClass]="{'primary':scene.lblClass=='primary', 'secondary':scene.lblClass=='secondary'}">{{scene.selectLabel}}</span>
@@ -7,8 +7,8 @@
         <p class="synopsis"> {{scene.synopsis}}.</p>
         <div class="characters-holder">
 
-          <span ngFor="let character of scene.characters" class="character-image"></span>
-
+          <span *ngIf='scene.characters.length != 0' ngFor="let character of scene.characters" class="character-image"></span>
+          <span *ngIf='scene.characters.lengteth == 0'> no characters </span>
         </div>
         <div class="story-info">
           <div class="info-cell">
@@ -17,12 +17,12 @@
           </div>
         </div>
         <div class="tool-bar">
-          <span data-balloon="View Details" data-balloon-pos="up" (click)='addScene(scene.id, chapterId, actId, "view", $event)'>
+          <span data-balloon="View Details" data-balloon-pos="up" (click)='addScene(scene.id, chapterId, actId, "view")'>
           <svg class="icon-view">
             <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
           </svg>
         </span>
-          <span data-balloon="Edit Details" data-balloon-pos="up" (click)='addScene(scene.id, chapterId, actId, "edit", $event)'>
+          <span data-balloon="Edit Details" data-balloon-pos="up" (click)='addScene(scene.id, chapterId, actId, "edit")'>
           <svg class="icon-edit">
             <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
           </svg>
@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    <span class="add-new-scene" (click)='addScene(scene.id, chapterId, actId, "create", $event, lastItem)'>
+    <span class="add-new-scene" (click)='addScene(scene.id, chapterId, actId, "create", lastItem)'>
       <svg class="icon-plus">
         <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-plus"></use>
       </svg>
