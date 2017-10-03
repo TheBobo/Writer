@@ -78,7 +78,17 @@ $(document).ready(function(){
 //   //do something
 // }
 
+var debounce = null;
 $(document).on("keyup", ".trumbowyg-editor", function(e) {
+
+    clearTimeout(debounce);
+    debounce = setTimeout(function(){
+        // SAVE
+        $(".autosave").show();
+        setTimeout(function(){
+          $(".autosave").hide();
+        },500)
+    }, 3000);
 
   if (this.textContent.indexOf("@") == this.textContent.length - 1 && this.textContent.length != 0) {
     var postion = getCaretPosition();

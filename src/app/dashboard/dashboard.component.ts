@@ -37,7 +37,6 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteStory(story){
-    debugger
     this.dStory.emit(story);
   }
 
