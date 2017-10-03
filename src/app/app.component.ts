@@ -1,4 +1,3 @@
-import { ServerDataResponseService } from './server-data-response.service';
 import { element } from 'protractor';
 import { Audence } from './models/Audence';
 import { Scene } from './models/Scene';
@@ -22,7 +21,7 @@ declare var jQuery: any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   outputs:['createNewScene'],
-  providers: [ActsService, ServerDataResponseService]
+  providers: [ActsService]
 })
 export class AppComponent  implements OnInit  {
   title = '';
@@ -65,7 +64,7 @@ export class AppComponent  implements OnInit  {
   }
 
 
-  constructor(private shareService: ActsService, private serverDataResponseService: ServerDataResponseService) { } 
+  constructor(private shareService: ActsService) { } 
 
   changeSceneChapter(scene){
     this.shareService.changeSceneChapter(scene);
@@ -153,6 +152,17 @@ debugger
 
     this.newCharacter.type = 'delete';
 
+  }
+
+  deleteStory(story){
+    for( var i=0; i < this.Stories.length; i++){
+      if(this.Stories[i].id == story.id && 
+         this.Stories[i].title == story.title){
+          this.Stories.splice(i,1);
+          debugger;
+          return;
+         }
+    }
   }
 
   createScene(event){
@@ -409,10 +419,6 @@ debugger
     this.closeSettings()
 
     var values;
-     this.serverDataResponseService.getValues().subscribe(
-       res => values = res.json()
-     );
-    debugger
   }
 
 }

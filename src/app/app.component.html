@@ -17,6 +17,7 @@
       [stories]="Stories"
       (newStory)="createNewStory($event)"
       (selectStory)="selectedStory($event)"
+      (dStory)='deleteStory($event)'
   ></app-dashboard>
 
   <main class="main-content"

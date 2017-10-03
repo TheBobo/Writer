@@ -20,17 +20,12 @@
       </div>
     </div>
     <div class="tool-bar">
-      <span data-balloon="Jump to Story" data-balloon-pos="up" (click)="viewChapter(chapter)">
+      <span data-balloon="Jump to Story" data-balloon-pos="up" (click)="selectAStory(story)">
         <svg class="icon-view">
           <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-view"></use>
         </svg>
       </span>
-        <span data-balloon="Edit Details" data-balloon-pos="up" (click)="editChapter(chapter)">
-        <svg class="icon-edit">
-          <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-edit"></use>
-        </svg>
-      </span>
-        <span data-balloon="Delete" data-balloon-pos="up-right" (click)="deleteChapterFomAct(chapter)">
+        <span data-balloon="Delete" data-balloon-pos="up-right"  (click)="deleteStory(story)">
         <svg class="icon-trash">
           <use xlink:href="../../assets/fonts/swiftpad-icons.svg#icon-trash"></use>
         </svg>
