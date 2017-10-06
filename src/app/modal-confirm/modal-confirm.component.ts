@@ -43,6 +43,7 @@ export class ModalConfirmComponent implements OnInit {
   }
 
   ngOnInit() {
+    debugger
   }
 
 }

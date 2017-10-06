@@ -197,6 +197,22 @@ debugger
     debugger
     this.clearState();
     this.newScene = event;
+
+    if(event.type == 'edit')
+    for( var i=0; i<this.ACTS.length; i++)
+      for( var j = 0; j<this.ACTS[i].chapters.length; j++){
+        
+        if(this.ACTS[i].chapters[j].id == this.newScene.chapterId){
+            for( var k = 0; k<this.ACTS[i].chapters[j].scenes.length; k++){
+                if(event.id == this.ACTS[i].chapters[j].scenes[k].id)
+                  this.newScene = this.ACTS[i].chapters[j].scenes[k];
+                  this.newScene.type = 'edit';
+              }
+              this.newScene.actId = this.ACTS[i].id;
+        }
+      }
+
+    debugger
     this.emitRight(true);
   }
 
@@ -417,7 +433,8 @@ debugger
 
     this.emitRight(true);
     this.closeSettings()
-
+    debugger
+    this.clearState();
     var values;
   }
 

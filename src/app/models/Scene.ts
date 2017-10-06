@@ -41,6 +41,8 @@ export class Scene{
     this.wordsGoal = 50000;
     this.selectLabel='';
     this.lblClass='';
+    this.settings = '';
+    this.mood='';
   }
 
 }

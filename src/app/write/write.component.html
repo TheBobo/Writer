@@ -12,6 +12,7 @@
 
 <div class="editor-wrapper" id='editor-wrapper' (onScroll)="handleScroll($event)">
   <span class="autosave" style="display:none">Saved</span>
+  <span class="auto-timer" >Saved before <span class='minutes-count'>0</span> minutes</span>
   <span *ngFor='let act of ACTS'>
     <div *ngFor='let chapter of act.chapters' class="chapter"
       [attr.id]="'chapterItem-'+chapter.id"
@@ -69,11 +70,20 @@
                   Start writing your story here
               </span> -->
 
-              <div class='description-holder'>
+              <!-- <div class='description-holder'>
                 <trumbowyg liveUpdate="true" 
                   [initialContent]="scene.description"
                   [options]="options1"
                   (savedContent)="scene.description=$event">
+                </trumbowyg>
+              </div> -->
+              <div
+              (blur)="blur()"
+              (focus)="focus()">
+                <trumbowyg
+                [initialContent]="scene.description"
+                [options]="options1"
+                (savedContent)="scene.description=$event">
                 </trumbowyg>
               </div>
             </div>

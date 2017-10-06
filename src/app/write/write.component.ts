@@ -46,9 +46,7 @@ export class WriteComponent implements OnInit {
       ['link'],
       ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
       ['unorderedList', 'orderedList'],
-      ['horizontalRule'],
-      ['removeformat'],
-      ['fullscreen']
+      ['removeformat']
     ]
   };
   constructor(private shareService: ActsService) {

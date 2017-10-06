@@ -79,16 +79,27 @@ $(document).ready(function(){
 // }
 
 var debounce = null;
-$(document).on("keyup", ".trumbowyg-editor", function(e) {
+var date =  new Date();
 
+$('.minutes-count').text(0);
+$(document).on("keyup", ".trumbowyg-editor", function(e) {
+  
     clearTimeout(debounce);
     debounce = setTimeout(function(){
         // SAVE
         $(".autosave").show();
         setTimeout(function(){
           $(".autosave").hide();
+          date = new Date();
         },500)
     }, 3000);
+
+    setInterval(function(){
+      var now = new Date();
+      debugger
+      var minutes =  (now- date)/60000;
+      $('.minutes-count').text(minutes);
+    }, 5000);
 
   if (this.textContent.indexOf("@") == this.textContent.length - 1 && this.textContent.length != 0) {
     var postion = getCaretPosition();

@@ -28,7 +28,7 @@ export class Chapter{
     this.isFocus = false;
     this.characters = new Array<Character>();
     this.scenes = new Array<Scene>();
-    this.scenes.push(new Scene(1,this.id,this.actId,"create"))
+    //this.scenes.push(new Scene(1,this.id,this.actId,"create"))
 
     if(actId){
       this.actId=actId;

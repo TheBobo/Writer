@@ -51,7 +51,7 @@
                 (createNewChapter)="emitNewChapter($event)"
                 (deleteChapter)="deleteChapter($event)"
                 (newCharacter)="createNewCharacter()"
-                 (hasOpenAddCharacter)="addCharacterFromWriter($event)"
+                (hasOpenAddCharacter)="addCharacterFromWriter($event)"
                 [chapter]="selectChapter"
                 [ACTS] = "ACTS"
                 [characters]=appCharacters></app-write>
@@ -75,6 +75,14 @@
 
   </main>
 
+  <app-modal-confirm  #modalView *ngIf="newScene || newChapter || newCharacter"
+  [deleteScene]="newScene"
+  [deleteChapter]="newChapter"
+  [deleteCharacter]="newCharacter"
+  (deleteSelectedScene)=deleteSelectedScene($event)
+  (deleteSelectedChapter)=deleteSelectedChapter($event)
+  (deleteSelectedCharacter)=deleteSelectedCharacter($event)>
+ </app-modal-confirm>
 
   <app-right-side #rightSlideView *ngIf="newScene || newChapter || newCharacter || newAudence"
    [scene]="newScene"
@@ -93,23 +101,16 @@
    (addNewAudence)=addNewAudence($event)
    (changeSceneChapter)=changeSceneChapter($event)
    (changeSceneOrder)=changeSceneOrder($event)
-   (changeLocation)=changeLocation($event)></app-right-side>
+   (changeLocation)=changeLocation($event)>
+  </app-right-side>
    
-   <app-modal-confirm  #modalView *ngIf="newScene || newChapter || newCharacter"
-   [deleteScene]="newScene"
-   [deleteChapter]="newChapter"
-   [deleteCharacter]="newCharacter"
-
-   (deleteSelectedScene)=deleteSelectedScene($event)
-   (deleteSelectedChapter)=deleteSelectedChapter($event)
-   (deleteSelectedCharacter)=deleteSelectedCharacter($event)>
-  </app-modal-confirm>
+  
 
   <app-settings *ngIf="openSettings == true"
                 [isOpen]="openSettings"
                 (close)="closeSettings()"
-
                 [user]="user"
-                (userSave)="userSave($event)"></app-settings>
+                (userSave)="userSave($event)">
+  </app-settings>
 
   </div>

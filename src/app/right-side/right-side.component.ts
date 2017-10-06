@@ -106,7 +106,7 @@ export class RightSideComponent implements OnInit {
     this.rightPanelForm = fb.group({
       title: [this.scene ? this.scene.title : ''],
       description: [this.scene ? this.scene.synopsis : ''],
-      wordGoal: [this.scene ? this.scene.wordGoal : ''],
+      wordsGoal: [this.scene ? this.scene.wordsGoal : ''],
       chapterId: [this.scene ? this.scene.chapterId : ''],
       id: [this.scene ? this.scene.id : ''],
       settings:[this.scene ? this.scene.settings : ''],
@@ -166,8 +166,8 @@ export class RightSideComponent implements OnInit {
   }
 
    public ngOnInit():any {
-     this.isCustomGender = false;
-
+    debugger
+    this.isCustomGender = false;
     this.shareService.RightSlide = this;
     this.chapters = Array<any>();
     this.genders = Array<any>();
@@ -307,12 +307,12 @@ export class RightSideComponent implements OnInit {
 
   save(){
     let formData = this.rightPanelForm.getRawValue();
-    this.scene.title = formData.title;
-    this.scene.synopsis = formData.synopsis;
-    this.scene.wordsGoal = formData.wordGoal ? parseInt(formData.wordGoal) : 0;
-    this.scene.settings = formData.settings;
-    this.scene.mood = formData.mood;
-    this.scene.objective = formData.objective;
+    this.scene.title = formData.title ? formData.title : this.scene.title ? this.scene.title : '';
+    debugger
+    this.scene.wordsGoal = formData.wordsGoal ? parseInt(formData.wordsGoal) : this.scene.wordsGoal ? this.scene.wordsGoal : 0;
+    this.scene.settings = formData.settings ? formData.settings : this.scene.settings ? this.scene.settings : '';
+    this.scene.mood = formData.mood ? formData.mood : this.scene.mood ? this.scene.mood : '';
+    this.scene.objective = formData.objective ? formData.objective : this.scene.objective ? this.scene.objective : '';
 
 
     this.addNewScene.emit(this.scene);

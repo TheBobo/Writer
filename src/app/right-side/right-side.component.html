@@ -136,13 +136,8 @@
           <label>Scene Outline</label>
           <input (focus) ="focusElem($event)"  (blur)="blur($event)"  type="text" formControlName="title" #scenetitle class="form-control" value="{{scene.title}}">
         </div>
-
-
-
-      <div class="form-group">
-        <label >act {{scene.actId}}</label>
-      </div>
-      <div class="form-group" [ngClass]="{'active':scene.type == 'view' || scene.type == 'edit' }">
+ 
+      <div class="form-group" [ngClass]="{'active': scene.type == 'edit' }">
         <label *ngIf='scene.type == "view" || scene.type == "create"' >chapter {{scene.chapterId}}</label>
         <div *ngIf='scene.type == "edit"'>
           <label for="">chapter</label>
@@ -151,7 +146,7 @@
           </ng-select>
         </div>
       </div>
-      <div class="form-group" [ngClass]="{'active':scene.type == 'view' || scene.type == 'edit' }">
+      <div class="form-group" [ngClass]="{'active': scene.type == 'edit' }">
         <label *ngIf='scene.type == "view" || scene.type == "create"'>scene {{scene.id + 1}}</label>
         <div *ngIf='scene.type == "edit"'>
           <label>scene</label>
@@ -159,28 +154,29 @@
           </ng-select>
         </div>
       </div>
-      <div class="form-group active" *ngIf='scene && (scene.type == "edit" || scene.type == "create")'[ngClass]="{'active':scene.selectLabel != ''}">
+      <div class="form-group active" *ngIf='(scene && (scene.type == "edit" || scene.type == "create"))'>
 
-          <label *ngIf="scene.selectLabel != ''">Scene Label</label>
+          <label >Scene Label</label>
           <ng-select [allowClear]="true" [items]="labels" (selected)="selectedLabel($event)"
             (removed)="removed($event)" placeholder="Scene Label">
           </ng-select>
       </div>
 
 
-      <div class="form-group textArea">
+      <div class="form-group textArea" [ngClass]="{'active': scene.settings != '' }">
         <label>Setting</label>
         <textarea  (focus) ="focusElem($event)"  (blur)="blur($event)" formControlName="settings" #sceneSetting class="autoExpand form-control" rows="2" value ="{{scene.settings}}" data-min-rows='2'></textarea>
         <!-- <span class="text-inline">{{ 116 - sceneDescription.value.length}}</span> -->
       </div>
-      <div class="form-group textArea">
+      <div class="form-group textArea" [ngClass]="{'active': scene.mood != '' }">
         <label>Mood/Tone</label>
         <textarea  (focus) ="focusElem($event)"  (blur)="blur($event)" formControlName="mood" #sceneMood class="autoExpand form-control" rows="2" value ="{{scene.mood}}" data-min-rows='2'></textarea>
         <!-- <span class="text-inline">{{ 116 - sceneDescription.value.length}}</span> -->
       </div>
-      <div class="form-group">
+      <div class="form-group active" >
         <label> Word target count </label>
-        <input class="autoExpand form-control"  (focus) ="focusElem($event)"  (blur)="blur($event)"  formControlName="wordGoal" type="number" value="{{scene.wordGoal}}" class="form-control">
+        <input class="autoExpand form-control"  (focus) ="focusElem($event)"  (blur)="blur($event)"  formControlName="wordsGoal" #wordsGoal type="textng serve
+        " value="{{scene.wordsGoal}}" class="form-control">
       </div>
       <div class="panel-footer" *ngIf="scene.type!='view'">
         <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
@@ -321,10 +317,10 @@
       </div>
 
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label> Word target count </label>
-        <input class="autoExpand form-control" type="number" min=0  (focus) ="focusElem($event)"  (blur)="blur($event)"  formControlName="wordGoal" type="number" value="{{chapter.wordGoal}}" class="form-control">
-      </div>
+        <input class="autoExpand form-control" type="number" min=0  (focus)="focusElem($event)"  (blur)="blur($event)"  formControlName="wordGoal" type="number" value="{{chapter.wordGoal}}" class="form-control">
+      </div> -->
 
       <div class="panel-footer" *ngIf="chapter.type!='view'">
           <button class="btn btn-cancel" (click)="cancel()">Cancel</button>

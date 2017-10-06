@@ -63,12 +63,10 @@ export class ActsService {
 
             chapterIndex++;
             this.ACTS[i].chapters.push(new Chapter('create', chapterIndex,(i+1)));
-            if(isFirstScene){
+            if(this.ACTS[i].chapters[0].scenes[0] && isFirstScene){
               this.ACTS[i].chapters[0].scenes[0].isFocus=true;
               isFirstScene=false;
             }
-            chapterIndex++;
-            this.ACTS[i].chapters.push(new Chapter('create',chapterIndex,(i+1)));
 
         }
 
@@ -108,7 +106,8 @@ export class ActsService {
       }
 
       chapter.scenes.splice((scene.id), 0, scene);
-
+      debugger
+      chapter.wordTarget += scene.wordsGoal;
       this.updateSceneId(chapter, scene.id, scene.last);
     }
 
