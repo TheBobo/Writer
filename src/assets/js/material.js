@@ -97,9 +97,9 @@ $(document).on("keyup", ".trumbowyg-editor", function(e) {
     setInterval(function(){
       var now = new Date();
       debugger
-      var minutes =  (now- date)/60000;
+      var minutes = parseInt((now - date)/60000);
       $('.minutes-count').text(minutes);
-    }, 5000);
+    }, 60000);
 
   if (this.textContent.indexOf("@") == this.textContent.length - 1 && this.textContent.length != 0) {
     var postion = getCaretPosition();
