@@ -90,13 +90,13 @@ function setTimeOut(){
     var now = new Date();
     var minutes = parseInt((now - date)/60000);
     $('.minutes-count').text(minutes);
-  }, 60000);  
+  }, 10000);  
 }
 
 $(document).on("keyup", ".trumbowyg-editor", function(e) {
   
     if(interval==null){
-      interval = setInterval
+      interval = setTimeOut();
     }
     clearTimeout(debounce);
     debounce = setTimeout(function(){
