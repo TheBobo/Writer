@@ -38,7 +38,7 @@ export class Scene{
     this.description = "";
     this.characters = new Array<Character>();
     this.wordCount = this.description.split(' ').length;
-    this.wordsGoal = 50000;
+    this.wordsGoal = 0;
     this.selectLabel='';
     this.lblClass='';
     this.settings = '';

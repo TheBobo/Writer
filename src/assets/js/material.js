@@ -82,24 +82,37 @@ var debounce = null;
 var date =  new Date();
 
 $('.minutes-count').text(0);
+
+var interval=null;
+
+function setTimeOut(){  
+  setInterval(function(){
+    var now = new Date();
+    var minutes = parseInt((now - date)/60000);
+    $('.minutes-count').text(minutes);
+  }, 60000);  
+}
+
 $(document).on("keyup", ".trumbowyg-editor", function(e) {
   
+    if(interval==null){
+      interval = setInterval
+    }
     clearTimeout(debounce);
     debounce = setTimeout(function(){
         // SAVE
+        clearInterval(interval);
+        interval = null;
+        $('.auto-timer').hide();
+        $('.auto-timer').find('.minutes-count').text('0')
         $(".autosave").show();
         setTimeout(function(){
           $(".autosave").hide();
+          $('.auto-timer').show();  
           date = new Date();
         },500)
     }, 3000);
 
-    setInterval(function(){
-      var now = new Date();
-      debugger
-      var minutes = parseInt((now - date)/60000);
-      $('.minutes-count').text(minutes);
-    }, 60000);
 
   if (this.textContent.indexOf("@") == this.textContent.length - 1 && this.textContent.length != 0) {
     var postion = getCaretPosition();
