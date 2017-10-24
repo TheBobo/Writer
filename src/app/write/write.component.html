@@ -1,6 +1,6 @@
 
 <ul id="characters">
-  <li  *ngFor='let character of characters' (click)="select(character)">
+  <li  *ngFor='let character of characters' (click)="select(character, $event)">
       <span *ngIf="character.img != ''" [ngStyle]="{'background-image': 'url(' + character.img + ')'}"></span>
     {{character.name}}
   </li>
@@ -85,14 +85,10 @@
                   (savedContent)="scene.description=$event">
                 </trumbowyg>
               </div> -->
-              <div
-              (blur)="blur()"
-              (focus)="focus()">
-                <trumbowyg
-                [initialContent]="scene.description"
-                [options]="options1"
-                (savedContent)="scene.description=$event">
-                </trumbowyg>
+              <div>
+                <trumbowyg style="display:none"
+                 (click)="selectTrumbowyg()" (keyup)='typeText($event)' [initialContent]="scene.description" [options]="options1" (savedContent)="scene.description=$event"></trumbowyg>
+               <textarea class="textEditor" cols='10' rows="10" (click)="selectTrumbowyg($event)" (keyup)='typeText($event)'></textarea>
               </div>
             </div>
 

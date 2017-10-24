@@ -33,6 +33,10 @@ export class WriteComponent implements OnInit {
   newCharacter = new EventEmitter();
   deleteChapter  = new EventEmitter<Chapter>();
   hasOpenAddCharacter = new EventEmitter<boolean>();
+  startCharacter : number;
+  endCharacter : number;
+
+  public isOpenComplete : string = '';
 
   public initialContentOne: string = ``
   public initialContentTwo: string = ``
@@ -176,26 +180,84 @@ export class WriteComponent implements OnInit {
 
       this.shareService.updateActs(this.ACTS);
   }
+  
 
-  select(character){
+  select(character, event){
+    // var text = ($('.scene.focus').find('.trumbowyg-editor').html())
+    // if(this.startCharacter != -1){
+    //   debugger
+    // }
 
-    var text = ($('.scene.focus').find('.trumbowyg-editor').html())
+    // var index = text.indexOf("@");
+    // text = text.substr(0, index);
 
-    var index = text.indexOf("@");
-    text = text.substr(0, index);
+    // text = text + "<span readonly class='character-name' (click)='showCharacter("+character+")'>"+character.name+"</span>&#8203;"
+    // $('.scene.focus').find('.trumbowyg-editor').html(text);
 
-    text = text + "<span readonly class='character-name' (click)='showCharacter("+character+")'>"+character.name+"</span>&#8203;"
-    $('.scene.focus').find('.trumbowyg-editor').html(text);
+    var text = ($('.textEditor.active').val())
+    var textStart = text.substr(0, this.startCharacter-1);
+    var textEnd = text.substr(this.endCharacter);
 
+    text = textStart + character.name + textEnd;
+    
+    $('.textEditor.active').val(text)
+    debugger
     $("#characters").hide();
+    debugger
   }
 
-  blur(){
-    alert('element was blur')
+  selectTrumbowyg(event){
+    $('.textEditor').removeClass('active');
+    $(event.target).addClass('active')
   }
 
-  focus(){
-    alert("element is focus")
+  
+getCaretPosition() {
+  var x = 0;
+  var y = 0;
+  var sel = window.getSelection();
+  if(sel.rangeCount) {
+      var range = sel.getRangeAt(0).cloneRange();
+      debugger
+      if(range.getClientRects()) {
+      range.collapse(true);
+      var rect = range.getClientRects()[0];
+      if(rect) {
+          y = rect.top;
+          x = rect.left;
+      }
+      }
   }
+
+  return {
+      x: x,
+      y: y
+  };
+}
+
+  typeText(event){
+    if(event.key == '@'){
+
+      this.startCharacter =   $(event.target).prop('selectionStart');
+      this.endCharacter = this.startCharacter;
+
+      var postion = this.getCaretPosition();
+      $("#characters").css({top: postion.y-28, left: postion.x-300, display:'block'});
+      $("#characters > li").each(function() {
+         $(this).show();
+      });
+    }
+    else if(this.startCharacter != -1){
+      this.endCharacter = $(event.target).prop('selectionStart')
+      if(event.key = 'space')
+        $("#characters").hide();
+    }
+
+
+    console.log($(event.target).text())
+  }
+
+  
+
 
 }

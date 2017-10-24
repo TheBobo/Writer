@@ -1,4 +1,11 @@
- //Material Form
+
+
+var isInTag=false;
+var tagText='';
+var startIndex = -1;
+var indexPosition=-1;
+
+//Material Form
  setTimeout(function() {
   var input  = $(".form-control");
   input.on('focus blur', function (e) {
@@ -41,42 +48,7 @@ $(document).on("click", '.chapter.has-sub a' ,function(evt){
     $(this).closest('li').addClass('open')
 })
 
-
-// $(document).on('scroll', '.editor-wrapper', function(){
-//   console.log('windows was scrool')
-// })
 $(document).ready(function(){
-//
-// $().scroll(function(){
-//
-//   console.log('windows was scrool')
-// });
-
-
-// var typingTimer;                //timer identifier
-// var doneTypingInterval = 5000;  //time in ms, 5 second for example
-
-// //on keydown, clear the countdown
-// $(document).on('keydown', '.trumbowyg-editor', function () {
-//   clearTimeout(typingTimer);
-//   typingTimer = setTimeout(doneTyping, doneTypingInterval);
-// });
-
-// //user is "finished typing," do something
-// function doneTyping () {
-//   var text = $('.scene.focus .trumbowyg-editor').html();
-//   var scene = $('.scene.focus')
-//   if(text.length != 0){
-//     $('.scene.focus').find('.placeholder').addClass('hidden')
-//   }
-//   else{
-//     $('.scene.focus').find('.placeholder').removeClass('hidden')
-//   }
-
-//   $('.scene.focus').find('.text-description').val(text)
-//   console.log(text)
-//   //do something
-// }
 
 var debounce = null;
 var date =  new Date();
@@ -91,6 +63,36 @@ function setTimeOut(){
     var minutes = parseInt((now - date)/60000);
     $('.minutes-count').text(minutes);
   }, 10000);  
+}
+
+var textContent = '';
+
+$(document).on("click", ".trumbowyg-editor", function(e) {
+  textContent = this.textContent;
+})
+
+function findChanges(oldContent, newContent){
+  var contentLength = oldContent.length;
+  if(contentLength < newContent.length)
+    contentLength = newContent.length;
+
+  for(var i=0; i<contentLength; i++){
+    if( (oldContent[i] != newContent[i]) ){
+      indexPosition = i;
+      if(newContent[i] == '@'){
+        startIndex = i;
+        isInTag = true;
+      }
+
+      if(isInTag){
+        tagText += newContent[i];
+      }
+      console.log('character is: ' + newContent[i])
+      console.log('Tag text is: ' + tagText)
+      debugger
+      break;
+    }
+  }
 }
 
 $(document).on("keyup", ".trumbowyg-editor", function(e) {
@@ -113,8 +115,12 @@ $(document).on("keyup", ".trumbowyg-editor", function(e) {
         },500)
     }, 3000);
 
+    findChanges(textContent, this.textContent);
+    //console.log('Old content: ' + textContent);
+    textContent = this.textContent
+    //console.log('New content: ' + textContent)
 
-  if (this.textContent.indexOf("@") == this.textContent.length - 1 && this.textContent.length != 0) {
+  if (this.textContent.indexOf("@", ) == this.textContent.length - 1 && this.textContent.length != 0) {
     var postion = getCaretPosition();
     $("#characters").css({top: postion.y-28, left: postion.x-300, display:'block'});
     $("#characters > li").each(function() {
@@ -123,7 +129,12 @@ $(document).on("keyup", ".trumbowyg-editor", function(e) {
   }
   else if (this.textContent.indexOf("@") != -1 ){
     var index = this.textContent.indexOf("@")+1;
-    var filter =  this.textContent.substr(index);
+    var endIndex = this.textContent.indexOf(' ',index)
+    var filter =  this.textContent.substr(index, endIndex-index);
+
+    if(filter == ''){
+      // $("#characters").hide();
+    }
 
     $(this).find('.char').text(filter)
 
@@ -157,6 +168,7 @@ function getCaretPosition() {
   var sel = window.getSelection();
   if(sel.rangeCount) {
       var range = sel.getRangeAt(0).cloneRange();
+      debugger
       if(range.getClientRects()) {
       range.collapse(true);
       var rect = range.getClientRects()[0];
