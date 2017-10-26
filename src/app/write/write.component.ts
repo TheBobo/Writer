@@ -199,9 +199,10 @@ export class WriteComponent implements OnInit {
     var textEnd = text.substr(this.endCharacter);
 
     text = textStart + character.name + textEnd;
+    var textDiv = textStart + "<span readonly class='character-name' (click)='showCharacter("+character+")'>"+character.name+"</span>&#8203;" + textEnd;
     
     $('.textEditor.active').val(text)
-    debugger
+    $('.textEditor.active').parent().find('.textEditorDiv').html(textDiv);
     $("#characters").hide();
     debugger
   }
@@ -236,16 +237,24 @@ getCaretPosition() {
 }
 
   typeText(event){
+    debugger
     if(event.key == '@'){
-
-      this.startCharacter =   $(event.target).prop('selectionStart');
-      this.endCharacter = this.startCharacter;
+      
+      var currentHtml = $('.textEditorDiv').html();
+      $('.textEditorDiv').html(currentHtml.replace('@', '<span class="tagHero">@</span>'))
+      debugger
 
       var postion = this.getCaretPosition();
       $("#characters").css({top: postion.y-28, left: postion.x-300, display:'block'});
       $("#characters > li").each(function() {
          $(this).show();
       });
+    }
+    else if(event.code == 'Space'){
+      var currentHtml = $('.textEditorDiv').html();
+      var newHtml = currentHtml.replace('<span class="tagHero">@</span>', '@');
+      debugger
+      $('.textEditorDiv').html(newHtml)
     }
     else if(this.startCharacter != -1){
       this.endCharacter = $(event.target).prop('selectionStart')
